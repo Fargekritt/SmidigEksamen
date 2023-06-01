@@ -1,4 +1,4 @@
-package com.example.demo;
+package no.kristiania.munchMoment;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

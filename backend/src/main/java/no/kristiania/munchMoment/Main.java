@@ -1,4 +1,4 @@
-package com.example.demo;
+package no.kristiania.munchMoment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

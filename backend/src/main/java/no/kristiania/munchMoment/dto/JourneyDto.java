@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package no.kristiania.munchMoment.dto;
 
 public class JourneyDto {
 

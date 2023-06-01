@@ -1,4 +1,4 @@
-package com.example.demo.journey;
+package no.kristiania.munchMoment.journey;
 
 import java.util.List;
 
@@ -43,35 +43,19 @@ public class JourneyBuilder {
         this.themes = themes;
     }
 
-    public Journey build() {
+    public Journey build(){
         Journey journey = new Journey(1L);
-        if (interactive) {
+        if(interactive){
             journey.addStop(10);
         }
 
-        if (themes.contains("Landscape")) {
+        if(themes.contains("Landscape")){
             journey.addStop(2);
         }
 
-        if (familiarity > 10) {
-            journey.addStop(1);
-            journey.addStop(3);
-            journey.addStop(5);
-
-        } else {
-            journey.addStop(1);
-            journey.addStop(4);
-            journey.addStop(8);
-
-        }
-
-        if (time > 100) {
-            journey.addStop(40);
-            journey.addStop(45);
-            journey.addStop(55);
-        }
-
-
+        journey.addStop(1);
+        journey.addStop(3);
+        journey.addStop(5);
         return journey;
     }
 }

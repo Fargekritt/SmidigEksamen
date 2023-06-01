@@ -1,4 +1,4 @@
-package com.example.demo.journey;
+package no.kristiania.munchMoment.journey;
 
 import java.util.List;
 

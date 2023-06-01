@@ -1,8 +1,8 @@
-package com.example.demo.endpoints;
+package no.kristiania.munchMoment.endpoints;
 
-import com.example.demo.dto.JourneyDto;
-import com.example.demo.journey.Journey;
-import com.example.demo.journey.JourneyBuilder;
+import no.kristiania.munchMoment.dto.JourneyDto;
+import no.kristiania.munchMoment.journey.Journey;
+import no.kristiania.munchMoment.journey.JourneyBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +25,6 @@ public class JourneyController {
         JourneyBuilder builder = new JourneyBuilder();
         builder.setFamiliarity(journeyDto.getFamiliarity());
         builder.setThemes(List.of(journeyDto.getThemes()));
-        builder.setInteractive(journeyDto.isInteractive());
-        builder.setTime(journeyDto.getTime());
-        return builder.build();
+        return null;
     }
 }
