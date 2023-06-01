@@ -53,10 +53,25 @@ public class JourneyBuilder {
             journey.addStop(2);
         }
 
+        if (familiarity > 10) {
+            journey.addStop(1);
+            journey.addStop(3);
+            journey.addStop(5);
 
-        journey.addStop(1);
-        journey.addStop(3);
-        journey.addStop(5);
+        } else {
+            journey.addStop(1);
+            journey.addStop(4);
+            journey.addStop(8);
+
+        }
+
+        if (time > 100) {
+            journey.addStop(40);
+            journey.addStop(45);
+            journey.addStop(55);
+        }
+
+
         return journey;
     }
 }
