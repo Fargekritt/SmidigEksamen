@@ -43,15 +43,16 @@ public class JourneyBuilder {
         this.themes = themes;
     }
 
-    public Journey build(){
+    public Journey build() {
         Journey journey = new Journey(1L);
-        if(interactive){
+        if (interactive) {
             journey.addStop(10);
         }
 
-        if(themes.contains("Landscape")){
+        if (themes.contains("Landscape")) {
             journey.addStop(2);
         }
+
 
         journey.addStop(1);
         journey.addStop(3);

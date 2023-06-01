@@ -24,6 +24,8 @@ public class JourneyController {
         JourneyBuilder builder = new JourneyBuilder();
         builder.setFamiliarity(journeyDto.getFamiliarity());
         builder.setThemes(List.of(journeyDto.getThemes()));
-        return null;
+        builder.setInteractive(journeyDto.isInteractive());
+        builder.setTime(journeyDto.getTime());
+        return builder.build();
     }
 }
