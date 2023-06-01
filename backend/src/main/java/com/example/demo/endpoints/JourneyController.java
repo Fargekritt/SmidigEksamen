@@ -1,8 +1,11 @@
 package com.example.demo.endpoints;
 
 import com.example.demo.dto.JourneyDto;
-import com.example.demo.items.Journey;
+import com.example.demo.journey.Journey;
+import com.example.demo.journey.JourneyBuilder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/journey") //map web requests onto specific handler classes and/or handler methods.
@@ -18,6 +21,9 @@ public class JourneyController {
     @PostMapping // This is used to handle a POST request on /api/journey
     public Journey createJourney(@RequestBody JourneyDto journeyDto){
         // create and return the new journey
+        JourneyBuilder builder = new JourneyBuilder();
+        builder.setFamiliarity(journeyDto.getFamiliarity());
+        builder.setThemes(List.of(journeyDto.getThemes()));
         return null;
     }
 }

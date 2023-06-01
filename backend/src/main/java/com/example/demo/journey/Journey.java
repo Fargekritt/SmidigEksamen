@@ -1,6 +1,10 @@
-package com.example.demo.items;
+package com.example.demo.journey;
+
+import java.util.List;
 
 public class Journey {
+
+    private List<Integer> stops;
     public Journey(Long i) {
         this.id = i;
     }
@@ -11,6 +15,10 @@ public class Journey {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void addStop(int id){
+        stops.add(id);
     }
 
     private Long id;
