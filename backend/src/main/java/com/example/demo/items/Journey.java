@@ -15,7 +15,6 @@ public class Journey {
 
     private Long id;
     // something more here
-
-
+    
 
 }

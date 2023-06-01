@@ -1,5 +1,6 @@
 package com.example.demo.endpoints;
 
+import com.example.demo.dto.JourneyDto;
 import com.example.demo.items.Journey;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class JourneyController {
     }
     // endpoint for creating a new journey
     @PostMapping // This is used to handle a POST request on /api/journey
-    public Journey createJourney(@RequestBody Journey journey){
+    public Journey createJourney(@RequestBody JourneyDto journeyDto){
         // create and return the new journey
         return null;
     }
