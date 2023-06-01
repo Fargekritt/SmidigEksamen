@@ -1,0 +1,205 @@
+@import "../../../assets/styles/global-variables.scss";
+
+body,
+.page {
+  margin-inline: 1em;
+  // padding-bottom: 7em;
+}
+
+form {
+  text-align: center;
+  & > div {
+    margin-block: 4em;
+    padding-block: 1em;
+  }
+  & .heading {
+    margin-bottom: 2em;
+    margin-inline: 1.5em;
+    line-height: 1.4em;
+  }
+}
+
+/***** THEME SELECTOR *****/
+
+.theme-selector {
+  & > div {
+    margin: auto;
+    max-width: 360px;
+    & div {
+      display: inline-block;
+      position: relative;
+      margin: 0.4em;
+      border-radius: 0.3em;
+      padding: 0.75em 1.25em;
+    }
+    & input {
+      display: none;
+    }
+  }
+}
+
+/***** RANGE INPUT *****/
+
+.range-input {
+  & label {
+    display: block;
+    margin-block: 2em 1em;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15em;
+  height: 0.3em;
+  background: linear-gradient(to right, #7c7c7c, #bbb);
+  transition: all 0.2s;
+  border-radius: 1em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #2f2f2f;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 1em;
+}
+
+/***** BUTTONS *****/
+
+.button {
+  display: inline-block;
+  // border-radius: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+
+  &.default {
+    background-color: $color_primary;
+    color: #fff;
+    font-weight: bolder;
+
+    &:hover {
+      background-color: mix($color_primary, #000, 80%);
+      transform: skew(-10deg);
+    }
+
+    &:active {
+      background-color: mix($color_primary, #000, 60%);
+      transform: skew(-10deg);
+    }
+
+    &:disabled {
+      background-color: $color_disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  &.toggleable {
+    * {
+      font-family: $font_family--secondary;
+      font-weight: bolder;
+      color: $color_primary;
+      font-size: 1.2em;
+    }
+    box-sizing: border-box;
+    border: 0.15em solid mix($color_primary, #fff, 20%);
+    transition: all 0.2s;
+    background-color: $color_white;
+
+    &:default {
+      background-color: $color_white;
+    }
+
+    &.toggled {
+      background-color: mix($color_primary, #fff, 10%);
+
+      & * {
+        color: darken($color_primary, 10%);
+      }
+      border: 0.15em solid mix($color_primary, #dfdfdf, 50%);
+    }
+
+    &:disabled {
+      background-color: $color_disabled;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.submit-button {
+  margin-block: 3em;
+  padding: 1.4em 2.4em;
+  font-family: $font_family--primary;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  letter-spacing: 0.04em;
+}
+
+/***** TOGGLE SWITCH *****/
+
+.toggle-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 20em;
+  overflow: hidden;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch-text {
+  padding: 1em;
+  opacity: 0.5;
+  font-size: 1.2em;
+  width: 7em;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  &:first-of-type {
+    border-radius: 2em 0 0 2em;
+  }
+  &:last-of-type {
+    border-radius: 0 2em 2em 0;
+  }
+}
+
+input[type="checkbox"]:checked {
+  & ~ .toggle-switch-text:first-of-type {
+    opacity: 0.75;
+    border: 0.15em solid mix($color_primary, #fff, 20%);
+    border-right-width: 0.075em;
+    color: #444;
+  }
+  & ~ .toggle-switch-text:last-of-type {
+    opacity: 1;
+    border: 1px solid blue;
+    color: darken($color_primary, 10%);
+    background-color: mix($color_primary, #fff, 10%);
+    border: 0.15em solid mix($color_primary, #dfdfdf, 50%);
+    border-left-width: 0.075em;
+  }
+}
+input[type="checkbox"]:not(:checked) {
+  & ~ .toggle-switch-text:first-of-type {
+    opacity: 1;
+    border: 1px solid blue;
+    color: darken($color_primary, 10%);
+    background-color: mix($color_primary, #fff, 10%);
+    border: 0.15em solid mix($color_primary, #dfdfdf, 50%);
+    border-right-width: 0.075em;
+  }
+  & ~ .toggle-switch-text:last-of-type {
+    opacity: 0.75;
+    border: 0.15em solid mix($color_primary, #fff, 20%);
+    border-left-width: 0.075em;
+    color: #444;
+  }
+}

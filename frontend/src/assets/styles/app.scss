@@ -1,0 +1,36 @@
+@import "./global-variables.scss";
+
+h1,
+.title {
+  font-family: $font_family--primary;
+  text-transform: uppercase;
+  font-size: $font_size--title;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+small,
+body {
+  font-family: $font_family--secondary;
+  font-size: $font_size--body;
+  font-weight: lighter;
+  color: $color_black;
+}
+
+h2 {
+  font-size: $font_size--heading;
+}
+
+h3 {
+  font-size: $font_size--subheading;
+}
+
+label,
+small {
+  font-size: $font_size--label;
+}

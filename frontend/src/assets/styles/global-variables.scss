@@ -1,0 +1,66 @@
+/*
+
+--- INDEX ---
+
+_____ 1 _____
+-- 1 Font
+- 1.1 Family
+- 1.2 Size
+_____ 2 ______
+-- 2 Color
+- 2.1 General
+
+*/
+
+/* ---------- [1] FONT ---------- */
+
+/* --- FAMILY --- */
+@font-face {
+  font-family: "Girott Munch Bold";
+  src: url(../fonts/Girott-Munch-Bold.woff2);
+}
+
+@font-face {
+  font-family: "Girott Munch Bold Backslant";
+  src: url(../fonts/Girott-Munch-Bold-Backslant.woff2);
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Bold.woff), font-weight-bold,
+    url(../fonts/Aktiv-Grotesk-Bolder.woff), font-weight-bolder,
+    url(../fonts/Aktiv-Grotesk-Regular.woff), font-weight-normal,
+    url(../fonts/Aktiv-Grotesk-Regular-Slanted.woff), font-weight-normal, italic,
+    url(../fonts/Aktiv-Grotesk-Lighter.woff), font-weight-lighter,
+    url(../fonts/Aktiv-Grotesk-Lighter-Slanted.woff), font-weight-lighter,
+    italic;
+}
+
+$font_family--primary-backslant: "Girott Munch Bold Backslant";
+$font_family--primary: "Girott Munch Bold";
+$font_family--secondary: "Aktiv Grotesk";
+
+/* --- SIZE --- */
+$font_size--title: 2em;
+$font_size--heading: 1em;
+$font_size--subheading: 1.1em;
+$font_size--body: 1em;
+$font_size--label: 0.8em;
+
+/* ---------- [2] COLOR ---------- */
+
+/* --- GENERAL --- */
+$color_white: #fff;
+$color_black: #000;
+
+$color_primary: #009689;
+$color_secondary: #a8d3cf;
+$color_tertiary: #000;
+$color_background: #ffffff;
+$color_border: #dddddd;
+$color_success: #27ae60;
+$color_error: #c0392b;
+$color_disabled: #cccccc;
+
+$color_text--primary: #111;
+$color_text--secondary: #333;

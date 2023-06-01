@@ -9,8 +9,8 @@ const RangeInput = ({
   onInput,
 }) => {
   return (
-    <div>
-      <h3>{question}</h3>
+    <div className="user-input range-input">
+      <h3 className="heading">{question}</h3>
       <input
         name={name}
         type="range"

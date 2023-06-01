@@ -2,6 +2,8 @@ import ThemeSelector from "./ThemeSelector";
 import RangeInput from "./RangeInput";
 import ToggleInput from "./ToggleInput";
 import { useState } from "react";
+import ApiService from "../../../services/ApiService";
+import "./journeyPlannerPage.scss";
 
 const JourneyPlannerPage = () => {
   const [timeInput, setTimeInput] = useState(90); // !!
@@ -13,34 +15,39 @@ const JourneyPlannerPage = () => {
     const dataToSubmit = Object.values(e.target).reduce(
       (prev, { name, value, ...props }) => {
         if (name === "familiarityInput") {
-          Object.assign(prev, { [name]: value });
+          const num = parseInt(value);
+          Object.assign(prev, { familiarity: num });
           return prev;
         }
 
         if (name === "timeInput") {
-          Object.assign(prev, { [name]: value });
+          const num = parseInt(value);
+          Object.assign(prev, { time: num });
           return prev;
         }
 
         if (name === "themeOption" && props.checked) {
           Object.assign(prev, {
-            themeOptions: [...prev.themeOptions, value],
+            themes: [...prev.themes, value],
           });
           return prev;
         }
 
         if (name === "interactiveToggle") {
-          Object.assign(prev, { [name]: props.checked });
+          Object.assign(prev, { interactive: props.checked });
           return prev;
         }
 
         return prev;
       },
       {
-        themeOptions: [],
+        themes: [],
       }
     );
-    console.log(dataToSubmit);
+    // console.log(dataToSubmit);
+
+    // useAxios(dataToSubmit);
+    ApiService.postFormData(dataToSubmit).then(res => console.log(res));
   };
 
   const setTimeOptionLabel = () => {
@@ -64,9 +71,14 @@ const JourneyPlannerPage = () => {
     4: "I'm an extremely devoted fan",
   };
 
+  const getDataTest = async () => {
+    const res = await ApiService.apiGetTest();
+    console.log(res);
+  };
+
   return (
-    <div>
-      <h1>JourneyPlanner</h1>
+    <div className="page">
+      {/* <h1>JourneyPlanner</h1> */}
       <form onSubmit={handleSubmit}>
         <RangeInput
           question={"How much time do you have?"}
@@ -97,13 +109,15 @@ const JourneyPlannerPage = () => {
 
         <ToggleInput
           question={
-            "Do you want to include interactive exhibitions in your journey?"
+            "Do you want to include interactive exhibitions \n in your journey?"
           }
           name={"interactiveToggle"}
           defaultChecked={true}
         />
 
-        <button>Create my journey</button>
+        <button className="button default submit-button">
+          Create my journey
+        </button>
       </form>
     </div>
   );

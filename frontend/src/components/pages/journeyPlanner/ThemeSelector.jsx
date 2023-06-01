@@ -19,9 +19,9 @@ const ThemeSelector = () => {
     return <ThemeOption key={item} label={item} />;
   });
   return (
-    <div>
-      <h3>What themes would you like to explore today?</h3>
-      {renderInputs}
+    <div className="user-input theme-selector">
+      <h3 className="heading">What themes would you like to explore today?</h3>
+      <div className="theme-options-wrapper">{renderInputs}</div>
     </div>
   );
 };
