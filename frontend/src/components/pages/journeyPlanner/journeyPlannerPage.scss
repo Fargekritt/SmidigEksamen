@@ -203,3 +203,96 @@ input[type="checkbox"]:not(:checked) {
     color: #444;
   }
 }
+
+/**/
+
+// .dialogPolyfill {
+//   position: fixed;
+//   z-index: 999;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   // background-color: rgba(0, 100, 100, 0.5);
+//   border: 1px solid red;
+// }
+
+// .modal {
+//   // border: 1px solid red;
+// }
+
+// .modal-content {
+//   background-color: #eee;
+//   padding: 20px;
+//   max-width: 400px;
+//   text-align: center;
+// }
+
+// .close {
+//   color: #aaa;
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   font-size: 28px;
+//   font-weight: bold;
+//   cursor: pointer;
+// }
+
+// .close:hover,
+// .close:focus {
+//   color: #000;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+
+dialog::backdrop {
+  /* native */
+  background-color: green;
+}
+dialog + .backdrop {
+  /* polyfill */
+  background-color: green;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+  & * {
+    line-height: 1.2em;
+  }
+  & .heading {
+    font-size: 1.2em;
+    margin-bottom: 2em;
+  }
+  .modal-content {
+    position: relative;
+    background-color: #fff;
+    padding: 4em 2em;
+    border-radius: 0.1em;
+  }
+  .bottom-text {
+    margin-top: 2em;
+    // border: 1px solid red;
+    font-size: 0.9em;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+}

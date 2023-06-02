@@ -4,12 +4,15 @@ import ToggleInput from "./ToggleInput";
 import { useState } from "react";
 import ApiService from "../../../services/ApiService";
 import "./journeyPlannerPage.scss";
+import Modal from "../../Modal";
 
 const JourneyPlannerPage = () => {
   const [timeInput, setTimeInput] = useState(90); // !!
   const [familiarityInput, setFamiliarityInput] = useState(0); // !!
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const dataToSubmit = Object.values(e.target).reduce(
@@ -45,9 +48,17 @@ const JourneyPlannerPage = () => {
       }
     );
     // console.log(dataToSubmit);
+    submitData(dataToSubmit);
+  };
 
-    // useAxios(dataToSubmit);
-    ApiService.postFormData(dataToSubmit).then(res => console.log(res));
+  const submitData = async dataToSubmit => {
+    try {
+      const res = await ApiService.postFormData(dataToSubmit);
+      setModalContent(JSON.stringify(res.data));
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    setIsModalOpen(true);
   };
 
   const setTimeOptionLabel = () => {
@@ -71,14 +82,10 @@ const JourneyPlannerPage = () => {
     4: "I'm an extremely devoted fan",
   };
 
-  const getDataTest = async () => {
-    const res = await ApiService.apiGetTest();
-    console.log(res);
-  };
-
   return (
     <div className="page">
       {/* <h1>JourneyPlanner</h1> */}
+      <h2>Let's make your journey!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput
           question={"How much time do you have?"}
@@ -119,6 +126,12 @@ const JourneyPlannerPage = () => {
           Create my journey
         </button>
       </form>
+
+      <Modal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        modalContent={modalContent}
+      />
     </div>
   );
 };
