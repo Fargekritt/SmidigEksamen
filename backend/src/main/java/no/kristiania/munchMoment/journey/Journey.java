@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Journey {
-
-
+    private Long id;
     private List<Integer> stops;
 
+    // Constructor.
     public Journey(Long i) {
         this.id = i;
         stops = new ArrayList<>();
     }
 
+    //Getter/Setters.
     public Long getId() {
         return id;
     }
@@ -32,9 +33,6 @@ public class Journey {
     public void addStop(int id) {
         stops.add(id);
     }
-
-    private Long id;
-    // something more here
 
 
 }
