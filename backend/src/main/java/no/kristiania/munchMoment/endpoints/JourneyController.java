@@ -1,6 +1,6 @@
 package no.kristiania.munchMoment.endpoints;
 
-import no.kristiania.munchMoment.Main;
+
 import no.kristiania.munchMoment.dto.JourneyDto;
 import no.kristiania.munchMoment.journey.Journey;
 import no.kristiania.munchMoment.journey.JourneyBuilder;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
 @RequestMapping("/api/journey") //map web requests onto specific handler classes and/or handler methods.
 public class JourneyController {
 
@@ -36,7 +36,7 @@ public class JourneyController {
         builder.setInteractive(journeyDto.isInteractive());
         builder.setTime(journeyDto.getTime());
         logger.info("Creating journey");
-        logger.debug("Familiarty: " + journeyDto.getFamiliarity());
+        logger.debug("Familiarity: " + journeyDto.getFamiliarity());
         logger.debug("Themes: " + Arrays.toString(journeyDto.getThemes()));
         logger.debug("Interactive: " + journeyDto.isInteractive());
         logger.debug("Time: " + journeyDto.getTime());

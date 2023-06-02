@@ -26,3 +26,4 @@ yarn-error.log*
 /.idea/
 /target/
 /demo.iml
+/munchMoment.iml
