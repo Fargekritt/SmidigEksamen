@@ -9,7 +9,10 @@ public class JourneyBuilder {
     private int familiarity;
 
     private boolean interactive;
+
     private List<String> themes;
+
+    // Getters/Setters.
 
     public int getTime() {
         return time;
@@ -43,6 +46,8 @@ public class JourneyBuilder {
         this.themes = themes;
     }
 
+
+    // Methods
     public Journey build(){
         Journey journey = new Journey(1L);
         if(interactive){
