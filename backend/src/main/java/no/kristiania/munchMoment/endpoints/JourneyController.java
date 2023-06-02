@@ -31,15 +31,15 @@ public class JourneyController {
     public Journey createJourney(@RequestBody JourneyDto journeyDto) {
         // create and return the new journey
         JourneyBuilder builder = new JourneyBuilder();
-        builder.setFamiliarity(journeyDto.getFamiliarity());
-        builder.setThemes(List.of(journeyDto.getThemes()));
-        builder.setInteractive(journeyDto.isInteractive());
-        builder.setTime(journeyDto.getTime());
+        builder.setFamiliarity(journeyDto.familiarity());
+        builder.setThemes(List.of(journeyDto.themes()));
+        builder.setInteractive(journeyDto.interactive());
+        builder.setTime(journeyDto.time());
         logger.info("Creating journey");
-        logger.debug("Familiarity: " + journeyDto.getFamiliarity());
-        logger.debug("Themes: " + Arrays.toString(journeyDto.getThemes()));
-        logger.debug("Interactive: " + journeyDto.isInteractive());
-        logger.debug("Time: " + journeyDto.getTime());
+        logger.debug("Familiarity: " + journeyDto.familiarity());
+        logger.debug("Themes: " + Arrays.toString(journeyDto.themes()));
+        logger.debug("Interactive: " + journeyDto.interactive());
+        logger.debug("Time: " + journeyDto.time());
         return builder.build();
     }
 }
