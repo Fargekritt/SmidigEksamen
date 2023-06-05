@@ -47,7 +47,7 @@ const JourneyPlannerPage = () => {
         themes: [],
       }
     );
-    // console.log(dataToSubmit);
+
     submitData(dataToSubmit);
   };
 
