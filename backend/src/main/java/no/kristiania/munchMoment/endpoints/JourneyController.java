@@ -18,13 +18,6 @@ public class JourneyController {
 
     private static final Logger logger = LoggerFactory.getLogger(JourneyController.class);
 
-    // endpoint for getting a journey based on id
-    @GetMapping("/{id}")  // This is used to handle a GET request on /api/journey/{id}
-    public Journey getJourney(@PathVariable Long id) {
-        // fetch and return journey based on id
-        logger.info("Get journey ID:" + id);
-        return new Journey(10L);
-    }
 
     // endpoint for creating a new journey
     @PostMapping("/new") // This is used to handle a POST request on /api/journey
