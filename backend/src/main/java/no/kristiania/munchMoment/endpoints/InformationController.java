@@ -1,6 +1,5 @@
 package no.kristiania.munchMoment.endpoints;
 
-import no.kristiania.munchMoment.journey.Comment;
 import no.kristiania.munchMoment.journey.Information;
 import org.springframework.web.bind.annotation.*;
 
