@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import animationData from "../assets/lotties/checkmark";
 
 const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
@@ -12,15 +12,6 @@ const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
   };
 
   return (
@@ -36,7 +27,14 @@ const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
               &times;
             </span>
 
-            <Lottie options={defaultOptions} height={100} width={100}></Lottie>
+            <Lottie
+              animationData={animationData}
+              height={100}
+              width={100}
+              loop={false}
+              style={{ height: 100, width: 100, margin: "auto" }}
+            ></Lottie>
+
             <p className="heading">A journey has been created just for you!</p>
             <br />
 
