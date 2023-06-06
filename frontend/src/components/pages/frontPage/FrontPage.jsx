@@ -11,10 +11,10 @@ const FrontPage = () => {
         <div className="logo logo-text-bottom">MOMENT</div>
       </div>
       <div className="sub-heading-container">
-        <p className="sub-heading-text">
+        <p className="sub-heading-text-top">
           Experience art, ignite emotion, discover yourself
         </p>
-        <p className="sub-heading-text">
+        <p className="sub-heading-text-bottom">
           Embark on a personalized journey through the art of Edvard Munch
         </p>
       </div>

@@ -2,43 +2,123 @@
 
 .front-page {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid red;
+  // border: 1px solid red;
   height: 100vh;
+  overflow: hidden;
 }
 
 .logo-container {
-  border: 1px solid red;
+  // border: 1px solid red;
   text-align: center;
-  padding-top: 40%;
+  padding-top: 10em;
+  width: 20em;
 }
 
 .logo {
   font-family: "Girott Munch Bold Backslant";
   font-size: 7em;
+  opacity: 0;
 }
 
 .logo-text-top {
-  border: 1px solid green;
-  transform: translateX(-7%);
+  // border: 1px solid green;
+  transform: translateX(-9%);
 }
 
 .logo-text-bottom {
-  border: 1px solid green;
-  transform: translateX(7%);
+  // border: 1px solid green;
+  transform: translateX(5%);
 }
 
 .sub-heading-container {
-  border: 1px solid blue;
+  // border: 1px solid blue;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  font-size: 1.1em;
-  padding: 3em;
+  font-size: 1.3em;
+  padding: 1.5em;
 }
 
-.sub-heading-text {
+.logo-text-top {
+  animation: slideInFromLeft 1s cubic-bezier(0.5, -0.15, 0.165, 1.55) forwards;
+  animation-delay: 0.5s;
+}
+
+.logo-text-bottom {
+  animation: slideInFromRight 0.9s cubic-bezier(0.5, -0.15, 0.165, 1.55)
+    forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(4%);
+    opacity: 1;
+  }
+  65% {
+    transform: translateX(-14%);
+  }
+  85% {
+    transform: translateX(-7%);
+  }
+  100% {
+    transform: translateX(-9%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-5%);
+    opacity: 1;
+  }
+  65% {
+    transform: translateX(8%);
+  }
+  85% {
+    transform: translateX(4%);
+  }
+  100% {
+    transform: translateX(5%);
+    opacity: 1;
+  }
+}
+
+.sub-heading-container > * {
   margin: 1em;
+  opacity: 0;
+  transform: translateX(130%);
+  animation: slideInFromRight2 0.9s cubic-bezier(0.5, -0.15, 0.165, 1.55)
+    forwards;
+}
+
+@keyframes slideInFromRight2 {
+  0% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.sub-heading-container > :nth-child(1) {
+  animation-delay: 1.6s; /* Start after the logo animation */
+}
+
+.sub-heading-container > :nth-child(2) {
+  animation-delay: 1.8s; /* Start slightly after the first sub-heading */
 }
