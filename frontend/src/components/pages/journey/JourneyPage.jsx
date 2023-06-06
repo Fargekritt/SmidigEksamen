@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import JourneyStopList from "./JourneyStopList";
-import JourneyStopItem from "./JourneyStopItem";
 import "./journeyPage.scss";
+import CurrentStop from "./CurrentStop";
+import ProgressBar from "./ProgressBar";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
-  const [journeyProgress, setJourneyProgress] = useState({
+  const [progress, setProgress] = useState({
     stops: journey.length,
     currentStop: 0,
   });
@@ -13,27 +14,27 @@ const JourneyPage = () => {
   const dummyJourney = [
     {
       paintingId: 1,
-      floorId: 3,
+      exhibitionId: 3,
     },
     {
       paintingId: 4,
-      floorId: 3,
+      exhibitionId: 3,
     },
     {
       paintingId: 5,
-      floorId: 3,
+      exhibitionId: 3,
     },
     {
       paintingId: 34,
-      floorId: 4,
+      exhibitionId: 4,
     },
     {
       paintingId: 30,
-      floorId: 4,
+      exhibitionId: 4,
     },
     {
       paintingId: 77,
-      floorId: 8,
+      exhibitionId: 8,
     },
   ];
 
@@ -47,23 +48,23 @@ const JourneyPage = () => {
   }, []);
 
   useEffect(() => {
-    setJourneyProgress({
-      ...journeyProgress,
+    setProgress({
+      ...progress,
       stops: journey.length,
       progressBar: calculatePercentage(
-        journeyProgress.currentStop + 1,
+        progress.currentStop + 1,
         journey.length
       ),
     });
   }, [journey]);
 
   const handleProgressChange = num => {
-    const newCurrentStop = journeyProgress.currentStop + num;
+    const newCurrentStop = progress.currentStop + num;
 
     if (newCurrentStop < 0 || newCurrentStop > journey.length - 1) {
       return;
     } else {
-      setJourneyProgress(prevState => {
+      setProgress(prevState => {
         const updatedCurrentStop = prevState.currentStop + num;
         const progressBar = calculatePercentage(
           updatedCurrentStop + 1,
@@ -77,6 +78,7 @@ const JourneyPage = () => {
         };
       });
     }
+    console.log(progress);
   };
 
   const sortAscending = paintings => {
@@ -88,37 +90,25 @@ const JourneyPage = () => {
   };
 
   return (
-    <div>
+    <div className="page">
       JourneyPage
-      <JourneyStopList journeyStops={journey} />
-      <p>stops: {journeyProgress.stops}</p>
-      <p>currentStop: {journeyProgress.currentStop}</p>
+      <JourneyStopList
+        journeyStops={journey}
+        currentStop={progress.currentStop}
+      />
+      <p>stops: {progress.stops}</p>
+      <p>currentStop: {progress.currentStop}</p>
       <button onClick={() => handleProgressChange(-1)}>Previous</button>
       <button onClick={() => handleProgressChange(1)}>Next</button>
       <br />
       <br />
       <div>
-        <p>Current journey stop:</p>
-
         {journey.length && (
-          <JourneyStopItem
-            key={`currentlyViewing-${
-              journey[journeyProgress.currentStop].paintingId
-            }`}
-            paintingId={journey[journeyProgress.currentStop].paintingId}
-            floorId={journey[journeyProgress.currentStop].floorId}
-          ></JourneyStopItem>
+          <CurrentStop paintingId={journey[progress.currentStop].paintingId} />
         )}
       </div>
       <div>
-        <br />
-        <br />
-        ProgressBar
-        <p>{journeyProgress.progressBar}/100</p>
-        <div
-          className="progressBar"
-          style={{ "--progress-width": `${journeyProgress.progressBar}%` }}
-        ></div>
+        <ProgressBar progress={progress.progressBar} />
       </div>
     </div>
   );

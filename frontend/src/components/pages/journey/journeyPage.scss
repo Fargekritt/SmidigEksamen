@@ -1,0 +1,21 @@
+@import "../../../assets/styles/global-variables.scss";
+
+.progressBar {
+  height: 0.5em;
+  background-color: rgb(34, 156, 255);
+  border-radius: 10em;
+  transition: all 0.2s ease;
+  width: var(--progress-width, 0%);
+}
+
+.stop-item {
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  background-color: #777;
+  &.current {
+    height: 1em;
+
+    background-color: red;
+  }
+}

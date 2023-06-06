@@ -1,13 +1,15 @@
 import React from "react";
 import JourneyStopItem from "./JourneyStopItem";
 
-const JourneyStopList = ({ journeyStops }) => {
+const JourneyStopList = ({ journeyStops, currentStop }) => {
   const renderJourneyStops = () =>
-    journeyStops.map(({ paintingId, floorId }) => (
+    journeyStops.map(({ paintingId, exhibitionId }, i) => (
       <JourneyStopItem
+        isCurrent={currentStop === i}
+        journeyIndex={i}
         key={paintingId}
         paintingId={paintingId}
-        floorId={floorId}
+        exhibitionId={exhibitionId}
       />
     ));
 
