@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/comment")
 public class CommentController {
 
-    // This is used to handle a GET request on /api/comment/{id}
+    // GET request for getting a comment
     @GetMapping("/{id}")
-    public Comment getComment(@PathVariable Long id) {
+    public Comment getComment(@PathVariable long id) {
         return new Comment();
     }
 
-    // This is used to handle a POST request on /api/comment/new
+    // POST request for posting a comment
     @PostMapping("/new")
     public Comment createComment(@RequestBody CommentDto commentDto){
         Comment comment = new Comment();

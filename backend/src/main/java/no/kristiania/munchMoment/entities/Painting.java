@@ -3,16 +3,12 @@ package no.kristiania.munchMoment.entities;
 public class Painting {
 
     private long id;
-    private long painterId;
+    private long artistId;
     private long exhibitionId;
     private String paintingName;
     private String dateCreated;
     private String imagePath;
     private String description;
-
-    public Painting(long id){
-        this.id = id;
-    }
 
     /*
         Getters and Setters
@@ -24,12 +20,12 @@ public class Painting {
         this.id = id;
     }
 
-    public long getPainterId() {
-        return painterId;
+    public long getArtistId() {
+        return artistId;
     }
 
-    public void setPainterId(long painterId) {
-        this.painterId = painterId;
+    public void setArtistId(long artistId) {
+        this.artistId = artistId;
     }
 
     public long getExhibitionId() {

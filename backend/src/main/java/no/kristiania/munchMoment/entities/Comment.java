@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class Comment {
     private long id;
-    private String text;
     private long paintingId;
     private String nickname;
+    private String text;
     private LocalDateTime date;
 
     /*
