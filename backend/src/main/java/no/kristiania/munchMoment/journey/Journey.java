@@ -1,28 +1,24 @@
 package no.kristiania.munchMoment.journey;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Journey {
-    private List<Integer> stops;
+    private final Map<Integer, Integer> stops;
 
     // Constructor.
     public Journey() {
-        stops = new ArrayList<>();
+        stops = new HashMap<>();
     }
 
     //Getter/Setters.
 
-    public List<Integer> getStops() {
+    public Map<Integer, Integer> getStops() {
         return stops;
     }
 
-    public void setStops(List<Integer> stops) {
-        this.stops = stops;
-    }
-
-    public void addStop(int id) {
-        stops.add(id);
+    public void addStop(int id, int exhibitionId) {
+        stops.put(id, exhibitionId);
     }
 
 
