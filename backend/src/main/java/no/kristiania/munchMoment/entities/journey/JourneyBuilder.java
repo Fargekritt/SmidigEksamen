@@ -1,4 +1,4 @@
-package no.kristiania.munchMoment.journey;
+package no.kristiania.munchMoment.entities.journey;
 
 import java.util.List;
 

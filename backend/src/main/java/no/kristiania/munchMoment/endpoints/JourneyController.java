@@ -2,8 +2,8 @@ package no.kristiania.munchMoment.endpoints;
 
 
 import no.kristiania.munchMoment.dto.JourneyDto;
-import no.kristiania.munchMoment.journey.Journey;
-import no.kristiania.munchMoment.journey.JourneyBuilder;
+import no.kristiania.munchMoment.entities.journey.Journey;
+import no.kristiania.munchMoment.entities.journey.JourneyBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
