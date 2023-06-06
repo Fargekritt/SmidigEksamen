@@ -1,39 +1,64 @@
 package no.kristiania.munchMoment.entities;
 
-public class Painting {
+import jakarta.persistence.*;
 
+import java.io.Serializable;
+
+@Entity
+/*
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+ */
+public class Painting implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "painting_ID")
     private long id;
-    private long artistId;
-    private long exhibitionId;
+
+
+    @ManyToOne
+    private Artist artist;
+
+    @ManyToOne
+    private Exhibition exhibition;
+
+    @Column(name = "painting_name")
     private String paintingName;
+
+    @Column(name = "date_created")
     private String dateCreated;
-    private String imagePath;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "image_path")
+    private String imagePath;
 
     /*
         Getters and Setters
     */
-    public long getId(){
+    public long getId() {
         return id;
     }
-    public void setId(long id){
+
+    public void setId(long id) {
         this.id = id;
     }
 
-    public long getArtistId() {
-        return artistId;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setArtistId(long artistId) {
-        this.artistId = artistId;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
-    public long getExhibitionId() {
-        return exhibitionId;
+    public Exhibition getExhibition() {
+        return exhibition;
     }
 
-    public void setExhibitionId(long exhibitionId) {
-        this.exhibitionId = exhibitionId;
+    public void setExhibition(Exhibition exhibition) {
+        this.exhibition = exhibition;
     }
 
     public String getPaintingName() {

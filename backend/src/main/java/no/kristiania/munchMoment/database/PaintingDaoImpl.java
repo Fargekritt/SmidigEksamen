@@ -1,35 +1,14 @@
 package no.kristiania.munchMoment.database;
 
 import no.kristiania.munchMoment.entities.Painting;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Optional;
-@Component
-public class PaintingDaoImpl implements Dao<Painting> {
+@Repository
+public class PaintingDaoImpl extends AbstractJpaDAO<Painting> implements IPaintingDao {
 
-    @Override
-    public Optional<Painting> get(int id) {
-        return Optional.empty();
-    }
+public PaintingDaoImpl(){
+    super();
+    setClazz(Painting.class);
+}
 
-    @Override
-    public Collection<Painting> getAll() {
-        return null;
-    }
-
-    @Override
-    public int save(Painting painting) {
-        return 0;
-    }
-
-    @Override
-    public void update(Painting painting) {
-
-    }
-
-    @Override
-    public void delete(Painting painting) {
-
-    }
 }
