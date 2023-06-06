@@ -1,0 +1,44 @@
+@import "../../../assets/styles/global-variables.scss";
+
+.front-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid red;
+  height: 100vh;
+}
+
+.logo-container {
+  border: 1px solid red;
+  text-align: center;
+  padding-top: 40%;
+}
+
+.logo {
+  font-family: "Girott Munch Bold Backslant";
+  font-size: 7em;
+}
+
+.logo-text-top {
+  border: 1px solid green;
+  transform: translateX(-7%);
+}
+
+.logo-text-bottom {
+  border: 1px solid green;
+  transform: translateX(7%);
+}
+
+.sub-heading-container {
+  border: 1px solid blue;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 1.1em;
+  padding: 3em;
+}
+
+.sub-heading-text {
+  margin: 1em;
+}
