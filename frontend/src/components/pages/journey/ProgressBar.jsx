@@ -1,13 +1,19 @@
 import React from "react";
 
-const ProgressBar = ({ progress }) => {
+const calculatePercentage = (currentStop, total) => {
+  return ((currentStop / (total - 1)) * 100).toFixed(0);
+};
+
+const ProgressBar = ({ progress: { stops, currentStop } }) => {
+  const currentProgress = calculatePercentage(currentStop, stops);
+
   return (
     <div>
       ProgressBar
-      <p>{progress}/100</p>
+      <p>{currentProgress}/100</p>
       <div
         className="progressBar"
-        style={{ "--progress-width": `${progress}%` }}
+        style={{ "--progress-width": `${currentProgress}%` }}
       ></div>
     </div>
   );

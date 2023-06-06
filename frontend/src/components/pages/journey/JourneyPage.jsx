@@ -39,50 +39,47 @@ const JourneyPage = () => {
     },
   ];
 
-  const getJourney = () => {
-    const sortedPaintings = sortAscending(dummyJourney);
-    setJourney(sortedPaintings);
-  };
-
   useEffect(() => {
-    getJourney();
+    const sortedPaintings = dummyJourney.sort(
+      (a, b) => a.paintingId - b.paintingId
+    );
+
+    setJourney(sortedPaintings);
   }, []);
 
   useEffect(() => {
-    setProgress({
-      ...progress,
-      stops: journey.length,
-      progressBar: calculatePercentage(
-        progress.currentStop + 1,
-        journey.length
-      ),
+    setProgress(prevState => {
+      return {
+        ...prevState,
+        stops: journey.length,
+        progressBar: calculatePercentage(
+          progress.currentStop + 1,
+          journey.length
+        ),
+      };
     });
   }, [journey]);
 
-  const handleProgressChange = num => {
-    const newCurrentStop = progress.currentStop + num;
+  const handleProgressChange = indexChange => {
+    setProgress(prevState => {
+      const nextStop = prevState.currentStop + indexChange;
 
-    if (newCurrentStop < 0 || newCurrentStop > journey.length - 1) {
-      return;
-    } else {
-      setProgress(prevState => {
-        const updatedCurrentStop = prevState.currentStop + num;
-        const progressBar = calculatePercentage(
-          updatedCurrentStop + 1,
-          journey.length
-        );
+      if (nextStop < 0 || nextStop > journey.length - 1) {
+        return prevState;
+      }
 
-        return {
-          ...prevState,
-          currentStop: updatedCurrentStop,
-          progressBar: progressBar,
-        };
-      });
-    }
+      const progressBar = calculatePercentage(nextStop + 1, journey.length);
+
+      return {
+        ...prevState,
+        currentStop: nextStop,
+        progressBar: progressBar,
+      };
+    });
   };
 
-  const sortAscending = paintings => {
-    return paintings.sort((a, b) => a.paintingId - b.paintingId);
+  const calculatePercentage = (number, total) => {
+    return ((number / total) * 100).toFixed(0);
   };
 
   return (
@@ -106,7 +103,7 @@ const JourneyPage = () => {
         )}
       </div>
       <div>
-        <ProgressBar progress={progress.progressBar} />
+        <ProgressBar progress={progress} />
       </div>
     </div>
   );
