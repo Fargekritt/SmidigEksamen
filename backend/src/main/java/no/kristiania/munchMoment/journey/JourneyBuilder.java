@@ -51,7 +51,7 @@ public class JourneyBuilder {
 
     /**
      * Builds a journey with the correct stops determined by the field values.
-     * Add two stops to the journey for each field differentiates on witch two by a certain value.
+     * Add stops to the journey for each field, differentiates on witch and quantity by a certain field value.
      * @return Journey
      */
     public Journey build() {
@@ -60,10 +60,11 @@ public class JourneyBuilder {
         // 0-180
         if (time < 90) {
             journey.addStop(1);
-            journey.addStop(2);
         } else {
+            journey.addStop(2);
             journey.addStop(3);
             journey.addStop(4);
+            journey.addStop(17);
         }
 
         // 0-4
