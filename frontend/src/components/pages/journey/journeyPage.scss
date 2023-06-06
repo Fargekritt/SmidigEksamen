@@ -12,10 +12,8 @@
   width: 1em;
   height: 1em;
   border-radius: 1em;
-  background-color: #777;
+  background-color: $color_text--secondary;
   &.current {
-    height: 1em;
-
-    background-color: red;
+    background-color: $color_munch_red;
   }
 }
