@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JourneyStopList from "./JourneyStopList";
 import JourneyStopItem from "./JourneyStopItem";
+import "./journeyPage.scss";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -83,8 +84,7 @@ const JourneyPage = () => {
   };
 
   const calculatePercentage = (number, total) => {
-    const percentage = (number / total) * 100;
-    return percentage.toFixed(2);
+    return ((number / total) * 100).toFixed(0);
   };
 
   return (
@@ -111,8 +111,14 @@ const JourneyPage = () => {
         )}
       </div>
       <div>
-        Journeyprogressbar
-        <p>{journeyProgress.progressBar}</p>
+        <br />
+        <br />
+        ProgressBar
+        <p>{journeyProgress.progressBar}/100</p>
+        <div
+          className="progressBar"
+          style={{ "--progress-width": `${journeyProgress.progressBar}%` }}
+        ></div>
       </div>
     </div>
   );
