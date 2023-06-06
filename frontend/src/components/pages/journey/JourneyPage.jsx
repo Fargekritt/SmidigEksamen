@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import JourneyStopList from "./JourneyStopList";
 import "./journeyPage.scss";
-import CurrentStop from "./CurrentStop";
+import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
+import { calculatePercentage } from "../../../utils/calculate";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -78,15 +79,10 @@ const JourneyPage = () => {
         };
       });
     }
-    console.log(progress);
   };
 
   const sortAscending = paintings => {
     return paintings.sort((a, b) => a.paintingId - b.paintingId);
-  };
-
-  const calculatePercentage = (number, total) => {
-    return ((number / total) * 100).toFixed(0);
   };
 
   return (
@@ -104,7 +100,9 @@ const JourneyPage = () => {
       <br />
       <div>
         {journey.length && (
-          <CurrentStop paintingId={journey[progress.currentStop].paintingId} />
+          <CurrentStopSection
+            paintingId={journey[progress.currentStop].paintingId}
+          />
         )}
       </div>
       <div>

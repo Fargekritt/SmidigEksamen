@@ -8,12 +8,46 @@
   width: var(--progress-width, 0%);
 }
 
-.stop-item {
+.stop-indicator {
   width: 1em;
   height: 1em;
   border-radius: 1em;
   background-color: $color_text--secondary;
+  cursor: pointer;
+  &.previous {
+    background-color: #ccc;
+  }
   &.current {
     background-color: $color_munch_red;
+  }
+}
+
+.current-stop-section {
+  border: 1px solid red;
+  display: flex;
+  & img {
+    border: 1px solid green;
+    width: 3em;
+    height: 3em;
+  }
+}
+
+.journey-stop-item {
+  position: relative;
+}
+
+.item-preview {
+  // position: absolute;
+  border: 1px solid blue;
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+  &.fade-out {
+    opacity: 0;
+  }
+  & img {
+    border: 1px solid green;
+    width: 3em;
+    height: 3em;
   }
 }

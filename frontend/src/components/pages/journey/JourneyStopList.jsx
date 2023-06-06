@@ -5,7 +5,7 @@ const JourneyStopList = ({ journeyStops, currentStop }) => {
   const renderJourneyStops = () =>
     journeyStops.map(({ paintingId, exhibitionId }, i) => (
       <JourneyStopItem
-        isCurrent={currentStop === i}
+        currentStop={currentStop}
         journeyIndex={i}
         key={paintingId}
         paintingId={paintingId}
