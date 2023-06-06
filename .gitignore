@@ -27,3 +27,9 @@ yarn-error.log*
 /target/
 /demo.iml
 /munchMoment.iml
+/backend/src/main/resources/static/static
+/backend/src/main/resources/static/asset-manifest.json
+/backend/src/main/resources/static/favicon.ico
+/backend/src/main/resources/static/index.html
+/backend/src/main/resources/static/manifest.json
+/backend/src/main/resources/static/robots.txt
