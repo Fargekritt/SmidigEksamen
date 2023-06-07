@@ -1,5 +1,6 @@
-package no.kristiania.munchMoment.database;
+package no.kristiania.munchMoment.database.paintingDao;
 
+import no.kristiania.munchMoment.database.AbstractJpaDAO;
 import no.kristiania.munchMoment.entities.Painting;
 import org.springframework.stereotype.Repository;
 

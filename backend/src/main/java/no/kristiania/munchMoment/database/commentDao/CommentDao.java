@@ -1,4 +1,4 @@
-package no.kristiania.munchMoment.database;
+package no.kristiania.munchMoment.database.commentDao;
 
 import no.kristiania.munchMoment.entities.Comment;
 
