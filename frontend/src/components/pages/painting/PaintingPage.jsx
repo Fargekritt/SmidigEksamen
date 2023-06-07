@@ -3,8 +3,9 @@ import ApiService from "../../../services/ApiService";
 import CommentList from "./CommentList";
 // import { useParams } from "react-router-dom";
 import "./painting-page.scss";
-import { FastAverageColor } from "fast-average-color";
+// import { FastAverageColor } from "fast-average-color";
 import sampleImage from "../../../assets/sampleimage.png";
+import downIcon from "../../../assets/icons/down.svg";
 
 const PaintingPage = (
   {
@@ -43,17 +44,20 @@ const PaintingPage = (
   // const { paintingId } = /*useParams();*/
   const paintingId = 3;
 
+  // const {artistName, paintingName, dateCreated, description, imagePath} = painting;
+
   // dummy data
   const painting = {
-    image_url: "https://source.unsplash.com/random",
-    painting_name: "Painting Name",
-    year_created: "2022",
+    artistName: "Artist Name",
+    paintingName: "Painting Name",
+    dateCreated: "2022",
     description: "Painting Description",
+    imagePath: "https://source.unsplash.com/random",
   };
 
   const fetchComments = async () => {
     try {
-      // return await ApiService.getById(paintingId)
+      // return await ApiService.getById(`comments`, paintingId);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -68,39 +72,57 @@ const PaintingPage = (
     setIsOpen(false);
   };
 
+  const image = "https://loremflickr.com/320/240";
+
   return (
     <div className="page painting">
-      PaintingPage
       {paintingId && (
         <>
           <div
             className="background image"
             style={{
-              backgroundImage: "url('https://source.unsplash.com/random')",
+              backgroundImage: `url('${image}')`,
             }}
           ></div>
           <div className="background color"></div>
+
           <header>
             <nav>
-              <button onClick={handleClick}>Close</button>
+              <button onClick={handleClick}>
+                <img src={downIcon} alt="downwards pointing icon" />
+              </button>
             </nav>
             <div className="image-wrapper">
-              <img src={painting.image_url} alt={painting.painting_name} />
+              <img
+                src={image || "./images/fallback-image.svg"}
+                alt={painting.paintingName}
+                onError={({ currentTarget }) => {
+                  console.log("error");
+                  currentTarget.onerror = null;
+                  currentTarget.src = "./images/fallback-image.svg";
+                }}
+              />
             </div>
-            <h1>{painting.painting_name}</h1>
-            <p>{painting.year_created}</p>
           </header>
-          <section className="description">
-            <h2>Description</h2>
-            <p>{painting.description}</p>
-          </section>
-          <section className="comments">
-            <div>
-              <h2>Comments</h2>
-              <button>Add comment</button>
-            </div>
-            {comments && <CommentList comments={comments} />}
-          </section>
+          <div className="content">
+            <div
+              className="image-reflection"
+              style={{ backgroundImage: `url('${image}')` }}
+            ></div>
+            <h2>{painting.paintingName}</h2>
+            <p>{painting.dateCreated}</p>
+            <section className="description">
+              <h3>Description</h3>
+              <p>{painting.description}</p>
+            </section>
+            <section className="comments">
+              <div>
+                <h3>Comments</h3>
+                <button>Add comment</button>
+              </div>
+              {comments && <CommentList comments={comments} />}
+            </section>
+          </div>
         </>
       )}
     </div>
