@@ -44,30 +44,19 @@
 }
 
 .logo-text-top {
-  animation: slideInFromLeft 1s cubic-bezier(0.5, -0.15, 0.165, 1.55) forwards;
+  animation: slideInFromLeft 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
   animation-delay: 0.5s;
 }
 
 .logo-text-bottom {
-  animation: slideInFromRight 0.9s cubic-bezier(0.5, -0.15, 0.165, 1.55)
-    forwards;
-  animation-delay: 0.6s;
+  animation: slideInFromRight 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
+  animation-delay: 0.5s;
 }
 
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-130%);
     opacity: 0;
-  }
-  50% {
-    transform: translateX(4%);
-    opacity: 1;
-  }
-  65% {
-    transform: translateX(-14%);
-  }
-  85% {
-    transform: translateX(-7%);
   }
   100% {
     transform: translateX(-9%);
@@ -80,16 +69,7 @@
     transform: translateX(130%);
     opacity: 0;
   }
-  50% {
-    transform: translateX(-5%);
-    opacity: 1;
-  }
-  65% {
-    transform: translateX(8%);
-  }
-  85% {
-    transform: translateX(4%);
-  }
+
   100% {
     transform: translateX(5%);
     opacity: 1;
@@ -100,8 +80,7 @@
   margin: 1em;
   opacity: 0;
   transform: translateX(130%);
-  animation: slideInFromRight2 0.9s cubic-bezier(0.5, -0.15, 0.165, 1.55)
-    forwards;
+  animation: slideInFromRight2 0.5s cubic-bezier(0.5, 1.56, 0.31, 0.89) forwards;
 }
 
 @keyframes slideInFromRight2 {
@@ -116,9 +95,9 @@
 }
 
 .sub-heading-container > :nth-child(1) {
-  animation-delay: 1.6s; /* Start after the logo animation */
+  animation-delay: 1s;
 }
 
 .sub-heading-container > :nth-child(2) {
-  animation-delay: 1.8s; /* Start slightly after the first sub-heading */
+  animation-delay: 1.2s;
 }
