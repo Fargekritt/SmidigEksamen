@@ -1,24 +1,23 @@
 package no.kristiania.munchMoment.entities.journey;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Journey {
-    private final Map<Integer, Integer> stops;
+    private final List<JourneyStop> stops = new ArrayList<>();
 
     // Constructor.
-    public Journey() {
-        stops = new HashMap<>();
-    }
 
     //Getter/Setters.
 
-    public Map<Integer, Integer> getStops() {
+    public List<JourneyStop>  getStops() {
         return stops;
     }
 
     public void addStop(int id, int exhibitionId) {
-        stops.put(id, exhibitionId);
+        stops.add(new JourneyStop(id, exhibitionId));
     }
 
 
