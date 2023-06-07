@@ -17,9 +17,11 @@ public class Painting implements Serializable {
 
 
     @ManyToOne
+    @JoinColumn(name = "artist_ID", nullable = false)
     private Artist artist;
 
     @ManyToOne
+    @JoinColumn(name = "exhibition_ID", nullable = false)
     private Exhibition exhibition;
 
     @Column(name = "painting_name")
