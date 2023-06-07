@@ -1,11 +1,21 @@
 @import "../../../assets/styles/global-variables.scss";
 
-.progressBar {
+.progress-bar {
   height: 0.5em;
   background-color: rgb(34, 156, 255);
   border-radius: 10em;
   transition: all 0.2s ease;
   width: var(--progress-width, 0%);
+  &-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(227, 227, 227);
+  }
+  &-wrapper {
+    position: relative;
+    border: 1px solid red;
+  }
 }
 
 .stop-indicator {

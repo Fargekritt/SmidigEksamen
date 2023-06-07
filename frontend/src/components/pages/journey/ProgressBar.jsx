@@ -11,10 +11,13 @@ const ProgressBar = ({ progress: { stops, currentStop } }) => {
     <div>
       ProgressBar
       <p>{currentProgress}/100</p>
-      <div
-        className="progressBar"
-        style={{ "--progress-width": `${currentProgress}%` }}
-      ></div>
+      <div className="progress-bar-wrapper">
+        <div
+          className="progress-bar"
+          style={{ "--progress-width": `${currentProgress}%` }}
+        ></div>
+        <div className="progress-bar-background"></div>
+      </div>
     </div>
   );
 };
