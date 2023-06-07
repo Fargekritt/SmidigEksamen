@@ -1,5 +1,6 @@
 package no.kristiania.munchMoment.entities.journey;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class JourneyBuilder {

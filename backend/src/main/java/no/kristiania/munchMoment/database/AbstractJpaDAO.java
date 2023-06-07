@@ -2,16 +2,18 @@ package no.kristiania.munchMoment.database;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Repository
 public class AbstractJpaDAO<T extends Serializable> {
 
     private Class<T> clazz;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
