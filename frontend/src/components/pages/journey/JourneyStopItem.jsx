@@ -40,7 +40,9 @@ const JourneyStopItem = ({
 
   return (
     <div className="journey-stop-item">
-      <div className={stopIndicatorStyle} onClick={handleClick}></div>
+      <div className="stop-indicator-wrapper">
+        <div className={stopIndicatorStyle} onClick={handleClick}></div>
+      </div>
       {isPreviewing && <ItemPreviewPopUp isFadingOut={isFadingOut} />}
       <b>JourneyStopItem, name: </b>
       <p>

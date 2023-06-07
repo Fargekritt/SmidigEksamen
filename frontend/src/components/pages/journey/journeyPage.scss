@@ -9,16 +9,32 @@
 }
 
 .stop-indicator {
-  width: 1em;
-  height: 1em;
+  width: 0.9em;
+  height: 0.9em;
+  margin: auto;
   border-radius: 1em;
-  background-color: $color_text--secondary;
+  background-color: #eee;
+  border: 0.15em solid #777;
   cursor: pointer;
+  transition: all 0.2s ease-out;
   &.previous {
-    background-color: #ccc;
+    background-color: $color_text--secondary;
+    width: 0.7em;
+    height: 0.7em;
+    border: none;
   }
   &.current {
+    width: 1em;
+    height: 1em;
+
     background-color: $color_munch_red;
+    border: none;
+    border: 0.15em solid $color_munch_red;
+  }
+  &-wrapper {
+    width: 1em;
+    height: 1em;
+    display: flex;
   }
 }
 
