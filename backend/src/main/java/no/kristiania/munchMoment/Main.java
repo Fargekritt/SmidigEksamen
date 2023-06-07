@@ -1,7 +1,5 @@
 package no.kristiania.munchMoment;
 
-import no.kristiania.munchMoment.database.ArtistDaoImpl;
-import no.kristiania.munchMoment.entities.Artist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
