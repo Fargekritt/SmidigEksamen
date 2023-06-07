@@ -2,7 +2,9 @@ package no.kristiania.munchMoment.database;
 
 import no.kristiania.munchMoment.entities.Painting;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PaintingRepository extends ListCrudRepository<Painting, Integer> {
+@Repository
+public interface PaintingRepository extends ListCrudRepository<Painting, Long> {
 
 }
