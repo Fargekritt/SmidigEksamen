@@ -2,6 +2,8 @@ package no.kristiania.munchMoment.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Theme {
 
@@ -12,6 +14,14 @@ public class Theme {
 
     @Column(name = "theme_name")
     private String themeName;
+
+//    @JoinTable(
+//            name = "course_like",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @ManyToMany
+    @JoinTable( name = "painting_theme", joinColumns = @JoinColumn(name = "painting_ID"), inverseJoinColumns = @JoinColumn(name = "theme_ID"))
+    private Set<Painting> paintings;
 
     public long getId() {
         return id;

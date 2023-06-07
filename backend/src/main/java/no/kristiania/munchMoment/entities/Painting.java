@@ -3,6 +3,8 @@ package no.kristiania.munchMoment.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 /*
@@ -35,6 +37,9 @@ public class Painting implements Serializable {
 
     @Column(name = "image_path")
     private String imagePath;
+
+    @ManyToMany(mappedBy = "paintings")
+    private Set<Theme> theme;
 
     /*
         Getters and Setters
@@ -93,5 +98,13 @@ public class Painting implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Theme> getThemes() {
+        return theme;
+    }
+
+    public void setThemes(Set<Theme> themes) {
+        this.theme = themes;
     }
 }
