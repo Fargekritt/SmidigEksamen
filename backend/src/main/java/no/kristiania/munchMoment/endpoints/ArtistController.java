@@ -2,12 +2,9 @@ package no.kristiania.munchMoment.endpoints;
 
 import no.kristiania.munchMoment.database.ArtistRepository;
 import no.kristiania.munchMoment.entities.Artist;
-import no.kristiania.munchMoment.entities.Painting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;

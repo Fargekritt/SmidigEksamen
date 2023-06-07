@@ -2,6 +2,8 @@ package no.kristiania.munchMoment.database;
 
 import no.kristiania.munchMoment.entities.Theme;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ThemeRepository extends ListCrudRepository<Theme,Integer> {
+@Repository
+public interface ThemeRepository extends ListCrudRepository<Theme,Long> {
 }
