@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -29,10 +30,16 @@ public class CommentController {
 
     // POST request for posting a comment
     @PostMapping("/new")
-    public Comment createComment(@RequestBody CommentDto commentDto) {
+    public ResponseEntity<String> createComment(@RequestBody CommentDto commentDto) {
         Comment comment = new Comment();
-        comment.setText(commentDto.comment_text());
-        return comment;
+        if (commentDto.text().equals("")){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        comment.setText(commentDto.text());
+        comment.setDate(LocalDateTime.now());
+        commentRepository.save(comment);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Comment has been created");
+
     }
 
 }
