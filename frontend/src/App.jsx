@@ -2,24 +2,24 @@ import JourneyPlannerPage from "./components/pages/journeyPlanner/JourneyPlanner
 import "./assets/styles/css-reset.scss";
 import "./assets/styles/app.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   return (
     <div className="App">
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="build" element={<JourneyPlannerPage />}></Route>
-          <Route path="journey" element={<JourneyPage />}>
-            <Route path=":journeyId" element={<JourneyPage />}></Route>
+          {/* <Route path="/" element={<FrontPage />}></Route> */}
+          <Route path="create" element={<JourneyPlannerPage />}></Route>
+          {/* <Route path="journey" element={<JourneyPage />}>
+          <Route path=":journeyId" element={<JourneyPage />}></Route>
           </Route>
-          <Route path="artwork" element={<ArtworkPage />}>
-            <Route path=":artworkId" element={<ArtworkPage />}></Route>
-          </Route>
+          <Route path="painting" element={<PaintingPage />}>
+            <Route path=":paintingId" element={<PaintingPage />}></Route>
+          </Route> */}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
-      </BrowserRouter> */}
-      <JourneyPlannerPage />
+      </BrowserRouter>
     </div>
   );
 }
