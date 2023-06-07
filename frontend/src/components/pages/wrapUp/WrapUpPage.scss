@@ -1,0 +1,14 @@
+@import "../../../assets/styles/global-variables.scss";
+
+.social-media-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  border: 1px solid red;
+}
+
+.external-links {
+  display: flex;
+  flex-direction: column;
+}
