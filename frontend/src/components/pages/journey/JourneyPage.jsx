@@ -3,7 +3,8 @@ import JourneyStopList from "./JourneyStopList";
 import "./journeyPage.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
-import { calculatePercentage } from "../../../utils/calculate";
+import arrowUp from "../../../assets/icons/arrow-up.svg";
+import arrowDown from "../../../assets/icons/arrow-down.svg";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -83,28 +84,44 @@ const JourneyPage = () => {
   };
 
   return (
-    <div className="page">
-      JourneyPage
+    <div className="page journey">
+      <header>
+        <h2>Journey</h2>
+      </header>
+      <div>
+        <ProgressBar progress={progress} />
+      </div>
       <JourneyStopList
         journeyStops={journey}
         currentStop={progress.currentStop}
       />
+
+      <br />
+      <br />
       <p>stops: {progress.stops}</p>
       <p>currentStop: {progress.currentStop}</p>
-      <button onClick={() => handleProgressChange(-1)}>Previous</button>
-      <button onClick={() => handleProgressChange(1)}>Next</button>
+      <div className="journey-button-wrapper">
+        <button
+          className="journey-button next"
+          onClick={() => handleProgressChange(1)}
+        >
+          <img src={arrowUp} alt="arrow next"></img>
+        </button>
+        <button
+          className="journey-button previous"
+          onClick={() => handleProgressChange(-1)}
+        >
+          <img src={arrowDown} alt="arrow back"></img>
+        </button>
+      </div>
       <br />
       <br />
-      <div>
-        {journey.length && (
-          <CurrentStopSection
-            paintingId={journey[progress.currentStop].paintingId}
-          />
-        )}
-      </div>
-      <div>
-        <ProgressBar progress={progress} />
-      </div>
+
+      {journey.length && (
+        <CurrentStopSection
+          paintingId={journey[progress.currentStop].paintingId}
+        />
+      )}
     </div>
   );
 };

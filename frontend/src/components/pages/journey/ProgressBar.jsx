@@ -9,8 +9,7 @@ const ProgressBar = ({ progress: { stops, currentStop } }) => {
 
   return (
     <div>
-      ProgressBar
-      <p>{currentProgress}/100</p>
+      <label>{currentProgress}%</label>
       <div className="progress-bar-wrapper">
         <div
           className="progress-bar"
