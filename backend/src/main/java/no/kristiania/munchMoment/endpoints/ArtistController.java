@@ -21,7 +21,7 @@ public class ArtistController {
     ArtistRepository artistRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Artist> getArtist(@PathVariable int id) {
+    public ResponseEntity<Artist> getArtist(@PathVariable long id) {
         Optional<Artist> optionalArtist = artistRepository.findById(id);
         return optionalArtist
                 .map(artist -> ResponseEntity.status(HttpStatus.OK).body(artist))
