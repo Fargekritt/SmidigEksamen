@@ -1,11 +1,10 @@
 package no.kristiania.munchMoment.database;
 
 import no.kristiania.munchMoment.entities.Artist;
-import no.kristiania.munchMoment.entities.Painting;
 
 import java.util.List;
 
-public interface IArtistDao {
+public interface ArtistDao {
     Artist findOne(long paintingId);
 
     List<Artist> findAll();

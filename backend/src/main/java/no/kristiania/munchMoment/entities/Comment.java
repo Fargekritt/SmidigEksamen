@@ -1,8 +1,9 @@
 package no.kristiania.munchMoment.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Comment {
+public class Comment implements Serializable {
     private long id;
     private long paintingId;
     private String nickname;

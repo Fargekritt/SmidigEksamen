@@ -4,7 +4,7 @@ import no.kristiania.munchMoment.entities.Painting;
 
 import java.util.List;
 
-public interface IPaintingDao {
+public interface PaintingDao {
 
 
     Painting findOne(long paintingId);
