@@ -17,9 +17,9 @@ CREATE TABLE painting
     date_created  VARCHAR(20),
     description   TEXT,
     image_path    VARCHAR(250),
-    painter_ID    INT,
+    artist_ID    INT,
     exhibition_ID INT,
-    FOREIGN KEY (painter_ID) REFERENCES artist (artist_ID),
+    FOREIGN KEY (artist_ID) REFERENCES artist (artist_ID),
     FOREIGN KEY (exhibition_ID) REFERENCES exhibition (exhibition_ID)
 );
 
