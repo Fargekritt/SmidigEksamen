@@ -2,8 +2,8 @@ package no.kristiania.munchMoment.endpoints;
 
 
 import no.kristiania.munchMoment.dto.JourneyDto;
-import no.kristiania.munchMoment.journey.Journey;
-import no.kristiania.munchMoment.journey.JourneyBuilder;
+import no.kristiania.munchMoment.entities.journey.Journey;
+import no.kristiania.munchMoment.entities.journey.JourneyBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,6 @@ public class JourneyController {
 
     private static final Logger logger = LoggerFactory.getLogger(JourneyController.class);
 
-    // endpoint for getting a journey based on id
-    @GetMapping("/{id}")  // This is used to handle a GET request on /api/journey/{id}
-    public Journey getJourney(@PathVariable Long id) {
-        // fetch and return journey based on id
-        logger.info("Get journey ID:" + id);
-        return new Journey(10L);
-    }
 
     // endpoint for creating a new journey
     @PostMapping("/new") // This is used to handle a POST request on /api/journey
