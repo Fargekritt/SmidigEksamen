@@ -13,6 +13,7 @@ public class Comment implements Serializable {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "painting_ID", nullable = false)
     private Painting painting;
 
     @Column(name = "nickname")
