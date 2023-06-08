@@ -69,14 +69,21 @@
 .current-stop {
   &-section {
     margin-top: auto;
+    overflow: hidden;
 
     border: 1px solid red;
     display: flex;
-    & > div {
+    & .text-wrapper {
       width: 100%;
     }
+    & .image-wrapper {
+      // border: 3px solid green;
+      height: 100%;
+      & img {
+        object-fit: cover;
+      }
+    }
     & img {
-      border: 1px solid green;
       width: 3em;
       height: 3em;
     }
@@ -98,7 +105,7 @@
   &.fade-out {
     opacity: 0;
   }
-  & > img {
+  & img {
     width: 3em;
     height: 3em;
   }
@@ -130,15 +137,6 @@
   }
 }
 
-/**/
-.current-stop-name-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-
-  height: 100%;
-}
-
 .current-stop-name {
   position: absolute;
   top: 0;
@@ -155,6 +153,13 @@
 
   &.slide-left-exit {
     animation: slide-left-exit 0.25s forwards ease-out;
+  }
+
+  &-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 50%;
   }
 }
 

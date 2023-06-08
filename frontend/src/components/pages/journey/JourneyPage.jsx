@@ -16,33 +16,6 @@ const JourneyPage = () => {
 
   const { journeyData } = useContext(JourneyContext);
 
-  const dummyJourney = [
-    {
-      paintingId: 1,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 4,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 5,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 34,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 30,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 77,
-      exhibitionId: 8,
-    },
-  ];
-
   useEffect(() => {
     if (journeyData) {
       const sortedPaintings = journeyData.stops.sort(
@@ -95,36 +68,38 @@ const JourneyPage = () => {
       <div>
         <ProgressBar progress={progress} />
       </div>
-      <JourneyStopList
-        journeyStops={journey}
-        currentStop={progress.currentStop}
-      />
-
-      <br />
-      <br />
-      <p>stops: {progress.stops}</p>
-      <p>currentStop: {progress.currentStop}</p>
-      <div className="journey-button-wrapper">
-        <button
-          className="journey-button next"
-          onClick={() => handleProgressChange(1)}
-        >
-          <img src={arrowUp} alt="arrow next"></img>
-        </button>
-        <button
-          className="journey-button previous"
-          onClick={() => handleProgressChange(-1)}
-        >
-          <img src={arrowDown} alt="arrow back"></img>
-        </button>
-      </div>
-      <br />
-      <br />
-
       {journey.length && (
-        <CurrentStopSection
-          paintingId={journey[progress.currentStop].paintingId}
-        />
+        <>
+          <JourneyStopList
+            journeyStops={journey}
+            currentStop={progress.currentStop}
+          />
+
+          <br />
+          <br />
+          <p>stops: {progress.stops}</p>
+          <p>currentStop: {progress.currentStop}</p>
+          <div className="journey-button-wrapper">
+            <button
+              className="journey-button next"
+              onClick={() => handleProgressChange(1)}
+            >
+              <img src={arrowUp} alt="arrow next"></img>
+            </button>
+            <button
+              className="journey-button previous"
+              onClick={() => handleProgressChange(-1)}
+            >
+              <img src={arrowDown} alt="arrow back"></img>
+            </button>
+          </div>
+          <br />
+          <br />
+
+          <CurrentStopSection
+            paintingId={journey[progress.currentStop].paintingId}
+          />
+        </>
       )}
     </div>
   );

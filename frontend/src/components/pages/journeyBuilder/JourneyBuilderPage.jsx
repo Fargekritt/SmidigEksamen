@@ -62,7 +62,6 @@ const JourneyBuilderPage = () => {
     try {
       const res = await ApiService.postFormData(dataToSubmit, `journey/new`);
       setJourneyData(res.data);
-      console.log(journeyData);
     } catch (err) {
       return Promise.reject(err);
     }

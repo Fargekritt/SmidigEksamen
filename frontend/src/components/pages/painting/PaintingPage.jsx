@@ -6,6 +6,7 @@ import "./painting-page.scss";
 // import { FastAverageColor } from "fast-average-color";
 import sampleImage from "../../../assets/sampleimage.png";
 import downIcon from "../../../assets/icons/down.svg";
+import RenderImage from "../../shared/RenderImage";
 
 const PaintingPage = (
   {
@@ -92,17 +93,7 @@ const PaintingPage = (
                 <img src={downIcon} alt="downwards pointing icon" />
               </button>
             </nav>
-            <div className="image-wrapper">
-              <img
-                src={image || "./images/fallback-image.svg"}
-                alt={painting.paintingName}
-                onError={({ currentTarget }) => {
-                  console.log("error");
-                  currentTarget.onerror = null;
-                  currentTarget.src = "./images/fallback-image.svg";
-                }}
-              />
-            </div>
+            <RenderImage image={image} altText={painting.paintingName} />
           </header>
           <div className="content">
             <div

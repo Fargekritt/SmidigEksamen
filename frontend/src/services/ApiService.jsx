@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosConfig = {
   baseURL: `http://127.0.0.1:8080/api/`,
-  endpoints: [`painting`, `journey`, `comment`, `exhibition`, `theme`],
+  // endpoints: [`painting`, `journey`, `comment`, `exhibition`, `theme`],
 };
 
 const ApiService = (() => {
@@ -14,9 +14,11 @@ const ApiService = (() => {
     }
   };
 
-  const getById = async (id, endpoint) => {
+  const getById = async (endpoint, id) => {
     try {
+      console.log("API", axiosConfig.baseURL + endpoint + "/" + id);
       return await axios.get(`${axiosConfig.baseURL}${endpoint}/${id}`);
+      // return await axios.get(`http://localhost:8080/api/painting/1`);
     } catch (err) {
       return Promise.reject(err);
     }
