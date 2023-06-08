@@ -36,7 +36,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         comment.setText(commentDto.text());
-        comment.setDate(LocalDateTime.now());
+        comment.setDate(LocalDateTime.now().toString());
         commentRepository.save(comment);
         return ResponseEntity.status(HttpStatus.CREATED).body("Comment has been created");
 

@@ -22,7 +22,7 @@ public class Comment implements Serializable {
     private String text;
 
     @Column(name = "comment_date")
-    private LocalDateTime date;
+    private String date;
 
     @Column(name = "likes")
     private int likes;
@@ -63,11 +63,19 @@ public class Comment implements Serializable {
         this.nickname = nickname;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }
