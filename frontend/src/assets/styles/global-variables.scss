@@ -12,6 +12,23 @@ _____ 2 ______
 
 */
 
+/* TEMMP */
+.temp-header {
+  text-align: center;
+  border: 0.3em solid red;
+  background-color: #222222;
+
+  & * {
+    margin: 0.4em;
+    color: #ffdbab;
+    text-decoration: none;
+  }
+  & ul {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
 /* ---------- [1] FONT ---------- */
 
 /* --- FAMILY --- */
