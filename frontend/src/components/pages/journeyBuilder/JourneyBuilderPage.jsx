@@ -3,7 +3,7 @@ import RangeInput from "./RangeInput";
 import ToggleInput from "./ToggleInput";
 import { useState } from "react";
 import ApiService from "../../../services/ApiService";
-import "./journeyPlannerPage.scss";
+import "./journey-builder-page.scss";
 import Modal from "../../Modal";
 
 const JourneyPlannerPage = () => {
