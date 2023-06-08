@@ -133,12 +133,12 @@
 
         // Draw smooth line.
         context.setLineDash([0]);
-        context.lineWidth = 3;
+        context.lineWidth = 1;
         context.strokeStyle = "black";
         bzCurve(points, 0.5, 0.1, false);
 
         // Draw points
-        drawPoints(points, 'red', 3);
+        drawPoints(points, 'red', 2);
     }
 
     drawMap();

@@ -6,10 +6,12 @@ import "./assets/styles/css-reset.scss";
 import "./assets/styles/app.scss";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
+import CanvasMap from "./components/pages/journey/CanvasMap";
 
 function App() {
   return (
     <div className="App">
+      <CanvasMap></CanvasMap>
       <BrowserRouter>
         <header className="temp-header">
           <p>TEMP HEADER FOR DEV NAVIGATION</p>
