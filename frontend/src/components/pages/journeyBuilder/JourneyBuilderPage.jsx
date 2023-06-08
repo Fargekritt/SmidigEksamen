@@ -53,7 +53,7 @@ const JourneyPlannerPage = () => {
 
   const submitData = async dataToSubmit => {
     try {
-      const res = await ApiService.postFormData(dataToSubmit);
+      const res = await ApiService.postFormData(dataToSubmit, `journey/new`);
       setModalContent(JSON.stringify(res.data));
     } catch (err) {
       return Promise.reject(err);
