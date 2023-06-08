@@ -6,8 +6,8 @@ import "./assets/styles/css-reset.scss";
 import "./assets/styles/app.scss";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
-// import { JourneyProvider } from "./contexts/JourneyContext";
-import JourneyContext, { JourneyProvider } from "./contexts/JourneyContext";
+
+import { JourneyProvider } from "./contexts/JourneyContext";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
             </Route>
 
             <Route path="painting" element={<PaintingPage />}>
-              <Route path=":paintingId" element={<PaintingPage />} />
+              <Route path=":paintingRouteId" element={<PaintingPage />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
