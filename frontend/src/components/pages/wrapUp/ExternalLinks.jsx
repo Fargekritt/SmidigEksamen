@@ -5,7 +5,7 @@ const links = [
     description: "Mat & drikke på MUNCH",
     url: "https://www.munchmuseet.no/besok-oss/mat-drikke-MUNCH/",
   },
-  { description: "Hva skjer?", url: "https://www.munchmuseet.no/hva_skjer/" },
+  // { description: "Hva skjer?", url: "https://www.munchmuseet.no/hva_skjer/" },
   {
     description: "Samlingen",
     url: "https://www.munchmuseet.no/samlingen/?query=&page=1&sortOrder=default&classification=Malerier&years=1863%7C1944&motif=V%C3%A5r&motif=Norge&munchSamlingen=true&d=1",
