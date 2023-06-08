@@ -3,7 +3,7 @@ import Instagram from "../../../assets/images/instagram.png";
 import Twitter from "../../../assets/images/twitter.png";
 import Facebook from "../../../assets/images/facebook.png";
 import YouTube from "../../../assets/images/youtube.png";
-// import TikTok from "../../../assets/images/tiktok.png";
+import TikTok from "../../../assets/images/tiktok.png";
 
 const links = [
   {
@@ -29,7 +29,7 @@ const links = [
   {
     name: "TikTok",
     url: "http://www.tiktok.com/@munchmuseet.no",
-    image: "../../../assets/images/tiktok.png",
+    image: TikTok,
   },
 ];
 

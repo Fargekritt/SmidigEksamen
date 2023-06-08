@@ -13,8 +13,8 @@ const WrapUpPage = () => {
         maxValue={10}
         optionLabel={"hei"}
       />
-      <SocialMediaLinks />
       <ExternalLinks />
+      <SocialMediaLinks />
     </div>
   );
 };
