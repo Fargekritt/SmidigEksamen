@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import JourneyStopList from "./JourneyStopList";
-import "./journeyPage.scss";
+import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
