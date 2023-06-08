@@ -20,7 +20,9 @@ public class Theme {
 //            joinColumns = @JoinColumn(name = "student_id"),
 //            inverseJoinColumns = @JoinColumn(name = "course_id"))
     @ManyToMany
-    @JoinTable( name = "painting_theme", joinColumns = @JoinColumn(name = "painting_ID"), inverseJoinColumns = @JoinColumn(name = "theme_ID"))
+    @JoinTable( name = "painting_theme",
+            joinColumns = @JoinColumn(name = "painting_ID"),
+            inverseJoinColumns = @JoinColumn(name = "theme_ID"))
     private Set<Painting> paintings;
 
     public long getId() {
