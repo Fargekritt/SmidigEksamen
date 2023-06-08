@@ -1,16 +1,53 @@
 @import "../../../assets/styles/global-variables.scss";
 
+@keyframes slide-up {
+  0% {
+    display: none;
+    transform: translate(-50%, 100%);
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    transform: translate(-50%, 0%);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    display: block;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
+}
+
 .page.painting {
   max-width: 50em;
-  margin: auto;
-  border-radius: 0 0 1em 1em;
+  border-radius: 0.5em;
+  overflow-y: scroll;
+  width: 100%;
   position: absolute;
-  top: 20%;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  opacity: 0;
+  transform: translate(-50%, 100%);
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.55s cubic-bezier(0.51, 0.92, 0.24, 1);
 
-  // border: 10em solid red;
-  // border: 10px solid red;
-  overflow: hidden;
-  // height: 100vh;
+  &.visible {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+    pointer-events: all;
+    animation: slide-up 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+  }
+
+  &.not-visible {
+    animation: slide-down 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+  }
+
   * {
     // color: #bababa;
   }

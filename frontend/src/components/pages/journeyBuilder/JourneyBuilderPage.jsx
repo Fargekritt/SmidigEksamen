@@ -90,7 +90,7 @@ const JourneyBuilderPage = () => {
   };
 
   return (
-    <div className="page">
+    <div className="page journey-builder">
       <h2>Let's make your journey!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput

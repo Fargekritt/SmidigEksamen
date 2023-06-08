@@ -1,74 +1,49 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import ApiService from "../../../services/ApiService";
 import CommentList from "./CommentList";
 import { useParams } from "react-router-dom";
 import "./painting-page.scss";
 import downIcon from "../../../assets/icons/down.svg";
 import RenderImage from "../../shared/RenderImage";
-import { JourneyContext } from "../../../contexts/JourneyContext";
 import { Link } from "react-router-dom";
 
 const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      text: "This is a comment",
-      date: "2022-01-01",
-    },
-    {
-      id: 2,
-      text: "This is another comment",
-      date: "2022-01-02",
-    },
-    {
-      id: 3,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-    {
-      id: 4,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-    {
-      id: 5,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-  ]);
+  const [comments, setComments] = useState([]);
   const { paintingRouteId } = useParams();
   const [currentPaintingData, setCurrentPaintingData] = useState({ painting });
 
   useEffect(() => {
     if (painting != null) {
       setCurrentPaintingData(painting);
-      return;
-    } else {
+    } else if (paintingRouteId != null) {
       const fetchCurrentPaintingData = async () => {
         try {
-          await ApiService.getById("painting", paintingRouteId).then(res => {
-            setCurrentPaintingData(res.data);
-          });
+          const response = await ApiService.getById(
+            "painting",
+            paintingRouteId
+          );
+          setCurrentPaintingData(response.data);
         } catch (err) {
           console.log(err);
         }
       };
       fetchCurrentPaintingData();
     }
-  }, [painting]);
+  }, [painting, paintingRouteId]);
+
+  console.log(paintingRouteId);
 
   useEffect(() => {
     const fetchComments = async () => {
-      if (currentPaintingData.id != null) {
+      if (currentPaintingData.id) {
         try {
-          return await ApiService.getById(
-            `painting`,
+          const response = await ApiService.getById(
+            "painting",
             `${currentPaintingData.id}/comments`
-          ).then(res => {
-            setComments(res.data);
-          });
+          );
+          setComments(response.data);
         } catch (err) {
-          return Promise.reject(err);
+          console.log(err);
         }
       }
     };
@@ -76,12 +51,15 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
   }, [currentPaintingData.id]);
 
   const handleClick = () => {
-    setIsVisible(false);
+    setIsVisible(prevIsVisible => !prevIsVisible);
   };
 
   return (
-    <div className="page painting">
-      <p>hello</p>
+    <div
+      className={`page painting ${
+        isVisible != undefined && isVisible ? "visible" : "not-visible"
+      }`}
+    >
       {currentPaintingData && (
         <>
           <p>{paintingRouteId}</p>
@@ -94,11 +72,11 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
           <div className="background color"></div>
           <header>
             <nav>
-              <Link to={`/journey`}>
-                <button onClick={handleClick}>
-                  <img src={downIcon} alt="downwards pointing icon" />
-                </button>
-              </Link>
+              {/* <Link to={`/journey`}> */}
+              <button onClick={handleClick}>
+                <img src={downIcon} alt="downwards pointing icon" />
+              </button>
+              {/* </Link> */}
             </nav>
             <RenderImage
               image={currentPaintingData.imagePath}

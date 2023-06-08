@@ -16,9 +16,7 @@ const JourneyPage = () => {
     currentStop: 0,
   });
   const [currentPaintingData, setCurrentPaintingData] = useState(null);
-
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
-
   const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
@@ -52,7 +50,6 @@ const JourneyPage = () => {
             journey[progress.currentStop].paintingId
           ).then(res => {
             setCurrentPaintingData(res.data);
-            console.log("RESDATA:", res.data);
             setJourneyData(journeyData => {
               return {
                 ...journeyData,
@@ -138,13 +135,11 @@ const JourneyPage = () => {
         )}
       </div>
 
-      {paintingPageIsVisible && (
-        <PaintingPage
-          painting={currentPaintingData}
-          isVisible={paintingPageIsVisible}
-          setIsVisible={setPaintingPageIsVisible}
-        />
-      )}
+      <PaintingPage
+        painting={currentPaintingData}
+        isVisible={paintingPageIsVisible}
+        setIsVisible={setPaintingPageIsVisible}
+      />
     </>
   );
 };

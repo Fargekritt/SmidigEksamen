@@ -1,9 +1,10 @@
 @import "../../../assets/styles/global-variables.scss";
 
 .page.journey {
-  // padding: 1em;
   height: 100vh;
-  // display: flex;
+  display: flex;
+  position: relative;
+  overflow: hidden;
   flex-flow: column nowrap;
   & h2 {
     text-align: center;
@@ -137,6 +138,14 @@
   }
 }
 
+/* Current Stop */
+.current-stop-name-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 50%;
+}
+
 .current-stop-name {
   position: absolute;
   top: 0;
@@ -156,10 +165,6 @@
   }
 
   &-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    height: 50%;
   }
 }
 

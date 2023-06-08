@@ -14,7 +14,7 @@ function App() {
     <JourneyProvider>
       <div className="App">
         <BrowserRouter>
-          <header className="temp-header">
+          {/* <header className="temp-header">
             <p>TEMP HEADER FOR DEV NAVIGATION</p>
             <nav>
               <ul>
@@ -25,7 +25,7 @@ function App() {
                 <Link to="*">NotFound</Link>
               </ul>
             </nav>
-          </header>
+          </header> */}
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="create" element={<JourneyBuilderPage />} />
