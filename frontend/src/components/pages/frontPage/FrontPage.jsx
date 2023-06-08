@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import SubHeading from "./SubHeading";
-import "./FrontPage.scss";
+import "./front-page.scss";
 import { Link } from "react-router-dom";
 
 const FrontPage = () => {
