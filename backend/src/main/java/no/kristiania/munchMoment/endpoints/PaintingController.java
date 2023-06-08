@@ -1,6 +1,8 @@
 package no.kristiania.munchMoment.endpoints;
 
+import no.kristiania.munchMoment.database.CommentRepository;
 import no.kristiania.munchMoment.database.PaintingRepository;
+import no.kristiania.munchMoment.entities.Comment;
 import no.kristiania.munchMoment.entities.Painting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class PaintingController {
 
     @Autowired
     PaintingRepository paintingRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     // GET request for getting the painting id
     @GetMapping("/{id}")
@@ -71,5 +76,14 @@ public class PaintingController {
         return optionalPainting
                 .map(painting -> ResponseEntity.status(HttpStatus.OK).body(painting.getDescription()))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @GetMapping("/{id}/comments")
+    public  ResponseEntity<List<Comment>> getAllComments(@PathVariable long id) {
+        List<Comment> comments = commentRepository.findCommentsByPainting_Id(id);
+        if(comments.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(comments);
     }
 }
