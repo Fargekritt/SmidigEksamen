@@ -20,8 +20,8 @@ public class JourneyController {
 
 
     // endpoint for creating a new journey
-    @PostMapping("/new")
-//    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")// This is used to handle a POST request on /api/journey
+//    @PostMapping("/new")
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")// This is used to handle a POST request on /api/journey
     public Journey createJourney(@RequestBody JourneyDto journeyDto) {
         // create and return the new journey
         JourneyBuilder builder = new JourneyBuilder();
