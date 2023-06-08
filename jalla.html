@@ -40,13 +40,35 @@
             nexP = points[i + 1];
             if (nexP) {
                 m = gradient(preP, nexP);
+                dy2 = (nexP.y - curP.y) * -f;
+                dx2 = dy2 * m * t;
+            } else {
+                dx2 = 0;
+                dy2 = 0;
+            }
+
+            ctx.bezierCurveTo(
+                preP.x - dx1, preP.y - dy1
+                , curP.x + dx2, curP.y + dy2
+                , curP.x, curP.y);
+
+            dx1 = dx2;
+            dy1 = dy2;
+            ctx.arc(curP.x, curP.y, 1.5, 0, Math.PI * 2, true);
+            preP = curP;
+        }
+
+
+        /*
+
+           if (nexP) {
+                m = gradient(preP, nexP);
                 dx2 = (nexP.x - curP.x) * -f;
                 dy2 = dx2 * m * t;
             } else {
                 dx2 = 0;
                 dy2 = 0;
             }
-
             ctx.bezierCurveTo(
                 preP.x - dx1, preP.y - dy1,
                 curP.x + dx2, curP.y + dy2,
@@ -56,49 +78,71 @@
             dx1 = dx2;
             dy1 = dy2;
             preP = curP;
-            ctx.fillStyle = "red";
-            ctx.fill();
         }
+        ctx.stroke();
+         */
 
         ctx.stroke();
     }
 
     // Generate random data
     var lines = [];
-    /*
-        p = {x: 300, y: 400};
-        lines.push(p);
-        p = {x: 250, y: 380};
-        lines.push(p);
-        p = {x: 320, y: 360};
-        lines.push(p);
-        p = {x: 310, y: 340};
-        lines.push(p);
-    */
+
 
     var Y = 400;
-    var t = 40;
+    var X = 300;
+    var s = 35;
+
 
     for (var i = 0; i < 10; i++) {
-        X = Math.floor((Math.random() * (400 - 200)) + 200);
         p = {x: X, y: Y};
         lines.push(p);
-        Y = Y - t;
+
+        if (i % 2 === 0) {
+            X += 14 * Math.floor((Math.random() * (5 - 2)) + 2);
+        } else {
+            X -= 16 * Math.floor((Math.random() * (5 - 2)) + 2);
+        }
+        Y = Y - s;
     }
-    /*var X = 10;
-    var t = 40; // control the width of X.
-    for (var i = 0; i < 100; i++ ) {
-        Y = Math.floor((Math.random() * 300) + 50);
-        p = { x: X, y: Y };
-        lines.push(p);
-        X = X + t;
-    }
+    /*
+    p = {x: 300, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 250, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 320, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 240, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 310, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 260, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 320, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 300, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 270, y: Y};
+    lines.push(p);
+    Y = Y - s;
+    p = {x: 290, y: Y};
+    lines.push(p);
+
 */
+
     // Draw smooth line
     ctx.setLineDash([0]);
     ctx.lineWidth = 2;
     ctx.strokeStyle = "green";
-    bzCurve(lines, 0.3, 1);
+    bzCurve(lines, 0.1, 1.2);
 </script>
 </body>
 </html>
