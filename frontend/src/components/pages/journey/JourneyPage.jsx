@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import JourneyStopList from "./JourneyStopList";
 import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
+import { JourneyContext } from "../../../contexts/JourneyContext";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -12,6 +13,8 @@ const JourneyPage = () => {
     stops: journey.length,
     currentStop: 0,
   });
+
+  const { journeyData } = useContext(JourneyContext);
 
   const dummyJourney = [
     {
@@ -41,12 +44,13 @@ const JourneyPage = () => {
   ];
 
   useEffect(() => {
-    const sortedPaintings = dummyJourney.sort(
-      (a, b) => a.paintingId - b.paintingId
-    );
-
-    setJourney(sortedPaintings);
-  }, []);
+    if (journeyData) {
+      const sortedPaintings = journeyData.stops.sort(
+        (a, b) => a.paintingId - b.paintingId
+      );
+      setJourney(sortedPaintings);
+    }
+  }, [journeyData]);
 
   useEffect(() => {
     setProgress(prevState => {

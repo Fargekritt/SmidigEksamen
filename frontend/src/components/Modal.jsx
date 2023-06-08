@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Lottie from "lottie-react";
 import animationData from "../assets/lotties/checkmark";
+import { Link } from "react-router-dom";
 
 const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
   const dialogRef = useRef(null);
@@ -40,6 +41,10 @@ const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
 
             <p>Heres your very own url. Click to start your journey:</p>
             <p> {modalContent}</p>
+
+            <Link to={"/journey"}>
+              <button>Start journey</button>
+            </Link>
 
             <br />
             <p className="bottom-text">
