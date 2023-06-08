@@ -6,6 +6,7 @@ import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
 import { JourneyContext } from "../../../contexts/JourneyContext";
+import ApiService from "../../../services/ApiService";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -13,6 +14,7 @@ const JourneyPage = () => {
     stops: journey.length,
     currentStop: 0,
   });
+  const [currentPaintingData, setCurrentPaintingData] = useState(null);
 
   const { journeyData } = useContext(JourneyContext);
 
@@ -37,6 +39,22 @@ const JourneyPage = () => {
       };
     });
   }, [journey]);
+
+  useEffect(() => {
+    const fetchCurrentPaintingData = async () => {
+      try {
+        await ApiService.getById(
+          "painting",
+          journey[progress.currentStop].paintingId
+        ).then(res => {
+          setCurrentPaintingData(res.data);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchCurrentPaintingData();
+  }, [progress]);
 
   const handleProgressChange = indexChange => {
     setProgress(prevState => {
@@ -97,7 +115,9 @@ const JourneyPage = () => {
           <br />
 
           <CurrentStopSection
-            paintingId={journey[progress.currentStop].paintingId}
+            paintingName={currentPaintingData?.paintingName}
+            imagePath={currentPaintingData?.imagePath}
+            paintingId={journey[progress.currentStop]?.paintingId}
           />
         </>
       )}

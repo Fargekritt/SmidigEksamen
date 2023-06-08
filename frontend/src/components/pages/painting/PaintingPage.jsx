@@ -3,14 +3,13 @@ import ApiService from "../../../services/ApiService";
 import CommentList from "./CommentList";
 // import { useParams } from "react-router-dom";
 import "./painting-page.scss";
-// import { FastAverageColor } from "fast-average-color";
 import sampleImage from "../../../assets/sampleimage.png";
 import downIcon from "../../../assets/icons/down.svg";
 import RenderImage from "../../shared/RenderImage";
 
 const PaintingPage = (
   {
-    /* painting */
+    /*painting*/
   }
 ) => {
   const [isOpen, setIsOpen] = useState(false);
