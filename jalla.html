@@ -15,19 +15,30 @@
 </canvas>
 
 <script>
-    var cv = document.getElementById("GFG");
-    var ctx = cv.getContext("2d");
+    var canvas = document.getElementById("GFG");
+    var context = canvas.getContext("2d");
 
+
+    ////////////////////////////////////////Functions////////////////////////////////////////
     function gradient(a, b) {
         return (b.y - a.y) / (b.x - a.x);
     }
 
-    function bzCurve(points, f, t) {
+
+    /**
+     * Calibrates a curved line from the points.
+     * @param points Array of points.
+     * @param f Calibrating curve value.
+     * @param t Calibrating curve value.
+     * @param useGradient Use gradient bool.
+     */
+    function bzCurve(points, f, t, useGradient) {
+        //Default if not set.
         if (typeof (f) == 'undefined') f = 0.3;
         if (typeof (t) == 'undefined') t = 0.6;
 
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
 
         var m = 0;
         var dx1 = 0;
@@ -36,10 +47,14 @@
         var preP = points[0];
 
         for (var i = 1; i < points.length; i++) {
+
             var curP = points[i];
-            nexP = points[i + 1];
+            var nexP = points[i + 1];
+
             if (nexP) {
-                m = gradient(preP, nexP);
+                if (useGradient) {
+                    m = gradient(preP, nexP);
+                }
                 dy2 = (nexP.y - curP.y) * -f;
                 dx2 = dy2 * m * t;
             } else {
@@ -47,102 +62,87 @@
                 dy2 = 0;
             }
 
-            ctx.bezierCurveTo(
+            context.bezierCurveTo(
                 preP.x - dx1, preP.y - dy1
                 , curP.x + dx2, curP.y + dy2
                 , curP.x, curP.y);
 
             dx1 = dx2;
             dy1 = dy2;
-            ctx.arc(curP.x, curP.y, 1.5, 0, Math.PI * 2, true);
+
             preP = curP;
         }
 
+        context.stroke();
+    }
 
-        /*
+    /**
+     * Loops through array of points and draw them to the canvas.
+     * @param points Array containing points.
+     * @param color Color on the points.
+     * @param size Size of the points.
+     */
+    function drawPoints(points, color, size) {
 
-           if (nexP) {
-                m = gradient(preP, nexP);
-                dx2 = (nexP.x - curP.x) * -f;
-                dy2 = dx2 * m * t;
+        for (var i = 0; i < points.length; i++) {
+            context.fillStyle = color;
+            context.beginPath();
+            context.arc(points[i].x, points[i].y, size, 0, Math.PI * 2, true);
+            context.closePath();
+            context.fill();
+        }
+    }
+
+    /**
+     * Generate points with random locations.
+     * @param points Array to store points.
+     * @param amountOfPoints Amount of points generated.
+     */
+    function generatePoints(points, amountOfPoints) {
+        // Start at middle bottom of canvas.
+        var Y = 400;
+        var X = 300;
+
+        // Control the length of Y.
+        var depth = 60;
+        var width = 10;
+        var multiplier = 10;
+        var depthStepReduction = 4;
+
+        for (var i = 0; i < amountOfPoints; i++) {
+            p = {x: X, y: Y};
+            points.push(p);
+
+            if (i % 2 === 0) {
+                X += width * Math.floor((Math.random() * (multiplier - 2)) + 2);
             } else {
-                dx2 = 0;
-                dy2 = 0;
+                X -= width * Math.floor((Math.random() * (multiplier - 2)) + 2);
             }
-            ctx.bezierCurveTo(
-                preP.x - dx1, preP.y - dy1,
-                curP.x + dx2, curP.y + dy2,
-                curP.x, curP.y
-            );
-
-            dx1 = dx2;
-            dy1 = dy2;
-            preP = curP;
+            Y = Y - depth;
+            depth -= depthStepReduction;
         }
-        ctx.stroke();
-         */
-
-        ctx.stroke();
     }
 
-    // Generate random data
-    var lines = [];
+    ///////////////////////////////////Variables/FunctionCalls///////////////////////////////////
 
+    function drawMap() {
+        var points = [];
 
-    var Y = 400;
-    var X = 300;
-    var s = 35;
+        // Generate the points based on amountOfPoints.
+        generatePoints(points, 10);
 
+        // Draw smooth line.
+        context.setLineDash([0]);
+        context.lineWidth = 3;
+        context.strokeStyle = "black";
+        bzCurve(points, 0.5, 0.1, false);
 
-    for (var i = 0; i < 10; i++) {
-        p = {x: X, y: Y};
-        lines.push(p);
-
-        if (i % 2 === 0) {
-            X += 14 * Math.floor((Math.random() * (5 - 2)) + 2);
-        } else {
-            X -= 16 * Math.floor((Math.random() * (5 - 2)) + 2);
-        }
-        Y = Y - s;
+        // Draw points
+        drawPoints(points, 'red', 3);
     }
-    /*
-    p = {x: 300, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 250, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 320, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 240, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 310, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 260, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 320, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 300, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 270, y: Y};
-    lines.push(p);
-    Y = Y - s;
-    p = {x: 290, y: Y};
-    lines.push(p);
 
-*/
+    drawMap();
 
-    // Draw smooth line
-    ctx.setLineDash([0]);
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "green";
-    bzCurve(lines, 0.1, 1.2);
 </script>
 </body>
 </html>
