@@ -1,10 +1,16 @@
 @import "../../../assets/styles/global-variables.scss";
 
+.page > * {
+  padding-bottom: 2em;
+}
+
 .social-media-wrapper {
   display: flex;
+  margin: auto;
   justify-content: space-between;
   align-items: center;
   padding: 2em;
+  width: 80%;
   // border: 1px solid red;
 }
 
@@ -13,18 +19,18 @@
 }
 
 .external-links * {
-  padding: 0.5em 0 0.5em 0;
+  padding: 0.1em 0 0.1em 0;
   display: flex;
   flex-direction: column;
   // align-items: center;
   font-family: $font_family--primary;
   text-transform: uppercase;
-  text-decoration: none;
   font-size: 2em;
+  text-decoration: none;
 }
 
 .external-links > a:hover {
-  font-family: $font_family--primary-backslant;
+  font-family: "Girott Munch Bold Slant";
 }
 
 .external-links a:visited {
@@ -44,7 +50,7 @@
 }
 
 .event {
-  position: relative; /* Add relative positioning */
+  position: relative;
   // border: 1px solid green;
   display: flex;
   align-items: flex-start;
@@ -54,11 +60,11 @@
   &:not(:last-child)::after {
     content: "";
     position: absolute;
-    bottom: -1em; /* Position the line at the bottom */
+    bottom: -1em;
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: gray; /* Set the color of the line */
+    background-color: gray;
   }
 }
 
@@ -75,36 +81,37 @@
   // border: 1px solid blue;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Adjust to space evenly */
+  justify-content: space-between;
   padding: 1em;
 }
 
 .event-info h3 {
-  margin-bottom: 1em; /* Add margin at the bottom of h3 */
+  margin-bottom: 1em;
 }
 
 .back-button {
-  font-size: 2em; /* Adjust size as needed */
+  font-family: $font_family--primary;
+  font-size: 2em;
   background: none;
   border: none;
-  // padding: 1em;
-  color: #333; /* Adjust color as needed */
+  padding: 1em 0 1em 0;
+  color: #333;
   transition: color 0.3s ease;
 }
 
 .back-button:hover {
-  color: #666; /* Adjust hover color as needed */
+  color: red;
 }
 
 .back-button:active {
-  color: red; /* Adjust active color as needed */
+  color: red;
 }
 
 .feedback * {
   // border: 1px solid red;
+  margin: 1em 0 1em 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // height: 100vh;
 }

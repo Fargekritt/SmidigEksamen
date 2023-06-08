@@ -15,19 +15,28 @@ const Event = ({ imgSrc, title, date }) => {
 const UpcomingEvents = () => {
   const events = [
     {
-      imgSrc: "https://picsum.photos/200",
-      title: "Arrangement 1",
+      imgSrc:
+        "https://www.munchmuseet.no/globalassets/foto-munch/late-night/050_kil-2474.jpg?mode=crop&quality=75&w=1400&h=700&crop=0,912,10944,6384",
+      title: "Late Night på MUNCH",
       date: "09.06.2023 kl. 20.00",
     },
     {
-      imgSrc: "https://picsum.photos/300",
-      title: "Arrangement 2",
-      date: "09.06.2023 kl. 20.00",
+      imgSrc:
+        "https://www.munchmuseet.no/globalassets/foto-formidling/barnas-kunstdag/amr07569.jpg?mode=crop&quality=75&w=1400&h=700&crop=0,200,2386,1393",
+      title: "MINIMUNCH: Barnas kunstdag",
+      date: "10.06.2023 kl. 11.00 - 14.30",
     },
     {
-      imgSrc: "https://picsum.photos/400",
-      title: "Arrangement 3",
-      date: "09.06.2023 kl. 20.00",
+      imgSrc:
+        "https://www.munchmuseet.no/globalassets/edvard-munch-foto/edvard-munchs-film.jpg?mode=crop&quality=75&w=1400&h=700&crop=0,32,1908,986",
+      title: "Kunstprat for medlem: Munch-serien",
+      date: "21.06.2023 kl. 18.00",
+    },
+    {
+      imgSrc:
+        "https://www.munchmuseet.no/globalassets/foto-munch/eksterior/dsc_8161.jpg?mode=crop&quality=75&w=1400&h=700&crop=0,900,1800,1800",
+      title: "Ung feiring sommer",
+      date: "24.06.2023 kl. 16.30",
     },
     // Add more events as needed
   ];

@@ -11,13 +11,15 @@ const WrapUpPage = () => {
         <button aria-label="Go back" onclick="goBack()" className="back-button">
           &lt;
         </button>
-        <h1>WrapUp Page</h1>
+        <h1> Ditt Munch moment</h1>
       </header>
       <div className="feedback">
+        <p>
+          For en opplevelse! Vi håper du har skapt deg et spesielt MUNCH MOMENT
+          i din reise gjennom Edvard Munchs kunst.
+        </p>
         <RangeInput
-          question={
-            "For en opplevelse! Vi håper du har skapt deg et spesielt ØYEBLIKK i din reise gjennom Edvard Munchs kunst. Hvordan likte du det?"
-          }
+          question={"Hvordan likte du din skreddersydde reise?"}
           minValue={0}
           maxValue={10}
           optionLabel={"hei"}
