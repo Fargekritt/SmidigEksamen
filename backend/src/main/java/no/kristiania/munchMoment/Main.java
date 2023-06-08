@@ -24,17 +24,18 @@ public class Main {
 
     }
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUsername("root");
-        dataSource.setPassword("MadridGang69");
-        dataSource.setUrl(
-                "jdbc:mysql://localhost:3306/munch_moment");
-
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("MadridGang69");
+//        dataSource.setUrl(
+//                "jdbc:mysql://localhost:3306/munch_moment");
+//
+//        return dataSource;
+//
+//
+//    }
 
 }
