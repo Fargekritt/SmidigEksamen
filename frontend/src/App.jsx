@@ -8,11 +8,13 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 
 import { JourneyProvider } from "./contexts/JourneyContext";
+import WrapUpPage from "./components/pages/wrapUp/WrapUpPage";
 
 function App() {
   return (
     <JourneyProvider>
       <div className="App">
+        {/* <WrapUpPage /> */}
         <BrowserRouter>
           {/* <header className="temp-header">
             <p>TEMP HEADER FOR DEV NAVIGATION</p>

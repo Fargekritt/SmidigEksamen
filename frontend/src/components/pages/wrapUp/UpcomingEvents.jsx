@@ -2,7 +2,9 @@
 const Event = ({ imgSrc, title, date }) => {
   return (
     <div className="event">
-      <img src={imgSrc} alt={title} />
+      <div className="image-wrapper">
+        <img src={imgSrc} alt={title} />
+      </div>
       <div className="event-info">
         <h3>{title}</h3>
         <p>{date}</p>
