@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import RenderImage from "../../shared/RenderImage";
 
-const CurrentStopSection = ({ paintingId, paintingName, imagePath }) => {
+const CurrentStopSection = ({
+  paintingId,
+  paintingName,
+  imagePath,
+  handleViewPaintingPage,
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentPaintingName, setCurrentPaintingName] = useState();
   const [painting, setPainting] = useState({ paintingName: "", imagePath: "" });
@@ -22,7 +27,7 @@ const CurrentStopSection = ({ paintingId, paintingName, imagePath }) => {
   }, [paintingId]);
 
   return (
-    <div className="current-stop-section">
+    <div className="current-stop-section" onClick={handleViewPaintingPage}>
       <RenderImage image={painting.imagePath} altText={painting.paintingName} />
       <div className="text-wrapper">
         <small>Currently viewing:</small>

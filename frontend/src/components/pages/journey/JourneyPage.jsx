@@ -124,9 +124,8 @@ const JourneyPage = () => {
               </button>
             </div>
 
-            <button onClick={handleViewPaintingPage}>view painting</button>
-
             <CurrentStopSection
+              handleViewPaintingPage={handleViewPaintingPage}
               paintingName={currentPaintingData?.paintingName}
               imagePath={currentPaintingData?.imagePath}
               paintingId={journey[progress.currentStop]?.paintingId}

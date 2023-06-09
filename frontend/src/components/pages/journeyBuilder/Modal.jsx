@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Lottie from "lottie-react";
-import animationData from "../assets/lotties/checkmark";
+import animationData from "../../../assets/lotties/checkmark";
 import { Link } from "react-router-dom";
 
 const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import "./painting-page.scss";
 import downIcon from "../../../assets/icons/down.svg";
 import RenderImage from "../../shared/RenderImage";
-import { Link } from "react-router-dom";
 
 const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
   const [comments, setComments] = useState([]);
@@ -30,8 +29,6 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
       fetchCurrentPaintingData();
     }
   }, [painting, paintingRouteId]);
-
-  console.log(paintingRouteId);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -72,11 +69,9 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
           <div className="background color"></div>
           <header>
             <nav>
-              {/* <Link to={`/journey`}> */}
               <button onClick={handleClick}>
                 <img src={downIcon} alt="downwards pointing icon" />
               </button>
-              {/* </Link> */}
             </nav>
             <RenderImage
               image={currentPaintingData.imagePath}
@@ -93,15 +88,17 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
             <h2>{currentPaintingData.paintingName}</h2>
             <p>{currentPaintingData.dateCreated}</p>
             <section className="description">
-              <h3>Description</h3>
+              <h3>Om kunstverket</h3>
               <p>{currentPaintingData.description}</p>
             </section>
             <section className="comments">
               <div>
-                <h3>Comments</h3>
-                <button>Add comment</button>
+                <h3>Kommentarer</h3>
               </div>
               {comments && <CommentList comments={comments} />}
+              <button className="add-comment-button">
+                Legg igjen dine tanker
+              </button>
             </section>
           </div>
         </>

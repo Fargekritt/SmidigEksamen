@@ -6,7 +6,7 @@ import { JourneyContext } from "../../../contexts/JourneyContext";
 
 import ApiService from "../../../services/ApiService";
 import "./journey-builder-page.scss";
-import Modal from "../../Modal";
+import Modal from "./Modal";
 
 const JourneyBuilderPage = () => {
   const [timeInput, setTimeInput] = useState(90);
