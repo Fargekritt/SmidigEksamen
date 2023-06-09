@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 
 // Sets extra bending on the path.
@@ -68,20 +68,54 @@ function bzCurve(points, f, t, useGradient, context) {
  * @param color Color on the points.
  * @param size Size of the points.
  */
-function drawPoints(points, color, size, context) {
+function drawPoints(points, color, size, context, handleClick, selected) {
+
+
     for (let i = 0; i < points.length; i++) {
+        const point = points[i];
+
         context.fillStyle = color;
         context.beginPath();
-        context.arc(
-            points[i].x,
-            points[i].y,
-            size,
-            0,
-            Math.PI * 2,
-            true
-        );
+        if (selected === i) {
+            context.arc(
+                points[i].x,
+                points[i].y,
+                size * 2,
+                0,
+                Math.PI * 2,
+                true
+            );
+
+        } else {
+
+            context.arc(
+                points[i].x,
+                points[i].y,
+                size,
+                0,
+                Math.PI * 2,
+                true
+            );
+
+        }
         context.closePath();
         context.fill();
+        // Add click event listener to each point
+        context.canvas.addEventListener('click', (event) => {
+            const rect = context.canvas.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const clickY = event.clientY - rect.top;
+
+            // Check if the click coordinates are within the bounds of the point
+            if (
+                clickX >= point.x - size &&
+                clickX <= point.x + size &&
+                clickY >= point.y - size &&
+                clickY <= point.y + size
+            ) {
+                handleClick(i); // Trigger the click event handler
+            }
+        });
     }
 }
 
@@ -116,11 +150,11 @@ function generatePoints(points, amountOfPoints) {
     }
 }
 
-function drawMap(context) {
-    const points = [];
+function drawMap(points, context) {
+    /*const points = [];
 
     // Generate the points based on amountOfPoints.
-    generatePoints(points, 10);
+    generatePoints(points, 10);*/
 
     // Draw smooth line.
     context.setLineDash([0]);
@@ -129,16 +163,38 @@ function drawMap(context) {
     bzCurve(points, 0.5, 0.1, false, context);
 
     // Draw points
-    drawPoints(points, 'red', 3, context);
+    //drawPoints(points, 'red', 3, context, handleClick);
 }
 
 const CanvasMap = () => {
     const canvasRef = useRef(null);
+    const [selected, setSelected] = useState(0);
+    const points = [];
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    const handleClick = (index) => {
+        // Handle the click event for the specific point
+        setSelected(index);
+        // Draw points
+        drawPoints(points, 'red', 3, context, handleClick, selected);
+        console.log('Point clicked:', index);
+    };
+
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        drawMap(context);
+        /*const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');*/
+
+
+        // Generate the points based on amountOfPoints.
+        generatePoints(points, 10);
+
+
+        // Draw points
+        drawPoints(points, 'red', 3, context, handleClick, selected);
+
+        // Draw curved line.
+        drawMap(points, context);
     }, []);
 
     return (
@@ -151,7 +207,6 @@ const CanvasMap = () => {
         ></canvas>
     );
 }
-
 
 
 export default CanvasMap;
