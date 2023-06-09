@@ -12,14 +12,9 @@ const links = [
     image: Instagram,
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com/munchmuseet",
-    image: Twitter,
-  },
-  {
-    name: "Facebook",
-    url: "https://www.facebook.com/munchmuseet",
-    image: Facebook,
+    name: "TikTok",
+    url: "http://www.tiktok.com/@munchmuseet.no",
+    image: TikTok,
   },
   {
     name: "YouTube",
@@ -27,9 +22,14 @@ const links = [
     image: YouTube,
   },
   {
-    name: "TikTok",
-    url: "http://www.tiktok.com/@munchmuseet.no",
-    image: TikTok,
+    name: "Facebook",
+    url: "https://www.facebook.com/munchmuseet",
+    image: Facebook,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/munchmuseet",
+    image: Twitter,
   },
 ];
 

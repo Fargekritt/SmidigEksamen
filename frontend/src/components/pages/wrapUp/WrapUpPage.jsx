@@ -18,13 +18,18 @@ const WrapUpPage = () => {
           For en opplevelse! Vi håper du har skapt deg et spesielt MUNCH MOMENT
           i din reise gjennom Edvard Munchs kunst.
         </p>
-        <RangeInput
-          question={"Hvordan likte du din skreddersydde reise?"}
-          minValue={0}
-          maxValue={10}
-          optionLabel={"hei"}
-        />
+        <div className="slider-container">
+          <div className="slider-symbol slider-symbol-left">😡</div>
+          <RangeInput
+            question={"Hvordan likte du din skreddersydde reise?"}
+            minValue={0}
+            maxValue={10}
+            // optionLabel={"hei"}
+          />
+          <div className="slider-symbol slider-symbol-right">😍</div>
+        </div>
       </div>
+
       <UpcomingEvents />
       <ExternalLinks />
       <SocialMediaLinks />
