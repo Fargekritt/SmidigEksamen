@@ -72,24 +72,35 @@
     margin-top: auto;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid red;
+
+    background-color: #ffffff;
+    box-shadow: #8c8c8c3c 0em 0em 4em;
+    border-radius: 0.3em 0.3em 0 0;
+
+    height: 5em;
     display: flex;
     & .text-wrapper {
       width: 100%;
+      padding: 1em 0 0 1em;
     }
     & .image-wrapper {
-      // border: 3px solid green;
+      border-right: 3px solid $color_munch_gold;
       height: 100%;
       & img {
         object-fit: cover;
+        width: 4.5em;
+        height: 100%;
       }
     }
-    & img {
-      width: 3em;
-      height: 3em;
+    & small {
+      font-size: 0.7em;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $color_munch_gold;
     }
   }
   &-name {
+    margin-top: 0.5em;
   }
 }
 
