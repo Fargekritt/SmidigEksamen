@@ -1,0 +1,118 @@
+@import "../../../assets/styles/global-variables.scss";
+
+.page.painting {
+  max-width: 50em;
+  margin: auto;
+  border-radius: 0 0 1em 1em;
+
+  overflow: hidden;
+  * {
+    // color: #bababa;
+  }
+
+  & nav {
+    margin: 1em;
+    position: absolute;
+    & > button {
+      width: 3.5em;
+      height: 3.5em;
+      border: none;
+      object-fit: cover;
+      border-radius: 3em;
+      background-color: transparent;
+
+      & > img {
+        width: 100%;
+      }
+    }
+  }
+
+  & .image-wrapper {
+    width: 100%;
+    height: 20em;
+
+    & img {
+      box-shadow: 0em 0em 10em 1em rgb(0, 0, 0);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & .content {
+    // border: 1px solid #bababa;
+    background-color: #ffffff88;
+    padding: 1em;
+    position: relative;
+  }
+
+  & .image-reflection {
+    height: 4em;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -1em;
+    background-size: cover;
+    background-position: 50% 200%;
+    filter: blur(1.5em) opacity(0.5);
+    transform: rotate(180deg);
+    z-index: 0;
+  }
+
+  & section {
+    margin: 1em 0.4em;
+    background-color: #ffffff88;
+    background-color: #ffffffe3;
+    padding: 1em;
+    border-radius: 0.2em;
+    backdrop-filter: blur(200px);
+  }
+
+  & h2 {
+    font-family: $font_family--primary;
+    font-size: 3.5em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  & h3 {
+    font-size: 0.8em;
+    margin-bottom: 1em;
+  }
+}
+
+.comment {
+  margin-block: 1em;
+
+  &-list {
+  }
+  & .date {
+    font-size: 0.7em;
+    margin-left: auto;
+    margin-block: 0.4em;
+  }
+  & .text {
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+
+  &.image {
+    background-image: url("https://source.unsplash.com/random");
+    background-position: 20% 20%;
+    background-size: cover;
+    filter: blur(100px) saturate(1.2) opacity(0.6);
+    z-index: -1;
+  }
+  &.color {
+    background-color: rgb(0, 0, 0);
+    z-index: -2;
+  }
+}

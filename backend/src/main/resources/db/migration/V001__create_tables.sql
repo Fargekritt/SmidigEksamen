@@ -17,9 +17,9 @@ CREATE TABLE painting
     date_created  VARCHAR(20),
     description   TEXT,
     image_path    VARCHAR(250),
-    painter_ID    INT,
+    artist_ID    INT,
     exhibition_ID INT,
-    FOREIGN KEY (painter_ID) REFERENCES artist (artist_ID),
+    FOREIGN KEY (artist_ID) REFERENCES artist (artist_ID),
     FOREIGN KEY (exhibition_ID) REFERENCES exhibition (exhibition_ID)
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE comment
     comment_ID   INT AUTO_INCREMENT PRIMARY KEY,
     nickname     VARCHAR(30),
     comment_text VARCHAR(2000),
-    comment_date DATE,
+    comment_date VARCHAR(100),
     likes        INT,
     painting_ID  INT,
     FOREIGN KEY (painting_ID) REFERENCES painting (painting_ID)

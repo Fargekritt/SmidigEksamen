@@ -3,7 +3,7 @@ import RangeInput from "./RangeInput";
 import ToggleInput from "./ToggleInput";
 import { useState } from "react";
 import ApiService from "../../../services/ApiService";
-import "./journeyPlannerPage.scss";
+import "./journey-builder-page.scss";
 import Modal from "../../Modal";
 
 const JourneyPlannerPage = () => {
@@ -53,7 +53,7 @@ const JourneyPlannerPage = () => {
 
   const submitData = async dataToSubmit => {
     try {
-      const res = await ApiService.postFormData(dataToSubmit);
+      const res = await ApiService.postFormData(dataToSubmit, `journey/new`);
       setModalContent(JSON.stringify(res.data));
     } catch (err) {
       return Promise.reject(err);

@@ -12,6 +12,23 @@ _____ 2 ______
 
 */
 
+/* TEMMP */
+.temp-header {
+  text-align: center;
+  border: 0.3em solid red;
+  background-color: #222222;
+
+  & * {
+    margin: 0.4em;
+    color: #ffdbab;
+    text-decoration: none;
+  }
+  & ul {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
 /* ---------- [1] FONT ---------- */
 
 /* --- FAMILY --- */
@@ -57,6 +74,12 @@ $font_size--label: 0.8em;
 /* --- GENERAL --- */
 $color_white: #fff;
 $color_black: #000;
+
+$color_munch_red: #e94c2a;
+$color_munch_green: #264540;
+$color_munch_pink: #dfa699;
+$color_munch_navy: #112234;
+$color_munch_gold: #988359;
 
 $color_primary: #009689;
 $color_secondary: #a8d3cf;
