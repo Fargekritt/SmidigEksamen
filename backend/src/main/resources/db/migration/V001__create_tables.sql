@@ -28,7 +28,7 @@ CREATE TABLE comment
     comment_ID   INT AUTO_INCREMENT PRIMARY KEY,
     nickname     VARCHAR(30),
     comment_text VARCHAR(2000),
-    comment_date DATE,
+    comment_date VARCHAR(100),
     likes        INT,
     painting_ID  INT,
     FOREIGN KEY (painting_ID) REFERENCES painting (painting_ID)
