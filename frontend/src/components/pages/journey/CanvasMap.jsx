@@ -1,9 +1,18 @@
 import React, {useEffect, useRef} from 'react';
 
+
+// Sets extra bending on the path.
 function gradient(a, b) {
     return (b.y - a.y) / (b.x - a.x);
 }
 
+/**
+ * Calibrates a curved line from the points.
+ * @param points Array of points.
+ * @param f Calibrating curve value.
+ * @param t Calibrating curve value.
+ * @param useGradient Use gradient bool.
+ */
 function bzCurve(points, f, t, useGradient, context) {
     if (typeof f === 'undefined') f = 0.3;
     if (typeof t === 'undefined') t = 0.6;
@@ -52,6 +61,13 @@ function bzCurve(points, f, t, useGradient, context) {
     context.stroke();
 }
 
+
+/**
+ * Loops through array of points and draw them to the canvas.
+ * @param points Array containing points.
+ * @param color Color on the points.
+ * @param size Size of the points.
+ */
 function drawPoints(points, color, size, context) {
     for (let i = 0; i < points.length; i++) {
         context.fillStyle = color;
@@ -69,9 +85,18 @@ function drawPoints(points, color, size, context) {
     }
 }
 
+
+/**
+ * Generate points with random locations.
+ * @param points Array to store points.
+ * @param amountOfPoints Amount of points generated.
+ */
 function generatePoints(points, amountOfPoints) {
+    // Start at middle bottom of canvas.
     let Y = 400;
     let X = 300;
+
+    // Control the length of Y.
     let depth = 60;
     const width = 10;
     const multiplier = 10;
