@@ -11,8 +11,6 @@ const JourneyStopItem = ({
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
-  // const { image, paintingName } = painting;
-
   const handleClick = () => {
     setIsPreviewing(true);
     setIsFadingOut(false);
@@ -21,14 +19,6 @@ const JourneyStopItem = ({
       setIsFadingOut(true);
     }, 1000);
   };
-
-  useEffect(() => {
-    if (paintingId) {
-      // ApiService.getById(`painting`, paintingId).then(res =>
-      //   setPainting(res.data)
-      // );
-    }
-  }, []);
 
   useEffect(() => {
     if (isFadingOut) {
@@ -57,9 +47,9 @@ const JourneyStopItem = ({
       {isPreviewing && (
         <ItemPreviewPopUp isFadingOut={isFadingOut} paintingId={paintingId} />
       )}
-      <b>StopItem: </b>
+      {/* <b>StopItem: </b> */}
       <small>
-        index: {journeyIndex}, ID: {paintingId}, exhibition: {exhibitionId}
+        {/* index: {journeyIndex}, ID: {paintingId}, exhibition: {exhibitionId} */}
       </small>
     </div>
   );
