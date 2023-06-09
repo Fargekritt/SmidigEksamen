@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 
 
 // Sets extra bending on the path.
@@ -73,10 +73,10 @@ function drawPoints(points, color, size, context, handleClick, selected) {
 
     for (let i = 0; i < points.length; i++) {
         const point = points[i];
-
         context.fillStyle = color;
         context.beginPath();
         if (selected === i) {
+            context.fillStyle = 'red';
             context.arc(
                 points[i].x,
                 points[i].y,
@@ -169,33 +169,54 @@ function drawMap(points, context) {
 const CanvasMap = () => {
     const canvasRef = useRef(null);
     const [selected, setSelected] = useState(0);
-    const points = [];
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
+    const [points, setPoints] = useState([]);
+    const [context, setContext] = useState(null);
+    const [canvas, setCanvas] = useState(null);
     const handleClick = (index) => {
         // Handle the click event for the specific point
         setSelected(index);
         // Draw points
-        drawPoints(points, 'red', 3, context, handleClick, selected);
+        // drawPoints(points, 'red', 3, context, handleClick, selected);
         console.log('Point clicked:', index);
     };
 
+    useEffect(() => {
+        if (context) {
+            // Generate the points based on amountOfPoints.
+            // TODO Should use setPoints to set the state.
+            generatePoints(points, 10);
+
+            // Draw curved line.
+            drawMap(points, context);
+
+            // Draw points
+            drawPoints(points, 'grey', 3, context, handleClick, selected);
+
+        }
+
+
+    }, [context])
 
     useEffect(() => {
-        /*const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');*/
+        const canvas = canvasRef.current;
 
-
-        // Generate the points based on amountOfPoints.
-        generatePoints(points, 10);
-
-
-        // Draw points
-        drawPoints(points, 'red', 3, context, handleClick, selected);
-
-        // Draw curved line.
-        drawMap(points, context);
+        setCanvas(canvas);
+        setContext(canvas.getContext("2d"));
     }, []);
+
+
+    useLayoutEffect(() => {
+        if (context) {
+            console.log(context);
+            console.log("Selected" + selected);
+            context.fillStyle = "white";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            drawMap(points, context);
+            drawPoints(points, 'grey', 3, context, handleClick, selected);
+        }
+
+
+    }, [selected])
 
     return (
         <canvas
