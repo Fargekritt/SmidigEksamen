@@ -117,17 +117,25 @@
 }
 
 .item-preview {
-  // position: absolute;
-  border: 1px solid blue;
   display: flex;
   opacity: 1;
   transition: opacity 0.25s ease-out;
+
+  /* TEMP */
+  transform: rotate(180deg);
+  position: absolute;
+  border: 1px solid #333;
+  width: 14em;
+  right: 40%;
+  /**/
+
   &.fade-out {
     opacity: 0;
   }
   & img {
     width: 3em;
     height: 3em;
+    margin-right: 0.3em;
   }
 }
 
