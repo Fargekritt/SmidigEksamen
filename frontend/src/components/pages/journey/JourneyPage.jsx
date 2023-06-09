@@ -8,6 +8,7 @@ import arrowDown from "../../../assets/icons/arrow-down.svg";
 import { JourneyContext } from "../../../contexts/JourneyContext";
 import ApiService from "../../../services/ApiService";
 import PaintingPage from "../painting/PaintingPage";
+import WrapUpPage from "../wrapUp/WrapUpPage";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
@@ -17,6 +18,7 @@ const JourneyPage = () => {
   });
   const [currentPaintingData, setCurrentPaintingData] = useState(null);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
+  const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
   const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
@@ -69,7 +71,12 @@ const JourneyPage = () => {
     setProgress(prevState => {
       const nextStop = prevState.currentStop + indexChange;
 
-      if (nextStop < 0 || nextStop > journey.length - 1) {
+      if (nextStop < 0) {
+        return prevState;
+      }
+      if (nextStop > journey.length - 1) {
+        console.log("wrap up");
+        setWrapUpPageIsVisible(true);
         return prevState;
       }
 
@@ -139,6 +146,12 @@ const JourneyPage = () => {
         isVisible={paintingPageIsVisible}
         setIsVisible={setPaintingPageIsVisible}
       />
+      {wrapUpPageIsVisible && (
+        <WrapUpPage
+          isVisible={wrapUpPageIsVisible}
+          setIsVisible={setWrapUpPageIsVisible}
+        />
+      )}
     </>
   );
 };
