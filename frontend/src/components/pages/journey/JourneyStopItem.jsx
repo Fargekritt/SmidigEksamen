@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemPreviewPopUp from "./ItemPreviewPopUp";
+import ApiService from "../../../services/ApiService";
 
 const JourneyStopItem = ({
   paintingId,
@@ -10,6 +11,8 @@ const JourneyStopItem = ({
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
+  // const { image, paintingName } = painting;
+
   const handleClick = () => {
     setIsPreviewing(true);
     setIsFadingOut(false);
@@ -18,6 +21,14 @@ const JourneyStopItem = ({
       setIsFadingOut(true);
     }, 1000);
   };
+
+  useEffect(() => {
+    if (paintingId) {
+      // ApiService.getById(`painting`, paintingId).then(res =>
+      //   setPainting(res.data)
+      // );
+    }
+  }, []);
 
   useEffect(() => {
     if (isFadingOut) {
@@ -43,11 +54,13 @@ const JourneyStopItem = ({
       <div className="stop-indicator-wrapper">
         <div className={stopIndicatorStyle} onClick={handleClick}></div>
       </div>
-      {isPreviewing && <ItemPreviewPopUp isFadingOut={isFadingOut} />}
+      {isPreviewing && (
+        <ItemPreviewPopUp isFadingOut={isFadingOut} paintingId={paintingId} />
+      )}
       <b>StopItem: </b>
-      <p>
+      <small>
         index: {journeyIndex}, ID: {paintingId}, exhibition: {exhibitionId}
-      </p>
+      </small>
     </div>
   );
 };

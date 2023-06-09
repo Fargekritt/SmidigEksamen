@@ -1,9 +1,12 @@
 import React from "react";
 import Logo from "./Logo";
 import SubHeading from "./SubHeading";
-import "./FrontPage.scss";
+import "./front-page.scss";
+import { Link } from "react-router-dom";
 
 const FrontPage = () => {
+  const handleClick = () => {};
+
   return (
     <div className="page front-page">
       <div className="logo-container">
@@ -18,7 +21,9 @@ const FrontPage = () => {
           Embark on a personalized journey through the art of Edvard Munch
         </p>
       </div>
-      <button className="button default submit-button">Kom i gang</button>
+      <Link to="create">
+        <button className="button default submit-button">Kom i gang</button>
+      </Link>
     </div>
   );
 };

@@ -1,126 +1,104 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import ApiService from "../../../services/ApiService";
 import CommentList from "./CommentList";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./painting-page.scss";
-// import { FastAverageColor } from "fast-average-color";
-import sampleImage from "../../../assets/sampleimage.png";
 import downIcon from "../../../assets/icons/down.svg";
+import RenderImage from "../../shared/RenderImage";
 
-const PaintingPage = (
-  {
-    /* painting */
-  }
-) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      text: "This is a comment",
-      date: "2022-01-01",
-    },
-    {
-      id: 2,
-      text: "This is another comment",
-      date: "2022-01-02",
-    },
-    {
-      id: 3,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-    {
-      id: 4,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-    {
-      id: 5,
-      text: "This is yet another comment",
-      date: "2022-01-03",
-    },
-  ]);
-  const imageRef = useRef(null);
-  // const { paintingId } = /*useParams();*/
-  const paintingId = 3;
-
-  // const {artistName, paintingName, dateCreated, description, imagePath} = painting;
-
-  // dummy data
-  const painting = {
-    artistName: "Artist Name",
-    paintingName: "Painting Name",
-    dateCreated: "2022",
-    description: "Painting Description",
-    imagePath: "https://source.unsplash.com/random",
-  };
-
-  const fetchComments = async () => {
-    try {
-      // return await ApiService.getById(`comments`, paintingId);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  };
+const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
+  const [comments, setComments] = useState([]);
+  const { paintingRouteId } = useParams();
+  const [currentPaintingData, setCurrentPaintingData] = useState({ painting });
 
   useEffect(() => {
-    // fetchComments().then(res => setComments(res));
-    // console.log(comments);
-  }, []);
+    if (painting != null) {
+      setCurrentPaintingData(painting);
+    } else if (paintingRouteId != null) {
+      const fetchCurrentPaintingData = async () => {
+        try {
+          const response = await ApiService.getById(
+            "painting",
+            paintingRouteId
+          );
+          setCurrentPaintingData(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchCurrentPaintingData();
+    }
+  }, [painting, paintingRouteId]);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      if (currentPaintingData.id) {
+        try {
+          const response = await ApiService.getById(
+            "painting",
+            `${currentPaintingData.id}/comments`
+          );
+          setComments(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    fetchComments();
+  }, [currentPaintingData.id]);
 
   const handleClick = () => {
-    setIsOpen(false);
+    setIsVisible(prevIsVisible => !prevIsVisible);
   };
 
-  const image = "https://loremflickr.com/320/240";
-
   return (
-    <div className="page painting">
-      {paintingId && (
+    <div
+      className={`page painting ${
+        isVisible != undefined && isVisible ? "visible" : "not-visible"
+      }`}
+    >
+      {currentPaintingData && (
         <>
+          <p>{paintingRouteId}</p>
           <div
             className="background image"
             style={{
-              backgroundImage: `url('${image}')`,
+              backgroundImage: `url('${currentPaintingData.imagePath}')`,
             }}
           ></div>
           <div className="background color"></div>
-
           <header>
             <nav>
               <button onClick={handleClick}>
                 <img src={downIcon} alt="downwards pointing icon" />
               </button>
             </nav>
-            <div className="image-wrapper">
-              <img
-                src={image || "./images/fallback-image.svg"}
-                alt={painting.paintingName}
-                onError={({ currentTarget }) => {
-                  console.log("error");
-                  currentTarget.onerror = null;
-                  currentTarget.src = "./images/fallback-image.svg";
-                }}
-              />
-            </div>
+            <RenderImage
+              image={currentPaintingData.imagePath}
+              altText={currentPaintingData.paintingName}
+            />
           </header>
           <div className="content">
             <div
               className="image-reflection"
-              style={{ backgroundImage: `url('${image}')` }}
+              style={{
+                backgroundImage: `url('${currentPaintingData.imagePath}')`,
+              }}
             ></div>
-            <h2>{painting.paintingName}</h2>
-            <p>{painting.dateCreated}</p>
+            <h2>{currentPaintingData.paintingName}</h2>
+            <p>{currentPaintingData.dateCreated}</p>
             <section className="description">
-              <h3>Description</h3>
-              <p>{painting.description}</p>
+              <h3>Om kunstverket</h3>
+              <p>{currentPaintingData.description}</p>
             </section>
             <section className="comments">
               <div>
-                <h3>Comments</h3>
-                <button>Add comment</button>
+                <h3>Kommentarer</h3>
               </div>
               {comments && <CommentList comments={comments} />}
+              <button className="add-comment-button">
+                Legg igjen dine tanker
+              </button>
             </section>
           </div>
         </>

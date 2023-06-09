@@ -1,52 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import JourneyStopList from "./JourneyStopList";
 import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
+import { JourneyContext } from "../../../contexts/JourneyContext";
+import ApiService from "../../../services/ApiService";
+import PaintingPage from "../painting/PaintingPage";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
   const [progress, setProgress] = useState({
-    stops: journey.length,
+    stops: journey?.length,
     currentStop: 0,
   });
-
-  const dummyJourney = [
-    {
-      paintingId: 1,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 4,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 5,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 34,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 30,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 77,
-      exhibitionId: 8,
-    },
-  ];
+  const [currentPaintingData, setCurrentPaintingData] = useState(null);
+  const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
+  const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
-    const sortedPaintings = dummyJourney.sort(
-      (a, b) => a.paintingId - b.paintingId
-    );
-
-    setJourney(sortedPaintings);
-  }, []);
+    if (journeyData) {
+      const sortedPaintings = journeyData.stops.sort(
+        (a, b) => a.paintingId - b.paintingId
+      );
+      setJourney(sortedPaintings);
+    }
+  }, [journeyData]);
 
   useEffect(() => {
     setProgress(prevState => {
@@ -60,6 +40,30 @@ const JourneyPage = () => {
       };
     });
   }, [journey]);
+
+  useEffect(() => {
+    if (journey.length) {
+      const fetchCurrentPaintingData = async () => {
+        try {
+          await ApiService.getById(
+            "painting",
+            journey[progress.currentStop].paintingId
+          ).then(res => {
+            setCurrentPaintingData(res.data);
+            setJourneyData(journeyData => {
+              return {
+                ...journeyData,
+                currentPaintingData: res.data,
+              };
+            });
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchCurrentPaintingData();
+    }
+  }, [progress]);
 
   const handleProgressChange = indexChange => {
     setProgress(prevState => {
@@ -83,46 +87,59 @@ const JourneyPage = () => {
     return ((number / total) * 100).toFixed(0);
   };
 
+  const handleViewPaintingPage = () => {
+    setPaintingPageIsVisible(true);
+  };
+
   return (
-    <div className="page journey">
-      <header>
-        <h2>Journey</h2>
-      </header>
-      <div>
-        <ProgressBar progress={progress} />
+    <>
+      <div className="page journey">
+        <header>
+          <h2>Journey</h2>
+        </header>
+        <div>
+          <ProgressBar progress={progress} />
+        </div>
+        {journey.length && (
+          <>
+            <JourneyStopList
+              journeyStops={journey}
+              currentStop={progress.currentStop}
+            />
+
+            <p>stops: {progress.stops}</p>
+            <p>currentStop: {progress.currentStop}</p>
+            <div className="journey-button-wrapper">
+              <button
+                className="journey-button next"
+                onClick={() => handleProgressChange(1)}
+              >
+                <img src={arrowUp} alt="arrow next"></img>
+              </button>
+              <button
+                className="journey-button previous"
+                onClick={() => handleProgressChange(-1)}
+              >
+                <img src={arrowDown} alt="arrow back"></img>
+              </button>
+            </div>
+
+            <CurrentStopSection
+              handleViewPaintingPage={handleViewPaintingPage}
+              paintingName={currentPaintingData?.paintingName}
+              imagePath={currentPaintingData?.imagePath}
+              paintingId={journey[progress.currentStop]?.paintingId}
+            />
+          </>
+        )}
       </div>
-      <JourneyStopList
-        journeyStops={journey}
-        currentStop={progress.currentStop}
+
+      <PaintingPage
+        painting={currentPaintingData}
+        isVisible={paintingPageIsVisible}
+        setIsVisible={setPaintingPageIsVisible}
       />
-
-      <br />
-      <br />
-      <p>stops: {progress.stops}</p>
-      <p>currentStop: {progress.currentStop}</p>
-      <div className="journey-button-wrapper">
-        <button
-          className="journey-button next"
-          onClick={() => handleProgressChange(1)}
-        >
-          <img src={arrowUp} alt="arrow next"></img>
-        </button>
-        <button
-          className="journey-button previous"
-          onClick={() => handleProgressChange(-1)}
-        >
-          <img src={arrowDown} alt="arrow back"></img>
-        </button>
-      </div>
-      <br />
-      <br />
-
-      {journey.length && (
-        <CurrentStopSection
-          paintingId={journey[progress.currentStop].paintingId}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

@@ -1,16 +1,19 @@
 import ThemeSelector from "./ThemeSelector";
 import RangeInput from "./RangeInput";
 import ToggleInput from "./ToggleInput";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { JourneyContext } from "../../../contexts/JourneyContext";
+
 import ApiService from "../../../services/ApiService";
 import "./journey-builder-page.scss";
-import Modal from "../../Modal";
+import Modal from "./Modal";
 
-const JourneyPlannerPage = () => {
-  const [timeInput, setTimeInput] = useState(90); // !!
-  const [familiarityInput, setFamiliarityInput] = useState(0); // !!
+const JourneyBuilderPage = () => {
+  const [timeInput, setTimeInput] = useState(90);
+  const [familiarityInput, setFamiliarityInput] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState();
+
+  const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -51,10 +54,14 @@ const JourneyPlannerPage = () => {
     submitData(dataToSubmit);
   };
 
+  useEffect(() => {
+    console.log(journeyData);
+  }, [journeyData]);
+
   const submitData = async dataToSubmit => {
     try {
       const res = await ApiService.postFormData(dataToSubmit, `journey/new`);
-      setModalContent(JSON.stringify(res.data));
+      setJourneyData(res.data);
     } catch (err) {
       return Promise.reject(err);
     }
@@ -83,8 +90,7 @@ const JourneyPlannerPage = () => {
   };
 
   return (
-    <div className="page">
-      {/* <h1>JourneyPlanner</h1> */}
+    <div className="page journey-builder">
       <h2>Let's make your journey!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput
@@ -130,10 +136,10 @@ const JourneyPlannerPage = () => {
       <Modal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        modalContent={modalContent}
+        // modalContent={journeyData}
       />
     </div>
   );
 };
 
-export default JourneyPlannerPage;
+export default JourneyBuilderPage;

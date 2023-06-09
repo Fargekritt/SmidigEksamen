@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from "react";
+import RenderImage from "../../shared/RenderImage";
 
-const CurrentStopSection = ({ paintingId }) => {
-  /* Mising:
-  - Get painting info from api
-  - Return name, image */
-
+const CurrentStopSection = ({
+  paintingId,
+  paintingName,
+  imagePath,
+  handleViewPaintingPage,
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [currentPaintingId, setCurrentPaintingId] = useState(paintingId);
+  const [currentPaintingName, setCurrentPaintingName] = useState();
+  const [painting, setPainting] = useState({ paintingName: "", imagePath: "" });
+
+  useEffect(() => {
+    setPainting({ paintingName, imagePath });
+    setCurrentPaintingName(paintingName);
+  }, [paintingId, paintingName, imagePath]);
 
   useEffect(() => {
     setIsAnimating(true);
     const timeout = setTimeout(() => {
       setIsAnimating(false);
-      setCurrentPaintingId(paintingId);
+      setCurrentPaintingName(painting?.paintingName);
     }, 500);
 
     return () => clearTimeout(timeout);
   }, [paintingId]);
 
   return (
-    <div className="current-stop-section">
-      <img src="" alt="" />
-      <div>
+    <div className="current-stop-section" onClick={handleViewPaintingPage}>
+      <RenderImage image={painting.imagePath} altText={painting.paintingName} />
+      <div className="text-wrapper">
         <small>Currently viewing:</small>
         <div className={`current-stop-name-container `}>
           <p
@@ -29,14 +37,14 @@ const CurrentStopSection = ({ paintingId }) => {
               isAnimating ? "slide-left-exit" : ""
             }`}
           >
-            {currentPaintingId} (name)
+            {painting.paintingName}
           </p>
           <p
             className={`current-stop-name next ${
               isAnimating ? "slide-left-enter" : ""
             }`}
           >
-            {paintingId} (name)
+            {currentPaintingName}
           </p>
         </div>
       </div>

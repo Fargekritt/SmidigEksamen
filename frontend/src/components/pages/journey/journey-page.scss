@@ -1,9 +1,10 @@
 @import "../../../assets/styles/global-variables.scss";
 
 .page.journey {
-  // padding: 1em;
   height: 100vh;
   display: flex;
+  position: relative;
+  overflow: hidden;
   flex-flow: column nowrap;
   & h2 {
     text-align: center;
@@ -69,19 +70,37 @@
 .current-stop {
   &-section {
     margin-top: auto;
+    overflow: hidden;
+    cursor: pointer;
 
-    border: 1px solid red;
+    background-color: #ffffff;
+    box-shadow: #8c8c8c3c 0em 0em 4em;
+    border-radius: 0.3em 0.3em 0 0;
+
+    height: 5em;
     display: flex;
-    & > div {
+    & .text-wrapper {
       width: 100%;
+      padding: 1em 0 0 1em;
     }
-    & img {
-      border: 1px solid green;
-      width: 3em;
-      height: 3em;
+    & .image-wrapper {
+      border-right: 3px solid $color_munch_gold;
+      height: 100%;
+      & img {
+        object-fit: cover;
+        width: 4.5em;
+        height: 100%;
+      }
+    }
+    & small {
+      font-size: 0.7em;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $color_munch_gold;
     }
   }
   &-name {
+    margin-top: 0.5em;
   }
 }
 
@@ -98,7 +117,7 @@
   &.fade-out {
     opacity: 0;
   }
-  & > img {
+  & img {
     width: 3em;
     height: 3em;
   }
@@ -130,13 +149,12 @@
   }
 }
 
-/**/
+/* Current Stop */
 .current-stop-name-container {
   position: relative;
   width: 100%;
   overflow: hidden;
-
-  height: 100%;
+  height: 50%;
 }
 
 .current-stop-name {
@@ -155,6 +173,9 @@
 
   &.slide-left-exit {
     animation: slide-left-exit 0.25s forwards ease-out;
+  }
+
+  &-container {
   }
 }
 
