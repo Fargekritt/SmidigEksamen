@@ -70,31 +70,31 @@ const JourneyBuilderPage = () => {
 
   const setTimeOptionLabel = () => {
     if (timeInput >= 180) {
-      return "I got all day!";
+      return "Jeg har satt av hele dagen!";
     }
     if (timeInput >= 120) {
-      return "2h" + (timeInput - 120) + "min";
+      return "2t" + (timeInput - 120) + "min";
     }
     if (timeInput >= 60) {
-      return "1h" + (timeInput - 60) + "min";
+      return "1t" + (timeInput - 60) + "min";
     }
     return timeInput + "min";
   };
 
   const familiarityOptionLabels = {
-    0: "Munch who?",
-    1: "I've heard of him",
-    2: "I know quite a bit",
-    3: "I know more than most",
-    4: "I'm an extremely devoted fan",
+    0: "Munch hvem??",
+    1: "Tja, jeg har sikkert hørt om noen av de",
+    2: "Jeg har litt kjennskap",
+    3: "Jeg har mer kjennskap enn de fleste",
+    4: "Jeg er en ivrig tilhenger",
   };
 
   return (
     <div className="page journey-builder">
-      <h2>Let's make your journey!</h2>
+      <h2>La oss lage din helt egen Journey!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput
-          question={"How much time do you have?"}
+          question={"Hvor mye tid har du til dispensasjon?"}
           name={"timeInput"}
           step={10}
           minValue={20}
@@ -107,7 +107,7 @@ const JourneyBuilderPage = () => {
         />
 
         <RangeInput
-          question={"How familiar are you with Munch?"}
+          question={"Hvor mye kjennskap har du til Munch sine verk?"}
           name={"familiarityInput"}
           minValue={0}
           maxValue={4}
@@ -122,14 +122,14 @@ const JourneyBuilderPage = () => {
 
         <ToggleInput
           question={
-            "Do you want to include interactive exhibitions \n in your journey?"
+            "Ønsker du å inkludere interaktive utstillinger \n i din Journey?"
           }
           name={"interactiveToggle"}
           defaultChecked={true}
         />
 
         <button className="button default submit-button">
-          Create my journey
+          lag min Journey
         </button>
       </form>
 

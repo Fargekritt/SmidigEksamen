@@ -15,10 +15,10 @@ const FrontPage = () => {
       </div>
       <div className="sub-heading-container">
         <p className="sub-heading-text-top">
-          Experience art, ignite emotion, discover yourself
+          Opplev kunst, vekk følelser, oppdag deg selv
         </p>
         <p className="sub-heading-text-bottom">
-          Embark on a personalized journey through the art of Edvard Munch
+          Begi deg ut på en personlig reise gjennom kunsten til Edvard Munch
         </p>
       </div>
       <Link to="create">

@@ -30,7 +30,7 @@ const CurrentStopSection = ({
     <div className="current-stop-section" onClick={handleViewPaintingPage}>
       <RenderImage image={painting.imagePath} altText={painting.paintingName} />
       <div className="text-wrapper">
-        <small>Currently viewing:</small>
+        <small>Du ser på:</small>
         <div className={`current-stop-name-container `}>
           <p
             className={`current-stop-name ${
