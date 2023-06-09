@@ -1,16 +1,37 @@
-import RangeInput from "../journeyPlanner/RangeInput";
+import RangeInput from "../journeyBuilder/RangeInput";
 import ExternalLinks from "./ExternalLinks";
 import SocialMediaLinks from "./SocialMediaLinks";
 import UpcomingEvents from "./UpcomingEvents";
 import "./WrapUpPage.scss";
+import downIcon from "../../../assets/icons/down.svg";
 
-const WrapUpPage = () => {
+const WrapUpPage = ({ isVisible, setIsVisible }) => {
+  const handleClick = () => {
+    console.log("WRAPUP clicked");
+    setIsVisible(false);
+  };
+
   return (
-    <div className="page">
+    <div
+      className={`page wrap-up ${
+        isVisible && isVisible ? "visible" : "not-visible"
+      }`}
+    >
       <header>
-        <button aria-label="Go back" onclick="goBack()" className="back-button">
-          &lt;
-        </button>
+        <nav>
+          <button
+            aria-label="Go back"
+            onClick={handleClick}
+            className="back-button"
+          >
+            &lt;
+            {/* <img
+              className="back-icon-icon"
+              src={downIcon}
+              alt="downwards pointing icon"
+            /> */}
+          </button>
+        </nav>
         <h1> Ditt Munch moment</h1>
       </header>
       <div className="feedback">

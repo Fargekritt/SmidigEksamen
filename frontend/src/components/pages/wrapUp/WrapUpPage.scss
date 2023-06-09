@@ -1,140 +1,345 @@
 @import "../../../assets/styles/global-variables.scss";
 
-.page > * {
-  padding-bottom: 2em;
-}
-
-h1 {
-  margin: auto;
-  text-align: center;
-}
-
-.social-media-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2em;
-  margin: auto;
-  width: 80%;
-
-  img {
-    width: 2em;
+@keyframes slide-up {
+  0% {
+    display: none;
+    transform: translate(100%, 0%);
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    transform: translate(-50%, 0%);
   }
 }
 
-.external-links {
-  * {
-    padding: 0.1em 0;
-    display: flex;
-    flex-direction: column;
-    font-family: $font_family--primary;
-    text-transform: uppercase;
-    font-size: 2em;
-    text-decoration: none;
+@keyframes slide-down {
+  0% {
+    display: block;
+    transform: translate(-50%, 0%);
   }
-
-  > a:hover {
-    font-family: "Girott Munch Bold Slant";
-  }
-
-  a:visited {
-    color: inherit;
+  100% {
+    transform: translate(-50%, 100%);
   }
 }
 
-.events-wrapper {
-  display: flex;
-  flex-direction: column;
+.page.wrap-up {
+  padding-inline: 1em;
+  position: absolute;
+  z-index: 1;
+  overflow-y: scroll;
+  background-color: #fff;
+  display: block;
+  top: 0;
+  height: 100%;
+  left: 50%;
+  width: 100vw;
 
-  h2 {
-    font-family: $font_family--primary;
-    font-size: 2em;
-    text-transform: uppercase;
-  }
-}
-
-.event {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  margin: 1em 0;
-
-  &:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    bottom: -1em;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: gray;
+  &.visible {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+    pointer-events: all;
+    animation: slide-up 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
-  h3 {
-    font-family: $font_family--primary;
-    text-transform: uppercase;
+  &.not-visible {
+    animation: slide-down 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
-  img {
-    height: 7em;
+  & > * {
+    padding-bottom: 2em;
   }
-}
 
-.event-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1em;
-
-  h3 {
-    margin-bottom: 1em;
-  }
-}
-
-.back-button {
-  font-family: $font_family--primary;
-  font-size: 2em;
-  background: none;
-  border: none;
-  padding: 1em 0;
-  color: #333;
-  transition: color 0.3s ease;
-
-  &:hover,
-  &:active {
-    color: red;
-  }
-}
-
-.feedback {
-  * {
-    margin: 1em 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  h1 {
+    margin: auto;
     text-align: center;
   }
+
+  .social-media-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    margin: auto;
+    width: 80%;
+
+    img {
+      width: 2em;
+    }
+  }
+
+  .external-links {
+    * {
+      padding: 0.1em 0;
+      display: flex;
+      flex-direction: column;
+      font-family: $font_family--primary;
+      text-transform: uppercase;
+      font-size: 2em;
+      text-decoration: none;
+
+      color: $color_munch_green;
+    }
+
+    > a:hover {
+      font-family: "Girott Munch Bold Slant";
+    }
+  }
+
+  .events-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-family: $font_family--primary;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+  }
+
+  .event {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin: 1em 0;
+    height: 7em;
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: -1em;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: gray;
+    }
+
+    h3 {
+      font-family: $font_family--primary;
+      text-transform: uppercase;
+    }
+
+    & .image-wrapper {
+      overflow: hidden;
+      height: 100%;
+      max-height: 10em;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .event-info {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+
+    h3 {
+      margin-bottom: 1em;
+    }
+  }
+
+  .back-button {
+    font-family: $font_family--primary;
+    font-size: 2em;
+    background: none;
+    border: none;
+    padding: 1em 0;
+    color: #333;
+    transition: color 0.3s ease;
+
+    &:hover,
+    &:active {
+      color: red;
+    }
+  }
+
+  .feedback {
+    * {
+      margin: 1em 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .slider-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-symbol {
+    position: absolute;
+    z-index: 2;
+    font-size: 1.2em;
+  }
+
+  .slider-symbol-left {
+    left: 90px;
+    top: 54px;
+  }
+
+  .slider-symbol-right {
+    right: 90px;
+    top: 54px;
+  }
 }
 
-.slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/****/
 
-.slider-symbol {
-  position: absolute;
-  z-index: 2;
-  font-size: 1.2em;
-}
+// @import "../../../assets/styles/global-variables.scss";
 
-.slider-symbol-left {
-  left: 90px;
-  top: 54px;
-}
+// .page.wrap-up {
+//   // display: none;
+//   padding-bottom: 2em;
+//   padding-inline: 0.8em;
+//   position: absolute;
+//   background-color: #fff;
+//   z-index: 1;
+//   & > * {
+//     padding-bottom: 2em;
+//   }
 
-.slider-symbol-right {
-  right: 90px;
-  top: 54px;
-}
+//   & h1 {
+//     margin: auto;
+//     text-align: center;
+//   }
+
+//   & .social-media-wrapper {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 2em;
+//     margin: auto;
+//     width: 80%;
+//   }
+//   & img {
+//     width: 2em;
+//   }
+
+//   .external-links {
+//     * {
+//       padding: 0.1em 0;
+//       display: flex;
+//       flex-direction: column;
+//       font-family: $font_family--primary;
+//       text-transform: uppercase;
+//       font-size: 2em;
+//       text-decoration: none;
+//     }
+
+//     > a:hover {
+//       font-family: "Girott Munch Bold Slant";
+//     }
+
+//     a:visited {
+//       color: inherit;
+//     }
+//   }
+
+//   .events-wrapper {
+//     display: flex;
+//     flex-direction: column;
+
+//     h2 {
+//       font-family: $font_family--primary;
+//       font-size: 2em;
+//       text-transform: uppercase;
+//     }
+//   }
+
+//   .event {
+//     position: relative;
+//     display: flex;
+//     align-items: flex-start;
+//     margin: 1em 0;
+
+//     &:not(:last-child)::after {
+//       content: "";
+//       position: absolute;
+//       bottom: -1em;
+//       left: 0;
+//       width: 100%;
+//       height: 2px;
+//       background-color: gray;
+//     }
+
+//     h3 {
+//       font-family: $font_family--primary;
+//       text-transform: uppercase;
+//     }
+
+//     img {
+//       height: 7em;
+//     }
+//   }
+
+//   .event-info {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     padding: 1em;
+
+//     h3 {
+//       margin-bottom: 1em;
+//     }
+//   }
+
+//   .back-button {
+//     font-family: $font_family--primary;
+//     font-size: 2em;
+//     background: none;
+//     border: none;
+//     padding: 1em 0;
+//     color: #333;
+//     transition: color 0.3s ease;
+
+//     &:hover,
+//     &:active {
+//       color: red;
+//     }
+//   }
+
+//   .feedback {
+//     * {
+//       margin: 1em 0;
+//       display: flex;
+//       justify-content: center;
+//       flex-direction: column;
+//       align-items: center;
+//       text-align: center;
+//     }
+//   }
+
+//   .slider-container {
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+//   .slider-symbol {
+//     position: absolute;
+//     z-index: 2;
+//     font-size: 1.2em;
+//   }
+
+//   .slider-symbol-left {
+//     left: 90px;
+//     top: 54px;
+//   }
+
+//   .slider-symbol-right {
+//     right: 90px;
+//     top: 54px;
+//   }
+// }
