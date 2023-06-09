@@ -40,7 +40,7 @@ const JourneyStopList = ({ journeyStops, currentStop }) => {
     });
   };
 
-  return <div>{renderJourneyStops()}</div>;
+  return <div className="journey-stop-list">{renderJourneyStops()}</div>;
 };
 
 export default JourneyStopList;

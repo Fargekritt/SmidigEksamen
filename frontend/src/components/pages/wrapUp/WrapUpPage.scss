@@ -1,6 +1,6 @@
 @import "../../../assets/styles/global-variables.scss";
 
-@keyframes slide-up {
+@keyframes slide-left {
   0% {
     display: none;
     transform: translate(100%, 0%);
@@ -13,7 +13,7 @@
   }
 }
 
-@keyframes slide-down {
+@keyframes slide-right {
   0% {
     display: block;
     transform: translate(-50%, 0%);
@@ -39,11 +39,11 @@
     opacity: 1;
     transform: translate(-50%, -100%);
     pointer-events: all;
-    animation: slide-up 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+    animation: slide-left 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
   &.not-visible {
-    animation: slide-down 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+    animation: slide-right 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
   & > * {

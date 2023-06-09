@@ -106,6 +106,14 @@
 
 .journey-stop-item {
   position: relative;
+  &::after {
+    content: "";
+    display: block;
+    background-color: rgb(126, 126, 126);
+    width: 0.2em;
+    height: 2em;
+    margin-left: 0.4em;
+  }
 }
 
 .item-preview {
@@ -174,9 +182,11 @@
   &.slide-left-exit {
     animation: slide-left-exit 0.25s forwards ease-out;
   }
+}
 
-  &-container {
-  }
+.journey-stop-list {
+  margin: auto;
+  transform: rotate(180deg);
 }
 
 @keyframes slide-left-exit {
