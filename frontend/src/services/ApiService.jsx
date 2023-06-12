@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosConfig = {
-  baseURL: `http://127.0.0.1:8080/api/`,
+  baseURL: `https://munchmoment-win.azurewebsites.net/api/`,
 };
 
 const ApiService = (() => {

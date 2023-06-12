@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/journey") //map web requests onto specific handler classes and/or handler methods.
 public class JourneyController {
 
