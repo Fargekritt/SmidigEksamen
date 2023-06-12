@@ -22,6 +22,12 @@ const JourneyPage = () => {
   const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
+    if (!journeyData) {
+      const journeyInStorage = JSON.parse(sessionStorage.getItem("journey"));
+      if (journeyInStorage) {
+        setJourneyData(journeyInStorage);
+      }
+    }
     if (journeyData) {
       const sortedPaintings = journeyData.stops.sort(
         (a, b) => a.paintingId - b.paintingId
