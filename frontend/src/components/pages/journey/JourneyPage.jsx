@@ -10,13 +10,17 @@ import ApiService from "../../../services/ApiService";
 import PaintingPage from "../painting/PaintingPage";
 import WrapUpPage from "../wrapUp/WrapUpPage";
 
+const calculatePercentage = (number, total) => {
+  return ((number / total) * 100).toFixed(0);
+};
+
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
   const [progress, setProgress] = useState({
     stops: journey?.length,
     currentStop: 0,
   });
-  const [currentPaintingData, setCurrentPaintingData] = useState(null);
+  const [exhibitionData, setExhibitionData] = useState([]);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
   const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
   const { journeyData, setJourneyData } = useContext(JourneyContext);
@@ -50,6 +54,28 @@ const JourneyPage = () => {
   }, [journey]);
 
   useEffect(() => {
+    const getExhibitionData = async () => {
+      const exhibitionsInStorage = JSON.parse(
+        sessionStorage.getItem("exhibitions")
+      );
+      if (exhibitionsInStorage) {
+        setExhibitionData(exhibitionsInStorage);
+      } else {
+        try {
+          const res = await ApiService.getAll("exhibition").then(
+            res => res.data
+          );
+          setExhibitionData(res);
+          sessionStorage.setItem("exhibitions", JSON.stringify(res));
+        } catch (err) {
+          return Promise.reject(err);
+        }
+      }
+    };
+    getExhibitionData();
+  }, []);
+
+  useEffect(() => {
     if (journey.length) {
       const fetchCurrentPaintingData = async () => {
         try {
@@ -57,7 +83,6 @@ const JourneyPage = () => {
             "painting",
             journey[progress.currentStop].paintingId
           ).then(res => {
-            setCurrentPaintingData(res.data);
             setJourneyData(journeyData => {
               return {
                 ...journeyData,
@@ -81,7 +106,6 @@ const JourneyPage = () => {
         return prevState;
       }
       if (nextStop > journey.length - 1) {
-        console.log("wrap up");
         setWrapUpPageIsVisible(true);
         return prevState;
       }
@@ -94,14 +118,6 @@ const JourneyPage = () => {
         progressBar: progressBar,
       };
     });
-  };
-
-  const calculatePercentage = (number, total) => {
-    return ((number / total) * 100).toFixed(0);
-  };
-
-  const handleViewPaintingPage = () => {
-    setPaintingPageIsVisible(true);
   };
 
   return (
@@ -138,9 +154,9 @@ const JourneyPage = () => {
             </div>
 
             <CurrentStopSection
-              handleViewPaintingPage={handleViewPaintingPage}
-              paintingName={currentPaintingData?.paintingName}
-              imagePath={currentPaintingData?.imagePath}
+              handleViewPaintingPage={() => setPaintingPageIsVisible(true)}
+              paintingName={journeyData.currentPaintingData?.paintingName}
+              imagePath={journeyData.currentPaintingData?.imagePath}
               paintingId={journey[progress.currentStop]?.paintingId}
             />
           </>
@@ -148,7 +164,7 @@ const JourneyPage = () => {
       </div>
 
       <PaintingPage
-        painting={currentPaintingData}
+        painting={journeyData?.currentPaintingData}
         isVisible={paintingPageIsVisible}
         setIsVisible={setPaintingPageIsVisible}
       />

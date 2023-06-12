@@ -6,6 +6,15 @@ import "./painting-page.scss";
 import downIcon from "../../../assets/icons/down.svg";
 import RenderImage from "../../shared/RenderImage";
 
+const fetchCurrentPaintingData = async paintingRouteId => {
+  try {
+    const res = await ApiService.getById("painting", paintingRouteId);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
   const [comments, setComments] = useState([]);
   const { paintingRouteId } = useParams();
@@ -15,18 +24,8 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
     if (painting != null) {
       setCurrentPaintingData(painting);
     } else if (paintingRouteId != null) {
-      const fetchCurrentPaintingData = async () => {
-        try {
-          const response = await ApiService.getById(
-            "painting",
-            paintingRouteId
-          );
-          setCurrentPaintingData(response.data);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      fetchCurrentPaintingData();
+      const paintingData = fetchCurrentPaintingData(paintingRouteId);
+      setCurrentPaintingData(paintingData);
     }
   }, [painting, paintingRouteId]);
 
@@ -45,11 +44,7 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
       }
     };
     fetchComments();
-  }, [currentPaintingData.id]);
-
-  const handleClick = () => {
-    setIsVisible(prevIsVisible => !prevIsVisible);
-  };
+  }, [currentPaintingData]);
 
   return (
     <div
@@ -69,7 +64,7 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
           <div className="background color"></div>
           <header>
             <nav>
-              <button onClick={handleClick}>
+              <button onClick={() => setIsVisible(false)}>
                 <img src={downIcon} alt="downwards pointing icon" />
               </button>
             </nav>
