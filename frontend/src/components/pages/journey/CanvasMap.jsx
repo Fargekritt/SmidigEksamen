@@ -1,5 +1,4 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
-
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // Sets extra bending on the path.
 function gradient(a, b) {
@@ -15,8 +14,8 @@ function gradient(a, b) {
  * @param context Canvas context.
  */
 function bzCurve(points, f, t, useGradient, context) {
-  if (typeof f === 'undefined') f = 0.3;
-  if (typeof t === 'undefined') t = 0.6;
+  if (typeof f === "undefined") f = 0.3;
+  if (typeof t === "undefined") t = 0.6;
 
   context.beginPath();
   context.moveTo(points[0].x, points[0].y);
@@ -60,7 +59,6 @@ function bzCurve(points, f, t, useGradient, context) {
   context.stroke();
 }
 
-
 /**
  * Loops through array of points and draw them to the canvas.
  * @param points Array containing points.
@@ -71,37 +69,21 @@ function bzCurve(points, f, t, useGradient, context) {
  * @param currStop Number indicating the index of the current stop.
  */
 function drawPoints(points, color, size, context, handleClick, currStop) {
-
-
   for (let i = 0; i < points.length; i++) {
     const point = points[i];
     context.fillStyle = color;
     context.beginPath();
 
     if (currStop === i) {
-      context.fillStyle = 'red';
-      context.arc(
-        points[i].x,
-        points[i].y,
-        size * 2,
-        0,
-        Math.PI * 2,
-        true
-      );
+      context.fillStyle = "red";
+      context.arc(points[i].x, points[i].y, size * 2, 0, Math.PI * 2, true);
     } else {
-      context.arc(
-        points[i].x,
-        points[i].y,
-        size,
-        0,
-        Math.PI * 2,
-        true
-      );
+      context.arc(points[i].x, points[i].y, size, 0, Math.PI * 2, true);
     }
     context.closePath();
     context.fill();
     // Add click event listener to each point
-    context.canvas.addEventListener('click', (event) => {
+    context.canvas.addEventListener("click", event => {
       const rect = context.canvas.getBoundingClientRect();
       const clickX = event.clientX - rect.left;
       const clickY = event.clientY - rect.top;
@@ -124,7 +106,7 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
  * @param setCoordinates.
  * @param amountOfPoints Amount of points generated.
  */
-function generatePoints(setCoordinates, amountOfPoints) {
+function generatePoints(amountOfPoints) {
   // Start at middle bottom of canvas.
   let Y = 400;
   let X = 300;
@@ -135,16 +117,10 @@ function generatePoints(setCoordinates, amountOfPoints) {
   const multiplier = 10;
   const depthStepReduction = 4;
 
+  const points = [];
   for (let i = 0; i < amountOfPoints; i++) {
-    const coordinate = {x: X, y: Y};
-
-    setCoordinates((prevState) => {
-      return {
-        ...prevState,
-        coordinate
-      }
-    })
-    //coordinates.push(p);
+    const p = { x: X, y: Y };
+    points.push(p);
 
     if (i % 2 === 0) {
       X += width * Math.floor(Math.random() * (multiplier - 2)) + 2;
@@ -154,11 +130,13 @@ function generatePoints(setCoordinates, amountOfPoints) {
     Y = Y - depth;
     depth -= depthStepReduction;
   }
+
+  return points;
 }
 
 /*
-* Set the settings for the line and draw it with bzCurve.
-*/
+ * Set the settings for the line and draw it with bzCurve.
+ */
 function drawMap(coordinates, context) {
   /*const points = [];
 
@@ -168,71 +146,86 @@ function drawMap(coordinates, context) {
   // Draw smooth line.
   context.setLineDash([0]);
   context.lineWidth = 3;
-  context.strokeStyle = 'black';
+  context.strokeStyle = "black";
   bzCurve(coordinates, 0.5, 0.1, false, context);
 
   // Draw points
   //drawPoints(points, 'red', 3, context, handleClick);
 }
 
-const CanvasMap = ({progress, setProgress, coordinates, setCoordinates}) => {
-
-
+const CanvasMap = ({
+  progress,
+  setProgress,
+  coordinates,
+  setCoordinates,
+  canvas,
+  setCanvas,
+}) => {
   const canvasRef = useRef(null);
-  //const [selected, setSelected] = useState(0);
-  //const [points, setPoints] = useState([]);
   const [context, setContext] = useState(null);
-  const [canvas, setCanvas] = useState(null);
 
-
-  const handleClick = (index) => {
+  const handleClick = index => {
     // Handle the click event for the specific point
     //setSelected(index);
 
-    setProgress((prevState) => {
-      return {...prevState, currentStop: index}
-    })
+    setProgress(prevState => {
+      return { ...prevState, currentStop: index };
+    });
     // Draw points
     // drawPoints(points, 'red', 3, context, handleClick, selected);
-    console.log('Point clicked:', index);
+    console.log("Point clicked:", index);
   };
 
   useEffect(() => {
     if (context) {
       // Generate the points based on amountOfPoints.
       // TODO Should use setPoints to set the state.
-      generatePoints(setCoordinates, progress.stops);
+      const generatedPoints = generatePoints(progress.stops);
+
+      setCoordinates(generatedPoints);
 
       // Draw curved line.
-      drawMap(coordinates, context);
+      drawMap(generatedPoints, context);
 
       // Draw points
-      drawPoints(coordinates, 'grey', 3, context, handleClick, progress.currentStop);
+      drawPoints(
+        generatedPoints,
+        "grey",
+        3,
+        context,
+        handleClick,
+        progress.currentStop
+      );
     }
-  }, [context])
+  }, [context]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-
-    setCanvas(canvas);
-    setContext(canvas.getContext("2d"));
-
-    //setSelected(progress.currentStop);
-  }, []);
-
+    if (setCanvas != undefined) {
+      const canvas = canvasRef.current;
+      setCanvas(canvas);
+      setContext(canvas.getContext("2d"));
+    }
+  }, [setCanvas]);
 
   useLayoutEffect(() => {
-    if (context) {
-      console.log(context);
-      console.log("Selected" + progress.currentStop);
-      context.fillStyle = "white";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      drawMap(coordinates, context);
-      drawPoints(coordinates, 'grey', 3, context, handleClick, progress.currentStop);
+    if (progress.currentStop !== undefined) {
+      if (context) {
+        console.log(context);
+        console.log("Selected" + progress.currentStop);
+        context.fillStyle = "white";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        drawMap(coordinates, context);
+        drawPoints(
+          coordinates,
+          "grey",
+          3,
+          context,
+          handleClick,
+          progress.currentStop
+        );
+      }
     }
-
-
-  }, [progress.currentStop])
+  }, [progress.currentStop]);
 
   return (
     <canvas
@@ -240,10 +233,9 @@ const CanvasMap = ({progress, setProgress, coordinates, setCoordinates}) => {
       id="GFG"
       width="600"
       height="400"
-      style={{border: '2px solid black'}}
+      style={{ border: "2px solid black" }}
     ></canvas>
   );
-}
-
+};
 
 export default CanvasMap;

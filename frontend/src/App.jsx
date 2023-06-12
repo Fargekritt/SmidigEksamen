@@ -11,7 +11,7 @@ import CanvasMap from "./components/pages/journey/CanvasMap";
 function App() {
   return (
     <div className="App">
-      <CanvasMap></CanvasMap>
+      {/* <CanvasMap></CanvasMap> */}
       <BrowserRouter>
         <header className="temp-header">
           <p>TEMP HEADER FOR DEV NAVIGATION</p>

@@ -90,7 +90,8 @@
 }
 
 .item-preview {
-  // position: absolute;
+  position: absolute;
+  background-color: #fff;
   border: 1px solid blue;
   display: flex;
   opacity: 1;
@@ -174,5 +175,18 @@
   100% {
     opacity: 1;
     transform: translateX(0%);
+  }
+}
+
+.map-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  & .journey-stop-item {
+    transform: translate(-50%, -50%);
+  }
+
+  & .journey-map-indicator {
+    position: absolute;
   }
 }

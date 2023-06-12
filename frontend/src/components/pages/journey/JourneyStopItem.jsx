@@ -6,6 +6,7 @@ const JourneyStopItem = ({
   exhibitionId,
   journeyIndex,
   currentStop,
+  coordinates,
 }) => {
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -39,15 +40,21 @@ const JourneyStopItem = ({
   }`;
 
   return (
-    <div className="journey-stop-item">
+    <div
+      className="journey-stop-item journey-map-indicator"
+      style={{ left: `${coordinates.x}%`, top: `${coordinates.y}%` }}
+    >
       <div className="stop-indicator-wrapper">
         <div className={stopIndicatorStyle} onClick={handleClick}></div>
       </div>
       {isPreviewing && <ItemPreviewPopUp isFadingOut={isFadingOut} />}
-      <b>StopItem: </b>
-      <p>
-        index: {journeyIndex}, ID: {paintingId}, exhibition: {exhibitionId}
-      </p>
+
+      {/* {coordinates && (
+        <small>
+          index: {journeyIndex}, ID: {paintingId}, exhibition: {exhibitionId}
+          coordinates: {coordinates.x}, {coordinates.y}
+        </small>
+      )} */}
     </div>
   );
 };
