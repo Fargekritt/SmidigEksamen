@@ -8,6 +8,7 @@ import arrowDown from "../../../assets/icons/arrow-down.svg";
 
 const JourneyPage = () => {
   const [journey, setJourney] = useState([]);
+  const [coordinates,setCoordinates] = useState([])
   const [progress, setProgress] = useState({
     stops: journey.length,
     currentStop: 0,
