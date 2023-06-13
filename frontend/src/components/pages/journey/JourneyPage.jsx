@@ -33,10 +33,15 @@ const JourneyPage = () => {
       }
     }
     if (journeyData) {
-      const sortedPaintings = journeyData.stops.sort(
-        (a, b) => a.paintingId - b.paintingId
-      );
-      setJourney(sortedPaintings);
+      const sortedJourney = journeyData.stops.sort((a, b) => {
+        if (a.exhibitionId !== b.exhibitionId) {
+          return a.exhibitionId - b.exhibitionId; // Sort by exhibitionId ascending
+        } else {
+          return a.paintingId - b.paintingId; // Sort by paintingId ascending within the same exhibitionId
+        }
+      });
+
+      setJourney(sortedJourney);
     }
   }, [journeyData]);
 
@@ -120,6 +125,18 @@ const JourneyPage = () => {
     });
   };
 
+  const getCurrentExhibition = () => {
+    const currentExhibition = exhibitionData.find(
+      exhibition => exhibition.id === journey[progress.currentStop].exhibitionId
+    );
+    return (
+      <>
+        <span>{currentExhibition.floor} </span>
+        <span>{currentExhibition.exhibitionName}</span>
+      </>
+    );
+  };
+
   return (
     <>
       <div className="page journey">
@@ -131,13 +148,16 @@ const JourneyPage = () => {
         </div>
         {journey.length && (
           <>
+            <div className="current-exhibition-heading">
+              {getCurrentExhibition()}
+            </div>
+            <p>stops: {progress.stops}</p>
+            <p>currentStop: {progress.currentStop}</p>
             <JourneyStopList
               journeyStops={journey}
               currentStop={progress.currentStop}
             />
 
-            <p>stops: {progress.stops}</p>
-            <p>currentStop: {progress.currentStop}</p>
             <div className="journey-button-wrapper">
               <button
                 className="journey-button next"

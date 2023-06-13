@@ -215,3 +215,10 @@
     transform: translateX(0%);
   }
 }
+
+.current-exhibition-heading {
+  font-size: 3em;
+  font-family: $font_family--primary;
+  text-transform: uppercase;
+  padding: 0.1em;
+}

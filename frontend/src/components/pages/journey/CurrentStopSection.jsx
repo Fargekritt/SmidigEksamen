@@ -8,19 +8,19 @@ const CurrentStopSection = ({
   handleViewPaintingPage,
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [currentPaintingName, setCurrentPaintingName] = useState();
+  const [nextPaintingName, setNextPaintingName] = useState();
   const [painting, setPainting] = useState({ paintingName: "", imagePath: "" });
 
   useEffect(() => {
     setPainting({ paintingName, imagePath });
-    setCurrentPaintingName(paintingName);
-  }, [paintingId, paintingName, imagePath]);
+    setNextPaintingName(paintingName);
+  }, [paintingName, imagePath]);
 
   useEffect(() => {
     setIsAnimating(true);
     const timeout = setTimeout(() => {
       setIsAnimating(false);
-      setCurrentPaintingName(painting?.paintingName);
+      setNextPaintingName(painting?.paintingName);
     }, 500);
 
     return () => clearTimeout(timeout);
@@ -44,7 +44,7 @@ const CurrentStopSection = ({
               isAnimating ? "slide-left-enter" : ""
             }`}
           >
-            {currentPaintingName}
+            {nextPaintingName}
           </p>
         </div>
       </div>
