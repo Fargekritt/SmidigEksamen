@@ -138,19 +138,12 @@ function generatePoints(amountOfPoints) {
  * Set the settings for the line and draw it with bzCurve.
  */
 function drawMap(coordinates, context) {
-  /*const points = [];
-
-  // Generate the points based on amountOfPoints.
-  generatePoints(points, 10);*/
 
   // Draw smooth line.
   context.setLineDash([0]);
   context.lineWidth = 3;
   context.strokeStyle = "black";
   bzCurve(coordinates, 0.5, 0.1, false, context);
-
-  // Draw points
-  //drawPoints(points, 'red', 3, context, handleClick);
 }
 
 const CanvasMap = ({
@@ -164,16 +157,11 @@ const CanvasMap = ({
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
 
+  // Handle the click event for the specific point
   const handleClick = index => {
-    // Handle the click event for the specific point
-    //setSelected(index);
-
     setProgress(prevState => {
       return { ...prevState, currentStop: index };
     });
-    // Draw points
-    // drawPoints(points, 'red', 3, context, handleClick, selected);
-    console.log("Point clicked:", index);
   };
 
   useEffect(() => {
