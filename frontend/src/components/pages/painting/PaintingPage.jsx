@@ -89,23 +89,21 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
                 <h3>Om kunstverket</h3>
                 <p>{currentPaintingData.description}</p>
               </section>
-              <section className="comments">
+              <section
+                className="comments"
+                onClick={() => setCommentPageIsVisible(true)}
+              >
                 <div>
                   <h3>Kommentarer</h3>
                 </div>
                 {comments && <CommentList comments={comments} />}
-                <button
-                  onClick={() => setCommentPageIsVisible(true)}
-                  className="add-comment-button"
-                >
-                  Legg igjen dine tanker
-                </button>
               </section>
             </div>
           </>
         )}
         {commentPageIsVisible && (
           <CommentPage
+            paintingName={currentPaintingData.paintingName}
             paintingId={painting.id}
             isVisible={commentPageIsVisible}
             setIsVisible={setCommentPageIsVisible}

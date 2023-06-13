@@ -6,10 +6,10 @@ import arrowDown from "../../../assets/icons/arrow-down.svg";
 import "./comment-page.scss";
 
 const CommentPage = ({
+  paintingName,
   paintingId,
   setComments,
   comments,
-  isVisible,
   setIsVisible,
 }) => {
   const inputRef = useRef();
@@ -17,7 +17,12 @@ const CommentPage = ({
   const [animateClosePage, setAnimateClosePage] = useState(false);
   const renderComments = comments.map((comment, i) => {
     return (
-      <CommentItem key={comment.id} text={comment.text} date={comment.date} />
+      <CommentItem
+        key={comment.id}
+        text={comment.text}
+        date={comment.date}
+        likes={comment.likes}
+      />
     );
   });
 
@@ -38,14 +43,16 @@ const CommentPage = ({
       const res = await ApiService.postFormData(
         dataToSubmit,
         `comment/new`
-      ).then(res => setComments(prevState => [...prevState, res.data]));
+      ).then(res => {
+        setComments(prevState => [...prevState, res.data]);
+        inputRef.current.value = "";
+      });
       console.log(res);
       return res;
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(isVisible);
 
   return (
     <div
@@ -63,7 +70,7 @@ const CommentPage = ({
           className="back-button"
           onClick={() => setAnimateClosePage(true)}
         >
-          <img src={arrowDown} alt="left pointing icon" />
+          <img src={arrowDown} alt="left pointing arrow icon" />
         </button>
       </header>
       <div className="comment-content-wrapper">
@@ -80,6 +87,8 @@ const CommentPage = ({
                 setTextareaHasLength(false);
               }
             }}
+            placeholder={`Legg igjen en kommentar om ${paintingName}`}
+            maxLength={250}
           />
           {textareaHasLength && (
             <button className="submit-comment-button">

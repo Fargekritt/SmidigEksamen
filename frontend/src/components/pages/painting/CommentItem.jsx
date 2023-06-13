@@ -1,4 +1,9 @@
-const CommentItem = ({ text, date }) => {
+import { useState } from "react";
+import heartIconOutlined from "../../../assets/icons/heart-outline.svg";
+import heartIconFilled from "../../../assets/icons/heart.svg";
+
+const CommentItem = ({ text, date, likes }) => {
+  const [isLiked, setIsLiked] = useState(false);
   const dateOptions = {
     weekday: "long",
     year: "numeric",
@@ -10,7 +15,24 @@ const CommentItem = ({ text, date }) => {
   return (
     <div className="comment">
       <p className="text">{text}</p>
-      <p className="date">{dateString}</p>
+
+      <div className="details-wrapper">
+        {likes && (
+          <div className="likes-wrapper">
+            <button
+              className="likes-button"
+              onClick={() => setIsLiked(!isLiked)}
+            >
+              <img
+                src={isLiked ? heartIconFilled : heartIconOutlined}
+                alt="heart icon"
+              />
+            </button>
+            <p className="likes">{isLiked ? likes + 1 : likes}</p>
+          </div>
+        )}
+        <p className="date">{dateString}</p>
+      </div>
     </div>
   );
 };
