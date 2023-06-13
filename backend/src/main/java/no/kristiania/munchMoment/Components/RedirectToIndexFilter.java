@@ -18,7 +18,6 @@ public class RedirectToIndexFilter implements Filter {
         String requestURI = req.getRequestURI();
         if (logger.isDebugEnabled()) logger.debug(requestURI);
 
-
         if (requestURI.startsWith("/api")) {
             chain.doFilter(request, response);
             return;
