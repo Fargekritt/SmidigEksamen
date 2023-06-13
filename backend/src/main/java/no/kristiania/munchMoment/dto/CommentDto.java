@@ -1,4 +1,4 @@
 package no.kristiania.munchMoment.dto;
 
-public record CommentDto(String text) {
+public record CommentDto(String text, long paintingId) {
 }
