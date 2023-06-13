@@ -1,0 +1,46 @@
+.comment-form {
+  display: flex;
+  border-radius: 0.5em;
+  overflow: hidden;
+  // padding: 1em;
+  // border: 1px solid red;
+  height: 3.5em;
+  background-color: #fff;
+
+  & textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+  }
+}
+.submit-comment-button,
+.back-button {
+  width: 5em;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  // border-radius: 3em;
+  padding: 1em;
+  background-color: transparent;
+
+  // box-shadow: 0em 0em 1em #fff;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+  & .header {
+    border: 1px solid red;
+
+    & > img {
+      width: 100%;
+      height: 2em;
+    }
+  }
+}
+
+.back-button {
+  & img {
+    transform: rotate(90deg);
+  }
+}

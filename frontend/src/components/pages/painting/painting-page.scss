@@ -143,9 +143,11 @@
 }
 
 .comments {
+  .comment:not(:last-child) {
+    border-bottom: 0.01em solid rgb(140, 140, 140);
+  }
   .comment {
     margin-block: 1em;
-    border-bottom: 0.01em solid rgb(140, 140, 140);
 
     &-list {
     }
