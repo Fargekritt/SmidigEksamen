@@ -20,8 +20,8 @@ const ToggleInput = ({ question, name, defaultChecked }) => {
           type="checkbox"
           defaultChecked={defaultChecked}
         />
-        <div className="toggle-switch-text">No</div>
-        <div className="toggle-switch-text">Yes</div>
+        <div className="toggle-switch-text">Nei</div>
+        <div className="toggle-switch-text">Ja</div>
       </div>
     </div>
   );

@@ -1,16 +1,19 @@
 import ThemeSelector from "./ThemeSelector";
 import RangeInput from "./RangeInput";
 import ToggleInput from "./ToggleInput";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { JourneyContext } from "../../../contexts/JourneyContext";
+
 import ApiService from "../../../services/ApiService";
 import "./journey-builder-page.scss";
-import Modal from "../../Modal";
+import Modal from "./Modal";
 
-const JourneyPlannerPage = () => {
-  const [timeInput, setTimeInput] = useState(90); // !!
-  const [familiarityInput, setFamiliarityInput] = useState(0); // !!
+const JourneyBuilderPage = () => {
+  const [timeInput, setTimeInput] = useState(90);
+  const [familiarityInput, setFamiliarityInput] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState();
+
+  const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -51,10 +54,15 @@ const JourneyPlannerPage = () => {
     submitData(dataToSubmit);
   };
 
+  useEffect(() => {
+    console.log(journeyData);
+  }, [journeyData]);
+
   const submitData = async dataToSubmit => {
     try {
       const res = await ApiService.postFormData(dataToSubmit, `journey/new`);
-      setModalContent(JSON.stringify(res.data));
+      setJourneyData(res.data);
+      sessionStorage.setItem("journey", JSON.stringify(res.data));
     } catch (err) {
       return Promise.reject(err);
     }
@@ -63,32 +71,31 @@ const JourneyPlannerPage = () => {
 
   const setTimeOptionLabel = () => {
     if (timeInput >= 180) {
-      return "I got all day!";
+      return "Jeg har satt av hele dagen!";
     }
     if (timeInput >= 120) {
-      return "2h" + (timeInput - 120) + "min";
+      return "2t" + (timeInput - 120) + "min";
     }
     if (timeInput >= 60) {
-      return "1h" + (timeInput - 60) + "min";
+      return "1t" + (timeInput - 60) + "min";
     }
     return timeInput + "min";
   };
 
   const familiarityOptionLabels = {
-    0: "Munch who?",
-    1: "I've heard of him",
-    2: "I know quite a bit",
-    3: "I know more than most",
-    4: "I'm an extremely devoted fan",
+    0: "Munch hvem??",
+    1: "Tja, jeg har sikkert hørt om noen av de",
+    2: "Jeg har litt kjennskap",
+    3: "Jeg har mer kjennskap enn de fleste",
+    4: "Jeg er en ivrig tilhenger",
   };
 
   return (
-    <div className="page">
-      {/* <h1>JourneyPlanner</h1> */}
-      <h2>Let's make your journey!</h2>
+    <div className="page journey-builder">
+      <h2>La oss lage din helt egen Journey!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput
-          question={"How much time do you have?"}
+          question={"Hvor mye tid har du til dispensasjon?"}
           name={"timeInput"}
           step={10}
           minValue={20}
@@ -101,7 +108,7 @@ const JourneyPlannerPage = () => {
         />
 
         <RangeInput
-          question={"How familiar are you with Munch?"}
+          question={"Hvor mye kjennskap har du til Munch sine verk?"}
           name={"familiarityInput"}
           minValue={0}
           maxValue={4}
@@ -116,24 +123,24 @@ const JourneyPlannerPage = () => {
 
         <ToggleInput
           question={
-            "Do you want to include interactive exhibitions \n in your journey?"
+            "Ønsker du å inkludere interaktive utstillinger \n i din Journey?"
           }
           name={"interactiveToggle"}
           defaultChecked={true}
         />
 
         <button className="button default submit-button">
-          Create my journey
+          lag min Journey
         </button>
       </form>
 
       <Modal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        modalContent={modalContent}
+        // modalContent={journeyData}
       />
     </div>
   );
 };
 
-export default JourneyPlannerPage;
+export default JourneyBuilderPage;

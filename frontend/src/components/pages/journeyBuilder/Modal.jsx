@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Lottie from "lottie-react";
-import animationData from "../assets/lotties/checkmark";
+import animationData from "../../../assets/lotties/checkmark";
+import { Link } from "react-router-dom";
 
 const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
   const dialogRef = useRef(null);
@@ -35,17 +36,21 @@ const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
               style={{ height: 100, width: 100, margin: "auto" }}
             ></Lottie>
 
-            <p className="heading">A journey has been created just for you!</p>
+            <p className="heading"> En Journey er opprettet til deg!</p>
             <br />
 
-            <p>Heres your very own url. Click to start your journey:</p>
+            <p>Her er din helt egen url. Klikk for å starte din Journey:</p>
             <p> {modalContent}</p>
+
+            <Link to={"/journey"}>
+              <button>Start Journey</button>
+            </Link>
 
             <br />
             <p className="bottom-text">
-              Do you want to share your journey <br />
-              with someone? <br />
-              Share the link and go together!
+              Ønsker du å dele din Journey <br />
+              med noen? <br />
+              Del linken og gå sammen!
             </p>
           </div>
         </dialog>

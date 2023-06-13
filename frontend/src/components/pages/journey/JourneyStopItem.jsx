@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemPreviewPopUp from "./ItemPreviewPopUp";
+import ApiService from "../../../services/ApiService";
 
 const JourneyStopItem = ({
   paintingId,
