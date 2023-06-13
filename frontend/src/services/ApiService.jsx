@@ -2,18 +2,19 @@ import axios from "axios";
 
 const axiosConfig = {
     baseURL: `https://munchmoment-win.azurewebsites.net/api/`,
+    baseDevURL: 'http://localhost:8080/api/'
 };
 
 function getApiUrl() {
     if (window.location.hostname === "munchmoment-win.azurewebsites.net") {
         return axiosConfig.baseURL;
     } else {
-        return "http://localhost:8080/api/";
+        return axiosConfig.baseDevURL;
     }
 }
 
 const ApiService = (() => {
-    // let [baseURL, setBaseURL] = useState(getApiUrl());
+
     let baseURL = getApiUrl();
     const postFormData = async (data, endpoint) => {
         try {
