@@ -1,5 +1,6 @@
 import React from "react";
 import JourneyStopItem from "./JourneyStopItem";
+import stairsUp from "../../../assets/icons/stairs-up.svg";
 
 const calculatePercentage = (number, total) => {
   return parseFloat(((number / total) * 100).toFixed(2));
@@ -21,7 +22,7 @@ const JourneyStopList = ({
         return prev;
       }
 
-      if (prev.at(i - 1).exhibitionId < curr.exhibitionId) {
+      if (prev.at(i - 1).exhibitionId > curr.exhibitionId) {
         prev.push({ stairs: curr.exhibitionId });
       }
       prev.push(curr);
@@ -31,21 +32,30 @@ const JourneyStopList = ({
     let i = -1;
 
     return journeyMapData.map(item => {
-      const itemCoordinates = {
-        x: calculatePercentage(coordinates[i + 1]?.x, canvas?.width),
-        y: calculatePercentage(coordinates[i + 1]?.y, canvas?.height),
-      };
-
       if (item.stairs) {
+        console.log(coordinates[i + 1], i);
+        const itemCoordinates = {
+          x: calculatePercentage(coordinates[i]?.x, canvas?.width),
+          y: calculatePercentage(coordinates[i]?.y, canvas?.height),
+        };
         return (
           <div
             key={`${item.stairs}-${i}`}
             className="journey-map-stairs journey-map-indicator"
+            style={{
+              left: `${itemCoordinates.x - 5}%`,
+              top: `${itemCoordinates.y - 5}%`,
+            }}
           >
-            :::STAIRS:::
+            <img src={stairsUp} />
           </div>
         );
       }
+
+      const itemCoordinates = {
+        x: calculatePercentage(coordinates[i + 1]?.x, canvas?.width),
+        y: calculatePercentage(coordinates[i + 1]?.y, canvas?.height),
+      };
       const { paintingId, exhibitionId } = item;
       i++;
       return (
