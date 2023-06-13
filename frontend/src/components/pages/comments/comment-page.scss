@@ -1,13 +1,57 @@
+@keyframes slide-left-enter {
+  0% {
+    display: none;
+    transform: translate(100%, 0%);
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    transform: translate(0%, 0%);
+    display: block;
+  }
+}
+
+@keyframes slide-right-exit {
+  0% {
+    display: block;
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(100%, 0%);
+  }
+}
+
+.page.comment-page {
+  position: absolute;
+  max-width: 50em;
+  height: 100vh;
+  top: 0;
+  // background-color: #141414;
+  background-color: #fff;
+  z-index: 3;
+  &.visible {
+    opacity: 1;
+    // transform: translate(-50%, 100%);
+    pointer-events: all;
+    // border: 2px solid red;
+    animation: slide-left-enter 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+  }
+
+  &.not-visible {
+    animation: slide-right-exit 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
+  }
+}
+
 .comment-form {
   display: flex;
   border-radius: 0.5em;
   overflow: hidden;
-  // padding: 1em;
-  // border: 1px solid red;
   height: 3.5em;
   background-color: #fff;
 
   & textarea {
+    padding: 1em;
     width: 100%;
     border: none;
     resize: none;
@@ -29,18 +73,55 @@
     width: 100%;
     height: 100%;
   }
-  & .header {
-    border: 1px solid red;
-
-    & > img {
-      width: 100%;
-      height: 2em;
-    }
+  & > img {
+    width: 100%;
+    height: 2em;
   }
+}
+.header {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 0 1em #fff;
+  background-color: #fff;
 }
 
 .back-button {
   & img {
     transform: rotate(90deg);
+  }
+}
+
+.comment-content-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+
+  & .comment-list {
+    padding-inline: 1em;
+    padding-top: 6em;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  & .comment-form {
+    box-shadow: 0 0 5em #00000018;
+    margin-top: auto;
+  }
+}
+
+.comment:not(:last-child) {
+  border-bottom: 0.01em solid rgb(222, 222, 222);
+}
+.comment {
+  margin-block: 1em;
+
+  &-list {
+  }
+  & .date {
+    font-size: 0.7em;
+    text-align: right;
+    margin-block: 0.8em;
+    color: rgb(162, 162, 162);
+  }
+  & .text {
   }
 }
