@@ -2,16 +2,16 @@ import React from "react";
 import ThemeOption from "./ThemeOption";
 
 export const themeOptions = [
-  "Landscape",
-  "Interior",
-  "Portrait",
-  "Place",
-  "Nature",
-  "Love",
-  "Time",
-  "Family",
-  "Anxiety",
-  "Jealousy",
+  "Landskap",
+  "Interiør",
+  "Portrett",
+  "Sted",
+  "Natur",
+  "Kjærlighet",
+  "Tid",
+  "Familie",
+  "Angst",
+  "Sjalusi",
 ];
 
 const ThemeSelector = () => {

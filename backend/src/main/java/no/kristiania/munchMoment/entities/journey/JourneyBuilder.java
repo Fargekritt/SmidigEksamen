@@ -79,7 +79,7 @@ public class JourneyBuilder {
         }
 
         // Landscape , Interior, Portrait, Place, Nature, Love, Time, Family, Anxiety,Jealousy
-        if (themes.contains("Landscape") || themes.contains("Interior") || themes.contains("Portrait") || themes.contains("Place") || themes.contains("Nature")) {
+        if (themes.contains("Landskap") || themes.contains("Interiør") || themes.contains("Portrett") || themes.contains("Sted") || themes.contains("Natur")) {
             journey.addStop(9, 6);
             journey.addStop(10, 3);
         } else {

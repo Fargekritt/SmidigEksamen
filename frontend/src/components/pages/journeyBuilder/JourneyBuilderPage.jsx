@@ -92,7 +92,7 @@ const JourneyBuilderPage = () => {
 
   return (
     <div className="page journey-builder">
-      <h2>La oss lage din helt egen Journey!</h2>
+      <h2>La oss lage din helt egen reise!</h2>
       <form onSubmit={handleSubmit}>
         <RangeInput
           question={"Hvor mye tid har du til dispensasjon?"}
@@ -123,14 +123,14 @@ const JourneyBuilderPage = () => {
 
         <ToggleInput
           question={
-            "Ønsker du å inkludere interaktive utstillinger \n i din Journey?"
+            "Ønsker du å inkludere interaktive utstillinger \n i din reise?"
           }
           name={"interactiveToggle"}
           defaultChecked={true}
         />
 
         <button className="button default submit-button">
-          lag min Journey
+          lag min reise
         </button>
       </form>
 

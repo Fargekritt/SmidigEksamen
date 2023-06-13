@@ -36,19 +36,19 @@ const Modal = ({ isModalOpen, setIsModalOpen, modalContent }) => {
               style={{ height: 100, width: 100, margin: "auto" }}
             ></Lottie>
 
-            <p className="heading"> En Journey er opprettet til deg!</p>
+            <p className="heading"> En reise er opprettet til deg!</p>
             <br />
 
-            <p>Her er din helt egen url. Klikk for å starte din Journey:</p>
+            <p>Her er din helt egen url. Klikk for å starte din reise:</p>
             <p> {modalContent}</p>
 
             <Link to={"/journey"}>
-              <button>Start Journey</button>
+              <button>Start</button>
             </Link>
 
             <br />
             <p className="bottom-text">
-              Ønsker du å dele din Journey <br />
+              Ønsker du å dele din reise <br />
               med noen? <br />
               Del linken og gå sammen!
             </p>
