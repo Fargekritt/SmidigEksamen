@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import ItemPreviewPopUp from "./ItemPreviewPopUp";
 import ApiService from "../../../services/ApiService";
 
 const JourneyStopItem = ({
-  paintingId,
-  exhibitionId,
-  journeyIndex,
-  currentStop,
-  coordinates,
-}) => {
+                           paintingId,
+                           exhibitionId,
+                           journeyIndex,
+                           currentStop,
+                           coordinates,
+                         }) => {
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -36,19 +36,19 @@ const JourneyStopItem = ({
     currentStop === journeyIndex
       ? `current`
       : currentStop > journeyIndex
-      ? `previous`
-      : ``
+        ? `previous`
+        : ``
   }`;
 
   return (
     <div
       className="journey-stop-item journey-map-indicator"
-      style={{ left: `${coordinates.x}%`, top: `${coordinates.y}%` }}
+      style={{left: `${coordinates.x}%`, top: `${coordinates.y}%`}}
     >
       <div className="stop-indicator-wrapper">
         <div className={stopIndicatorStyle} onClick={handleClick}></div>
       </div>
-      {isPreviewing && <ItemPreviewPopUp isFadingOut={isFadingOut} />}
+      {isPreviewing && <ItemPreviewPopUp isFadingOut={isFadingOut} paintingId={paintingId}/>}
 
       {/* {coordinates && (
         <small>
