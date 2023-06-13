@@ -32,19 +32,20 @@ const JourneyStopList = ({
     let i = -1;
 
     return journeyMapData.map(item => {
+      console.log("ITEM", item);
       if (item.stairs) {
         console.log(coordinates[i + 1], i);
         const itemCoordinates = {
-          x: calculatePercentage(coordinates[i]?.x, canvas?.width),
-          y: calculatePercentage(coordinates[i]?.y, canvas?.height),
+          x: calculatePercentage(coordinates[i + 1]?.x, canvas?.width),
+          y: calculatePercentage(coordinates[i + 1]?.y, canvas?.height),
         };
         return (
           <div
             key={`${item.stairs}-${i}`}
             className="journey-map-stairs journey-map-indicator"
             style={{
-              left: `${itemCoordinates.x - 5}%`,
-              top: `${itemCoordinates.y - 5}%`,
+              left: `${itemCoordinates.x - 3}%`,
+              top: `${itemCoordinates.y + 6}%`,
             }}
           >
             <img src={stairsUp} />
