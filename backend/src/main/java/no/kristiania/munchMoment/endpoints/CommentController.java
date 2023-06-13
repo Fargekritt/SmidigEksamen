@@ -36,7 +36,7 @@ public class CommentController {
 
     // POST request for posting a comment
     @PostMapping("/new")
-    public ResponseEntity<String> createComment(@RequestBody CommentDto commentDto) {
+    public ResponseEntity<Comment> createComment(@RequestBody CommentDto commentDto) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Comment comment = new Comment();
@@ -56,7 +56,6 @@ public class CommentController {
         comment.setNickname("Jens Jensen");
         comment.setLikes(0);
         commentRepository.save(comment);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Comment has been created");
+        return ResponseEntity.status(HttpStatus.CREATED).body(comment);
     }
-
 }
