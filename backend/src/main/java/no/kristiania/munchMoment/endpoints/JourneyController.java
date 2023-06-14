@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/journey") //map web requests onto specific handler classes and/or handler methods.
 public class JourneyController {
 
@@ -29,10 +29,12 @@ public class JourneyController {
         builder.setInteractive(journeyDto.interactive());
         builder.setTime(journeyDto.time());
         logger.info("Creating journey");
-        logger.debug("Familiarity: " + journeyDto.familiarity());
-        logger.debug("Themes: " + Arrays.toString(journeyDto.themes()));
-        logger.debug("Interactive: " + journeyDto.interactive());
-        logger.debug("Time: " + journeyDto.time());
+        if (logger.isDebugEnabled()){
+            logger.debug("Familiarity: " + journeyDto.familiarity());
+            logger.debug("Themes: " + Arrays.toString(journeyDto.themes()));
+            logger.debug("Interactive: " + journeyDto.interactive());
+            logger.debug("Time: " + journeyDto.time());
+        }
         return builder.build();
     }
 }

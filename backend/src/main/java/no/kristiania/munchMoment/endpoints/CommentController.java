@@ -15,7 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+//@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/comment")
 public class CommentController {
 
