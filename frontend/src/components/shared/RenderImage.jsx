@@ -38,7 +38,7 @@ const RenderImage = ({image, altText}) => {
         alt={altText}
         onLoad={(currentTarget) => {
 
-          let aspectRatio = currentTarget.currentTarget.naturalWidth / currentTarget.currentTarget.naturalHeight;
+          const aspectRatio = currentTarget.currentTarget.naturalWidth / currentTarget.currentTarget.naturalHeight;
           console.log("Aspect ratio: " + aspectRatio);
           console.log(currentTarget.currentTarget.alt)
           if (aspectRatio > 1) {//landscape
