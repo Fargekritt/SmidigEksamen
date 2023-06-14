@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 
 // Sets extra bending on the path.
 function gradient(a, b) {
@@ -103,23 +103,26 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
 
 /**
  * Generate points with random locations.
- * @param setCoordinates.
+ * @param setCanvasHeight.
  * @param amountOfPoints Amount of points generated.
  */
 function generatePoints(amountOfPoints) {
+
+  let height = amountOfPoints * 60;
+
   // Start at middle bottom of canvas.
-  let Y = 400;
+  let Y = height - (height / 10);
   let X = 300;
 
   // Control the length of Y.
   let depth = 60;
   const width = 10;
   const multiplier = 10;
-  const depthStepReduction = 4;
+  const depthStepReduction = 2; // Indicate the value of amount of % reduction of space between each stop.
 
   const points = [];
   for (let i = 0; i < amountOfPoints; i++) {
-    const p = { x: X, y: Y };
+    const p = {x: X, y: Y};
     points.push(p);
 
     if (i % 2 === 0) {
@@ -128,7 +131,11 @@ function generatePoints(amountOfPoints) {
       X -= width * Math.floor(Math.random() * (multiplier - 2)) + 2;
     }
     Y = Y - depth;
-    depth -= depthStepReduction;
+    if (depth > 10) {
+      depth = (depth / 100) * (100 - depthStepReduction);
+    } else {
+      depth = 10;
+    }
   }
 
   return points;
@@ -147,27 +154,27 @@ function drawMap(coordinates, context) {
 }
 
 const CanvasMap = ({
-  progress,
-  setProgress,
-  coordinates,
-  setCoordinates,
-  canvas,
-  setCanvas,
-}) => {
+                     progress,
+                     setProgress,
+                     coordinates,
+                     setCoordinates,
+                     canvas,
+                     setCanvas,
+                   }) => {
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
+  const [canvasHeight, setCanvasHeight] = useState(progress.stops * 60);
 
   // Handle the click event for the specific point
   const handleClick = index => {
     setProgress(prevState => {
-      return { ...prevState, currentStop: index };
+      return {...prevState, currentStop: index};
     });
   };
 
   useEffect(() => {
     if (context) {
       // Generate the points based on amountOfPoints.
-      // TODO Should use setPoints to set the state.
       const generatedPoints = generatePoints(progress.stops);
 
       setCoordinates(generatedPoints);
@@ -220,8 +227,8 @@ const CanvasMap = ({
       ref={canvasRef}
       id="GFG"
       width="600"
-      height="400"
-      style={{ border: "2px solid black" }}
+      height={canvasHeight}
+      style={{border: "2px solid black"}}
     ></canvas>
   );
 };
