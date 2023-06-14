@@ -251,15 +251,17 @@
   }
 
   &.current {
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     background-color: $color_munch_red;
-    border: 0.15em solid $color_munch_red;
+    border: 0.25em solid $color_munch_red;
+    text-align: center;
+    display: flex;
   }
 
   &-wrapper {
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     display: flex;
   }
 }
