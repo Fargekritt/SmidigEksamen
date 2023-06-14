@@ -8,7 +8,7 @@ const RenderImage = ({ image, altText }) => {
         alt={altText}
         onError={({ currentTarget }) => {
           console.log("error");
-          currentTarget.onerror = null;
+          // currentTarget.onerror = null;
           currentTarget.src = "./images/fallback-image.svg";
         }}
       />

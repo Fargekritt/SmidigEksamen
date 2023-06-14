@@ -11,6 +11,7 @@ import { JourneyContext } from "../../../contexts/JourneyContext";
 import ApiService from "../../../services/ApiService";
 import PaintingPage from "../painting/PaintingPage";
 import WrapUpPage from "../wrapUp/WrapUpPage";
+import CurrentLocationHeading from "./CurrentLocationHeading";
 
 const calculatePercentage = (number, total) => {
   return ((number / total) * 100).toFixed(0);
@@ -26,32 +27,6 @@ const JourneyPage = () => {
   const [coordinates, setCoordinates] = useState([]);
   const [canvas, setCanvas] = useState(null);
 
-  const dummyJourney = [
-    {
-      paintingId: 1,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 4,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 5,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 34,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 30,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 77,
-      exhibitionId: 8,
-    },
-  ];
   const [exhibitionData, setExhibitionData] = useState([]);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
   const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
@@ -157,36 +132,23 @@ const JourneyPage = () => {
     });
   };
 
-  const getCurrentExhibition = () => {
-    const currentExhibition = exhibitionData.find(
-      exhibition => exhibition.id === journey[progress.currentStop].exhibitionId
-    );
-    return (
-      <>
-        <span>{currentExhibition.floor} </span>
-        <span>{currentExhibition.exhibitionName}</span>
-      </>
-    );
-  };
-
   return (
     <div>
       <div className="page journey">
         <header className="page-header">
           <h2 className="heading">Journey</h2>
         </header>
-        {/* <div className="journey-content-wrapper"> */}
+
         <div>
           <ProgressBar progress={progress} />
         </div>
 
         {progress.stops > 0 && (
           <>
-            <div className="current-exhibition-heading">
-              {getCurrentExhibition()}
-            </div>
-            <p>stops: {progress.stops}</p>
-            <p>currentStop: {progress.currentStop}</p>
+            <CurrentLocationHeading
+              exhibitionData={exhibitionData}
+              currentStop={journey[progress.currentStop]}
+            />
 
             <div className="journey-button-wrapper">
               <button
@@ -204,20 +166,22 @@ const JourneyPage = () => {
             </div>
 
             <div className="map-wrapper">
-              <JourneyStopList
-                journeyStops={journey}
-                currentStop={progress.currentStop}
-                coordinates={coordinates}
-                canvas={canvas}
-              />
-              <CanvasMap
-                canvas={canvas}
-                setCanvas={setCanvas}
-                progress={progress}
-                setProgress={setProgress}
-                coordinates={coordinates}
-                setCoordinates={setCoordinates}
-              />
+              <div className="map-content">
+                <JourneyStopList
+                  journeyStops={journey}
+                  currentStop={progress.currentStop}
+                  coordinates={coordinates}
+                  canvas={canvas}
+                />
+                <CanvasMap
+                  canvas={canvas}
+                  setCanvas={setCanvas}
+                  progress={progress}
+                  setProgress={setProgress}
+                  coordinates={coordinates}
+                  setCoordinates={setCoordinates}
+                />
+              </div>
             </div>
             <CurrentStopSection
               handleViewPaintingPage={() => {
@@ -231,7 +195,6 @@ const JourneyPage = () => {
           </>
         )}
       </div>
-      {/* </div> */}
 
       {paintingPageIsVisible && (
         <PaintingPage

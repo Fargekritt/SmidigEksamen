@@ -14,9 +14,9 @@
 }
 
 .progress-bar {
-  height: 0.5em;
+  height: 0.3em;
   background-color: #229cff;
-  border-radius: 10em;
+  // border-radius: 10em;
   transition: all 0.2s ease;
   width: var(--progress-width, 0%);
   min-width: 0.5%;
@@ -33,43 +33,69 @@
   &-wrapper {
     position: relative;
     // border: 1px solid #4a789d4e;
-    border-radius: 1em;
+    // border-radius: 1em;
     overflow: hidden;
   }
-}
-
-.stop-indicator {
-  width: 0.9em;
-  height: 0.9em;
-  margin: auto;
-  border-radius: 1em;
-  background-color: #eee;
-  border: 0.15em solid #777;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-
-  &.previous {
-    background-color: $color_text--secondary;
-    width: 0.6em;
-    height: 0.6em;
-    border: none;
-  }
-
-  &.current {
-    width: 1em;
-    height: 1em;
-
-    background-color: $color_munch_red;
-    //border: none;
-    border: 0.15em solid $color_munch_red;
-  }
-
-  &-wrapper {
-    width: 1em;
-    height: 1em;
-    display: flex;
+  &-label {
+    // border: 1px solid red;
+    position: absolute;
+    font-size: 0.7em;
   }
 }
+
+.current-location-heading-wrapper {
+  font-size: 3em;
+  font-family: $font_family--primary;
+  text-transform: uppercase;
+  padding: 0.1em;
+
+  height: 1.1em;
+  overflow: hidden;
+
+  & span {
+    display: inline-block;
+    // transform: translateY(30%);
+  }
+
+  & .current-floor {
+    width: 0.7em;
+    position: relative;
+
+    // transform: translate(100%, 100%);
+    // top: 50%;
+  }
+
+  .slide-up-heading-exit {
+    animation: slide-up-heading-exit 0.25s forwards ease-out;
+  }
+
+  .slide-up-heading-enter {
+    animation: slide-up-heading-enter 0.25s forwards ease-out;
+  }
+
+  .current-exhibition {
+    animation-delay: 0.05s;
+  }
+}
+
+@keyframes slide-up-heading-exit {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes slide-up-heading-enter {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/**** CURRENT STOP SECTION ****/
 
 .current-stop {
   &-section {
@@ -83,6 +109,7 @@
 
     height: 5em;
     display: flex;
+    z-index: 2;
 
     & .text-wrapper {
       width: 100%;
@@ -110,11 +137,131 @@
 
   &-name {
     margin-top: 0.5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+
+    &.next {
+      transform: translateX(100%);
+    }
+
+    &.slide-left-enter {
+      animation: slide-left-enter 0.3s forwards ease;
+    }
+
+    &.slide-left-exit {
+      animation: slide-left-exit 0.25s forwards ease-out;
+    }
+
+    &-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 50%;
+    }
   }
 }
 
-.journey-stop-item {
+@keyframes slide-left-exit {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-left-enter {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+/**** JOURNEY MAP ****/
+
+.map-wrapper {
+  max-width: $mobile_width--max;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-content {
   position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+
+  .journey-map {
+    // border: 2px solid red;
+  }
+
+  & .journey-stop-item,
+  .journey-map-stairs {
+    transform: translate(-50%, -50%);
+  }
+
+  & .journey-map-indicator {
+    position: absolute;
+  }
+
+  & .journey-map-stairs {
+    width: 2em;
+    &::before {
+      content: "";
+      display: block;
+      // width: 100vw;
+      width: 10vw;
+      border-bottom: 0.1em solid rgba(78, 67, 67, 0.335);
+      position: absolute;
+      left: 100%;
+      top: 30%;
+      z-index: -3;
+    }
+
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.stop-indicator {
+  width: 0.9em;
+  height: 0.9em;
+  margin: auto;
+  border-radius: 1em;
+  background-color: #eee;
+  border: 0.15em solid #777;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &.previous {
+    background-color: $color_text--secondary;
+    width: 0.6em;
+    height: 0.6em;
+    border: none;
+  }
+
+  &.current {
+    width: 1em;
+    height: 1em;
+    background-color: $color_munch_red;
+    border: 0.15em solid $color_munch_red;
+  }
+
+  &-wrapper {
+    width: 1em;
+    height: 1em;
+    display: flex;
+  }
 }
 
 .item-preview {
@@ -162,84 +309,5 @@
     height: 100%;
 
     object-fit: contain;
-  }
-}
-
-/* Current Stop */
-.current-stop-name-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  height: 50%;
-}
-
-.current-stop-name {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  white-space: nowrap;
-
-  &.next {
-    transform: translateX(100%);
-  }
-
-  &.slide-left-enter {
-    animation: slide-left-enter 0.3s forwards ease;
-  }
-
-  &.slide-left-exit {
-    animation: slide-left-exit 0.25s forwards ease-out;
-  }
-}
-
-@keyframes slide-left-exit {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-left-enter {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-}
-
-.current-exhibition-heading {
-  font-size: 3em;
-  font-family: $font_family--primary;
-  text-transform: uppercase;
-  padding: 0.1em;
-}
-.map-wrapper {
-  position: relative;
-  box-sizing: border-box;
-  width: fit-content;
-
-  & .journey-stop-item,
-  .journey-map-stairs {
-    transform: translate(-50%, -50%);
-  }
-
-  & .journey-map-indicator {
-    position: absolute;
-  }
-
-  & .journey-map-stairs {
-    width: 2em;
-
-    & img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
   }
 }

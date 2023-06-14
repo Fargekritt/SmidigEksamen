@@ -1,4 +1,5 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import "./journey-page.scss";
 
 // Sets extra bending on the path.
 function gradient(a, b) {
@@ -107,12 +108,11 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
  * @param amountOfPoints Amount of points generated.
  */
 function generatePoints(amountOfPoints) {
-
   let height = amountOfPoints * 60;
 
   // Start at middle bottom of canvas.
-  let Y = height - (height / 10);
-  let X = 300;
+  let Y = height - height / 10;
+  let X = 200;
 
   // Control the length of Y.
   let depth = 60;
@@ -122,7 +122,7 @@ function generatePoints(amountOfPoints) {
 
   const points = [];
   for (let i = 0; i < amountOfPoints; i++) {
-    const p = {x: X, y: Y};
+    const p = { x: X, y: Y };
     points.push(p);
 
     if (i % 2 === 0) {
@@ -145,7 +145,6 @@ function generatePoints(amountOfPoints) {
  * Set the settings for the line and draw it with bzCurve.
  */
 function drawMap(coordinates, context) {
-
   // Draw smooth line.
   context.setLineDash([0]);
   context.lineWidth = 3;
@@ -154,13 +153,13 @@ function drawMap(coordinates, context) {
 }
 
 const CanvasMap = ({
-                     progress,
-                     setProgress,
-                     coordinates,
-                     setCoordinates,
-                     canvas,
-                     setCanvas,
-                   }) => {
+  progress,
+  setProgress,
+  coordinates,
+  setCoordinates,
+  canvas,
+  setCanvas,
+}) => {
   const canvasRef = useRef(null);
   const [context, setContext] = useState(null);
   const [canvasHeight, setCanvasHeight] = useState(progress.stops * 60);
@@ -168,7 +167,7 @@ const CanvasMap = ({
   // Handle the click event for the specific point
   const handleClick = index => {
     setProgress(prevState => {
-      return {...prevState, currentStop: index};
+      return { ...prevState, currentStop: index };
     });
   };
 
@@ -205,8 +204,6 @@ const CanvasMap = ({
   useLayoutEffect(() => {
     if (progress.currentStop !== undefined) {
       if (context) {
-        console.log(context);
-        console.log("Selected" + progress.currentStop);
         context.fillStyle = "white";
         context.fillRect(0, 0, canvas.width, canvas.height);
         drawMap(coordinates, context);
@@ -224,11 +221,11 @@ const CanvasMap = ({
 
   return (
     <canvas
+      className="journey-map"
       ref={canvasRef}
       id="GFG"
-      width="600"
+      width="400"
       height={canvasHeight}
-      style={{border: "2px solid black"}}
     ></canvas>
   );
 };
