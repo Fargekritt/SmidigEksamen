@@ -27,7 +27,6 @@ public class ThemeController {
     }
     @GetMapping("/")
     public List<Theme> getAll(){
-        List<Theme> themeList = themeRepository.findAll();
-        return themeList;
+        return themeRepository.findAll();
     }
 }

@@ -20,6 +20,7 @@
   transition: all 0.2s ease;
   width: var(--progress-width, 0%);
   min-width: 0.5%;
+
   &-background {
     position: absolute;
     height: 100%;
@@ -28,6 +29,7 @@
     transform: translate(0%, -100%);
     z-index: -1;
   }
+
   &-wrapper {
     position: relative;
     // border: 1px solid #4a789d4e;
@@ -45,20 +47,23 @@
   border: 0.15em solid #777;
   cursor: pointer;
   transition: all 0.2s ease-out;
+
   &.previous {
     background-color: $color_text--secondary;
     width: 0.6em;
     height: 0.6em;
     border: none;
   }
+
   &.current {
     width: 1em;
     height: 1em;
 
     background-color: $color_munch_red;
-    border: none;
+    //border: none;
     border: 0.15em solid $color_munch_red;
   }
+
   &-wrapper {
     width: 1em;
     height: 1em;
@@ -78,19 +83,23 @@
 
     height: 5em;
     display: flex;
+
     & .text-wrapper {
       width: 100%;
       padding: 1em 0 0 1em;
     }
+
     & .image-wrapper {
       border-right: 3px solid $color_munch_gold;
       height: 100%;
+
       & img {
         object-fit: cover;
         width: 4.5em;
         height: 100%;
       }
     }
+
     & small {
       font-size: 0.7em;
       text-transform: uppercase;
@@ -98,6 +107,7 @@
       color: $color_munch_gold;
     }
   }
+
   &-name {
     margin-top: 0.5em;
   }
@@ -105,32 +115,20 @@
 
 .journey-stop-item {
   position: relative;
-  &::after {
-    content: "";
-    display: block;
-    background-color: rgb(126, 126, 126);
-    width: 0.2em;
-    height: 2em;
-    margin-left: 0.4em;
-  }
 }
 
 .item-preview {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid blue;
   display: flex;
   opacity: 1;
   transition: opacity 0.25s ease-out;
 
-  /* TEMP */
-  transform: rotate(180deg);
-  position: absolute;
-  border: 1px solid #333;
-  width: 14em;
-  right: 40%;
-  /**/
-
   &.fade-out {
     opacity: 0;
   }
+
   & img {
     width: 3em;
     height: 3em;
@@ -146,6 +144,8 @@
   width: 4em;
   height: 4em;
   margin: 0.4em 3em;
+  z-index: 5;
+
   &-wrapper {
     // border: 1px solid blue;
     position: absolute;
@@ -156,6 +156,7 @@
     flex-flow: column wrap;
     justify-content: space-between;
   }
+
   & > img {
     width: 100%;
     height: 100%;
@@ -182,6 +183,7 @@
   &.next {
     transform: translateX(100%);
   }
+
   &.slide-left-enter {
     animation: slide-left-enter 0.3s forwards ease;
   }
@@ -189,11 +191,6 @@
   &.slide-left-exit {
     animation: slide-left-exit 0.25s forwards ease-out;
   }
-}
-
-.journey-stop-list {
-  margin: auto;
-  transform: rotate(180deg);
 }
 
 @keyframes slide-left-exit {
@@ -204,6 +201,7 @@
     transform: translateX(-100%);
   }
 }
+
 @keyframes slide-left-enter {
   0% {
     opacity: 0;
@@ -220,4 +218,28 @@
   font-family: $font_family--primary;
   text-transform: uppercase;
   padding: 0.1em;
+}
+.map-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+
+  & .journey-stop-item,
+  .journey-map-stairs {
+    transform: translate(-50%, -50%);
+  }
+
+  & .journey-map-indicator {
+    position: absolute;
+  }
+
+  & .journey-map-stairs {
+    width: 2em;
+
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
