@@ -1,15 +1,28 @@
 import React from "react";
 import JourneyStopItem from "./JourneyStopItem";
+import stairsUp from "../../../assets/icons/stairs-up.svg";
 
-const JourneyStopList = ({ journeyStops, currentStop }) => {
+const calculatePercentage = (number, total) => {
+  return parseFloat(((number / total) * 100).toFixed(2));
+};
+
+const JourneyStopList = ({
+  journeyStops,
+  currentStop,
+  coordinates,
+  canvas,
+}) => {
   const renderJourneyStops = () => {
+    if (!coordinates.length) {
+      return null;
+    }
     const journeyMapData = journeyStops.reduce((prev, curr, i) => {
       if (!prev.length) {
         prev.push(curr);
         return prev;
       }
 
-      if (prev.at(i - 1).exhibitionId < curr.exhibitionId) {
+      if (prev.at(i - 1).exhibitionId > curr.exhibitionId) {
         prev.push({ stairs: curr.exhibitionId });
       }
       prev.push(curr);
@@ -17,16 +30,34 @@ const JourneyStopList = ({ journeyStops, currentStop }) => {
     }, []);
 
     let i = -1;
+
     return journeyMapData.map(item => {
+      console.log("ITEM", item);
       if (item.stairs) {
+        console.log(coordinates[i + 1], i);
+        const itemCoordinates = {
+          x: calculatePercentage(coordinates[i + 1]?.x, canvas?.width),
+          y: calculatePercentage(coordinates[i + 1]?.y, canvas?.height),
+        };
         return (
-          <div key={`${item.stairs}-${i}`} className="journey-map-stairs">
-            :::STAIRS:::
+          <div
+            key={`${item.stairs}-${i}`}
+            className="journey-map-stairs journey-map-indicator"
+            style={{
+              left: `${itemCoordinates.x - 3}%`,
+              top: `${itemCoordinates.y + 6}%`,
+            }}
+          >
+            <img src={stairsUp} />
           </div>
         );
       }
-      const { paintingId, exhibitionId } = item;
 
+      const itemCoordinates = {
+        x: calculatePercentage(coordinates[i + 1]?.x, canvas?.width),
+        y: calculatePercentage(coordinates[i + 1]?.y, canvas?.height),
+      };
+      const { paintingId, exhibitionId } = item;
       i++;
       return (
         <JourneyStopItem
@@ -35,6 +66,7 @@ const JourneyStopList = ({ journeyStops, currentStop }) => {
           key={paintingId}
           paintingId={paintingId}
           exhibitionId={exhibitionId}
+          coordinates={itemCoordinates}
         />
       );
     });

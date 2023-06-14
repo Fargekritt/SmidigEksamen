@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useEffect, useState, useContext} from "react";
 import JourneyStopList from "./JourneyStopList";
 import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
-import { JourneyContext } from "../../../contexts/JourneyContext";
+import CanvasMap from "./CanvasMap";
+import {JourneyContext} from "../../../contexts/JourneyContext";
 import ApiService from "../../../services/ApiService";
 import PaintingPage from "../painting/PaintingPage";
 import WrapUpPage from "../wrapUp/WrapUpPage";
@@ -20,10 +21,40 @@ const JourneyPage = () => {
     stops: journey?.length,
     currentStop: 0,
   });
+
+  const [coordinates, setCoordinates] = useState([]);
+  const [canvas, setCanvas] = useState(null);
+
+  const dummyJourney = [
+    {
+      paintingId: 1,
+      exhibitionId: 3,
+    },
+    {
+      paintingId: 4,
+      exhibitionId: 3,
+    },
+    {
+      paintingId: 5,
+      exhibitionId: 3,
+    },
+    {
+      paintingId: 34,
+      exhibitionId: 4,
+    },
+    {
+      paintingId: 30,
+      exhibitionId: 4,
+    },
+    {
+      paintingId: 77,
+      exhibitionId: 8,
+    },
+  ];
   const [exhibitionData, setExhibitionData] = useState([]);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
   const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
-  const { journeyData, setJourneyData } = useContext(JourneyContext);
+  const {journeyData, setJourneyData} = useContext(JourneyContext);
 
   useEffect(() => {
     if (!journeyData) {
@@ -127,32 +158,46 @@ const JourneyPage = () => {
           <h2>Journey</h2>
         </header>
         <div>
-          <ProgressBar progress={progress} />
+          <ProgressBar progress={progress}/>
         </div>
-        {journey.length && (
+
+
+        <p>stops: {progress.stops}</p>
+        <p>currentStop: {progress.currentStop}</p>
+
+        <div className="journey-button-wrapper">
+          <button
+            className="journey-button next"
+            onClick={() => handleProgressChange(1)}
+          >
+            <img src={arrowUp} alt="arrow next"></img>
+          </button>
+          <button
+            className="journey-button previous"
+            onClick={() => handleProgressChange(-1)}
+          >
+            <img src={arrowDown} alt="arrow back"></img>
+          </button>
+        </div>
+
+        {progress.stops > 0 && (
           <>
-            <JourneyStopList
-              journeyStops={journey}
-              currentStop={progress.currentStop}
-            />
-
-            <p>stops: {progress.stops}</p>
-            <p>currentStop: {progress.currentStop}</p>
-            <div className="journey-button-wrapper">
-              <button
-                className="journey-button next"
-                onClick={() => handleProgressChange(1)}
-              >
-                <img src={arrowUp} alt="arrow next"></img>
-              </button>
-              <button
-                className="journey-button previous"
-                onClick={() => handleProgressChange(-1)}
-              >
-                <img src={arrowDown} alt="arrow back"></img>
-              </button>
+            <div className="map-wrapper">
+              <JourneyStopList
+                journeyStops={journey}
+                currentStop={progress.currentStop}
+                coordinates={coordinates}
+                canvas={canvas}
+              />
+              <CanvasMap
+                canvas={canvas}
+                setCanvas={setCanvas}
+                progress={progress}
+                setProgress={setProgress}
+                coordinates={coordinates}
+                setCoordinates={setCoordinates}
+              />
             </div>
-
             <CurrentStopSection
               handleViewPaintingPage={() => setPaintingPageIsVisible(true)}
               paintingName={journeyData.currentPaintingData?.paintingName}
@@ -161,6 +206,7 @@ const JourneyPage = () => {
             />
           </>
         )}
+
       </div>
 
       <PaintingPage
@@ -168,12 +214,16 @@ const JourneyPage = () => {
         isVisible={paintingPageIsVisible}
         setIsVisible={setPaintingPageIsVisible}
       />
-      {wrapUpPageIsVisible && (
-        <WrapUpPage
-          isVisible={wrapUpPageIsVisible}
-          setIsVisible={setWrapUpPageIsVisible}
-        />
-      )}
+
+      <>
+        {wrapUpPageIsVisible && (
+          <WrapUpPage
+            isVisible={wrapUpPageIsVisible}
+            setIsVisible={setWrapUpPageIsVisible}
+          />
+        )}
+      </>
+
     </>
   );
 };
