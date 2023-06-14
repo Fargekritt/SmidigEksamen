@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
 @RequestMapping("/api/theme")
 public class ThemeController {
 
@@ -27,7 +27,6 @@ public class ThemeController {
     }
     @GetMapping("/")
     public List<Theme> getAll(){
-        List<Theme> themeList = themeRepository.findAll();
-        return themeList;
+        return themeRepository.findAll();
     }
 }
