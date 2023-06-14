@@ -28,19 +28,23 @@
 .page.painting {
   max-width: 50em;
   border-radius: 0.5em 0.5em 0em 0em;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 
   width: 100%;
   position: absolute;
+  display: none;
   top: 0;
   left: 50%;
+  height: 100vh;
   // height: 150%;
   opacity: 0;
   transform: translate(-50%, 100%);
   pointer-events: none;
   transition: opacity 0.4s, transform 0.55s cubic-bezier(0.51, 0.92, 0.24, 1);
+  z-index: 10;
 
   &.visible {
+    display: block;
     opacity: 1;
     transform: translate(-50%, 0%);
     pointer-events: all;
@@ -55,29 +59,40 @@
     color: #cbcbcb;
   }
 
+  .painting-content-wrapper {
+    height: 100vh;
+    overflow-y: scroll;
+    // padding-top: $header_height;
+  }
+
+  .page-header {
+    background-color: transparent;
+  }
+
   & nav {
-    margin: 0.6em;
-    position: absolute;
-    backdrop-filter: blur(10px);
-    // border-radius: 2em;
-    position: fixed;
-    padding: 0.1em;
+    // padding: 1em;
+    // margin: 0.6em;
+    // position: absolute;
+    // backdrop-filter: blur(10px);
+    // // border-radius: 2em;
+    // position: fixed;
+    // padding: 0.1em;
     // width: 100%;
     // overflow: hidden;
+  }
 
-    & button {
-      width: 3.5em;
-      height: 3.5em;
-      border: none;
-      object-fit: cover;
-      border-radius: 3em;
-      // background-color: #ffffffe7;
-      // background-color: transparent;
-      // box-shadow: 0em 0em 1em #fff;
+  & button {
+    width: $icon_size--big;
+    height: $icon_size--big;
+    border: none;
+    object-fit: cover;
+    border-radius: 3em;
+    // background-color: #ffffffe7;
+    // background-color: transparent;
+    // box-shadow: 0em 0em 1em #fff;
 
-      & > img {
-        width: 100%;
-      }
+    & > img {
+      width: 100%;
     }
   }
 

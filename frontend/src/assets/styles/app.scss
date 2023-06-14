@@ -36,7 +36,7 @@ small {
 }
 
 .page-header {
-  height: $heading_height;
+  height: $header_height;
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -45,10 +45,16 @@ small {
   top: 0;
   left: 0;
   background-color: $color_white;
-  border-bottom: 0.1em solid rgba(222, 222, 222, 0.194);
+  border-bottom: 0.1em solid #dedede33;
   box-shadow: 0 0 2em 0em #00000009;
+  z-index: 10;
 
   & .heading {
     margin: auto;
   }
+}
+
+.App {
+  height: 100vh;
+  // overflow: hidden;
 }

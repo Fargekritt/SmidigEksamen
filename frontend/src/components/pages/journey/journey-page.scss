@@ -2,16 +2,14 @@
 
 .page.journey {
   height: 100vh;
+  min-width: $mobile_width--min;
   display: flex;
   position: relative;
   overflow: hidden;
   flex-flow: column nowrap;
-  & h2 {
-    text-align: center;
-  }
-  & header {
-    padding-block: 2em 1em;
-  }
+  height: 100vh;
+  border: 1px solid red;
+  padding-top: $header_height;
 }
 
 .progress-bar {

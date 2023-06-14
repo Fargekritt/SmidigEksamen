@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import JourneyStopList from "./JourneyStopList";
+import "../../../assets/styles/app.scss";
 import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
@@ -143,9 +144,11 @@ const JourneyPage = () => {
         <header className="page-header">
           <h2 className="heading">Journey</h2>
         </header>
+        {/* <div className="journey-content-wrapper"> */}
         <div>
           <ProgressBar progress={progress} />
         </div>
+
         {journey.length && (
           <>
             <div className="current-exhibition-heading">
@@ -182,6 +185,7 @@ const JourneyPage = () => {
           </>
         )}
       </div>
+      {/* </div> */}
 
       <PaintingPage
         painting={journeyData?.currentPaintingData}

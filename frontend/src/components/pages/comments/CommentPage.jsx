@@ -65,7 +65,7 @@ const CommentPage = ({
         !animateClosePage ? "visible" : "not-visible"
       }`}
     >
-      <header className="header">
+      <header className="page-header">
         <button
           className="back-button"
           onClick={() => setAnimateClosePage(true)}

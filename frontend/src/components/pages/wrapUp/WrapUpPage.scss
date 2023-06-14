@@ -26,14 +26,21 @@
 .page.wrap-up {
   padding-inline: 1em;
   position: absolute;
-  z-index: 1;
-  overflow-y: scroll;
+  z-index: 30;
+
   background-color: #fff;
   display: block;
   top: 0;
-  height: 100%;
+  // height: 100%;
+  height: 100vh;
   left: 50%;
   width: 100vw;
+
+  .wrap-up-page-content {
+    overflow-y: scroll;
+    height: 100%;
+    padding-top: $header_height * 2;
+  }
 
   &.visible {
     opacity: 1;
@@ -145,11 +152,11 @@
   }
 
   .back-button {
-    font-family: $font_family--primary;
-    font-size: 2em;
-    background: none;
-    border: none;
-    padding: 1em 0;
+    // font-family: $font_family--primary;
+    // font-size: 2em;
+    // background: none;
+    // border: none;
+    // padding: 1em 0;
     color: #333;
     transition: color 0.3s ease;
 
@@ -193,153 +200,3 @@
     top: 54px;
   }
 }
-
-/****/
-
-// @import "../../../assets/styles/global-variables.scss";
-
-// .page.wrap-up {
-//   // display: none;
-//   padding-bottom: 2em;
-//   padding-inline: 0.8em;
-//   position: absolute;
-//   background-color: #fff;
-//   z-index: 1;
-//   & > * {
-//     padding-bottom: 2em;
-//   }
-
-//   & h1 {
-//     margin: auto;
-//     text-align: center;
-//   }
-
-//   & .social-media-wrapper {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     padding: 2em;
-//     margin: auto;
-//     width: 80%;
-//   }
-//   & img {
-//     width: 2em;
-//   }
-
-//   .external-links {
-//     * {
-//       padding: 0.1em 0;
-//       display: flex;
-//       flex-direction: column;
-//       font-family: $font_family--primary;
-//       text-transform: uppercase;
-//       font-size: 2em;
-//       text-decoration: none;
-//     }
-
-//     > a:hover {
-//       font-family: "Girott Munch Bold Slant";
-//     }
-
-//     a:visited {
-//       color: inherit;
-//     }
-//   }
-
-//   .events-wrapper {
-//     display: flex;
-//     flex-direction: column;
-
-//     h2 {
-//       font-family: $font_family--primary;
-//       font-size: 2em;
-//       text-transform: uppercase;
-//     }
-//   }
-
-//   .event {
-//     position: relative;
-//     display: flex;
-//     align-items: flex-start;
-//     margin: 1em 0;
-
-//     &:not(:last-child)::after {
-//       content: "";
-//       position: absolute;
-//       bottom: -1em;
-//       left: 0;
-//       width: 100%;
-//       height: 2px;
-//       background-color: gray;
-//     }
-
-//     h3 {
-//       font-family: $font_family--primary;
-//       text-transform: uppercase;
-//     }
-
-//     img {
-//       height: 7em;
-//     }
-//   }
-
-//   .event-info {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     padding: 1em;
-
-//     h3 {
-//       margin-bottom: 1em;
-//     }
-//   }
-
-//   .back-button {
-//     font-family: $font_family--primary;
-//     font-size: 2em;
-//     background: none;
-//     border: none;
-//     padding: 1em 0;
-//     color: #333;
-//     transition: color 0.3s ease;
-
-//     &:hover,
-//     &:active {
-//       color: red;
-//     }
-//   }
-
-//   .feedback {
-//     * {
-//       margin: 1em 0;
-//       display: flex;
-//       justify-content: center;
-//       flex-direction: column;
-//       align-items: center;
-//       text-align: center;
-//     }
-//   }
-
-//   .slider-container {
-//     position: relative;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
-
-//   .slider-symbol {
-//     position: absolute;
-//     z-index: 2;
-//     font-size: 1.2em;
-//   }
-
-//   .slider-symbol-left {
-//     left: 90px;
-//     top: 54px;
-//   }
-
-//   .slider-symbol-right {
-//     right: 90px;
-//     top: 54px;
-//   }
-// }

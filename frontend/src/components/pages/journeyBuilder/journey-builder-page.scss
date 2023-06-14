@@ -3,7 +3,7 @@
 .journey-builder.page {
   margin-inline: 1em;
   height: 100vh;
-  min-width: 300px;
+  min-width: $mobile_width--min;
 }
 
 form {
