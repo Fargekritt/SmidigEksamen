@@ -67,7 +67,7 @@ const CommentPage = ({
     >
       <header className="page-header">
         <button
-          className="back-button"
+          className="back-button item-left"
           onClick={() => setAnimateClosePage(true)}
         >
           <img src={arrowDown} alt="left pointing arrow icon" />

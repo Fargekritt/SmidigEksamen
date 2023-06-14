@@ -8,8 +8,9 @@
   overflow: hidden;
   flex-flow: column nowrap;
   height: 100vh;
-  border: 1px solid red;
+
   padding-top: $header_height;
+  margin: auto;
 }
 
 .progress-bar {

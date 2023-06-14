@@ -50,6 +50,7 @@ small {
   border-bottom: 0.1em solid #dedede33;
   box-shadow: 0 0 2em 0em #00000009;
   z-index: 10;
+  padding-inline: 1em;
 
   & .heading {
     margin: auto;
@@ -68,5 +69,8 @@ small {
 }
 
 .page {
+  min-width: $mobile_width--min;
+  max-width: $mobile_width--max;
+  margin: auto;
   // position: absolute;
 }
