@@ -54,72 +54,72 @@ VALUES (1, 'Landskap'),
 INSERT INTO painting (painting_ID, painting_name, date_created, description, image_path, artist_ID, exhibition_ID)
 VALUES (1, 'Forskerne', '1911-1927',
         'Malt med olje på lerret. I 1916 fullførte Munch kunstverket “Alma Mater”, men var ikke fornøyd med maleriet. Han gjorde endringer på bildet, og lagde også flere alternative versjoner, deriblant “Forskerne”. Maleriet skal skildre “barn som i sin lek er unge forskere”.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/forskerne.jpg?w=1440&quality=75', 1, 4),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/4/Z/Arkiv/M1091_20060509.tif.lSf9y-PUMd07kVtjwCUA.rQbdo5IetA.jpg', 1, 4),
 
        (2, 'Menneskeberget', '1927-1929',
         'Malt med olje på ugrundert lerret. Munch begynte å skissere dette maleriet så tidlig som i 1890-årene men ikke før i 1929 var maleriet ferdig. I maleriet viser Munch mennesker som streber mot solen. Maleriet ble malt i forbindelse med at Munch deltok i en konkurranse om å lage et maleri som skulle heng i aulaen på Kongelige Frederiks Universitet.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/menneskeberget?w=1440&quality=75', 1, 4),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/O/j/Arkiv/MM.M.00778.tif.lSeMgOPUMQPFaWdjgBkA.eIjYW4sXVy.jpg', 1, 4),
 
        (3, 'Solen', '1910-1911',
         'Malt med olje på lerret. Edvard Munchs maleri "Solen" er et av hans mest kjente verk, malt i 1910. "Solen" er et eksempel på Munchs ekspressive og symbolske stil. Den røde solen kan tolkes som et symbol på vitalitet, energi og livets kraft. Samtidig skaper den sterke kontrasten mellom den røde solen og den kalde, blågrønne fjorden en følelse av spenning og uro.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/solen.jpg?w=1440&quality=75', 1, 4),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/k/f/Arkiv/M0963_20060509.tif.lSepou3UMdvRYVtjwCUA.Z9myr33axn.jpg', 1, 4),
 
        (4, 'Skrik', '1893',
         'Det originale “Skrik” ble laget med fargestift, flere ganger på papp. Edvard Munchs maleri "Skrik" er et av de mest kjente kunstverkene i verden, malt i 1893. Det er et ikonisk uttrykk for angst og fortvilelse, og har blitt et symbol på den menneskelige tilstand. "Skrik" viser en skikkelse som står på en bro, med et forvrengt ansikt og utstrakte hender. Bakgrunnen består av en bølgende og urovekkende landskap med blendende oransje og røde toner. Den intense følelsen av frykt og angst gjennomsyrer hele bildet.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/skrikpastell.jpg?mode=max&quality=95&w=1400', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/9/r/Arkiv/MM.M.00514.tif.lSfKo97UMX-TkVtjYBMA.bBzQ7xZUUX.jpg', 1, 3),
 
        (5, 'Madonna', '1894',
         ' Laget med litografi, en grafisk trykketeknikk. Edvard Munchs maleri "Madonna" er et ikonisk verk som ble malt mellom 1894 og 1895. Det er en tolkning av det tradisjonelle kristne motivet, men Munch gir det en moderne og personlig vri. "Madonna" viser en kvinne med langt, lyst hår og et alvorlig ansiktsuttrykk. Hun er avbildet i enkle, nesten geometriske former, og det er en aura av mystikk og hellighet rundt henne. Hun holder et barn i armene sine, som symboliserer Jesusbarnet.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/madonna.jpg?w=1440&quality=75', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/S/n/Arkiv/MM.M.00068.tif.lSeIj-3UMZehFWdjYBMA.2DMoyMwOGk.jpg', 1, 3),
 
        (6, 'Det syke barn', '1927',
         'Malt på fabrikkgrundert, toskaftsvevd linlerret. Edvard Munchs maleri "Det syke barn" er et hjerteskjærende verk som ble malt i 1885. Det skildrer en scene der Munchs søster, Johanne Sophie, er sengeliggende som et sykt barn. Maleriet er et sterkt uttrykk for sorg og fortvilelse. "Det syke barn" viser den unge jenta i en seng med hvite laken, omgitt av mørke skygger og et mørkt rom. Ansiktet hennes bærer preg av smerte og utmattelse, og hun ser ut mot betrakteren med et uttrykk av stillhet og resignasjon.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4439/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/9/Y/Arkiv/MM.M.00051_20191206.tif.lSe43N_UMQONZVtjYBMA.4uTMBzORRm.jpg', 1, 3),
 
        (7, 'Vampyr', '1893',
         'Olje på lerret. "Vampyr" av Edvard Munch er en mørk og gåtefull skildring av en kvinne som henger over en skjør mann. Munchs dramatiske fargebruk og følelsesladde stil skaper et sterkt bilde som utforsker temaer som begjær og frykt. Bildets intense og lidenskapelige natur antyder en dypere, mer sammensatt menneskelig erfaring, og inviterer seeren til å reflektere over livets iboende dualitet og konflikter.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4760/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/J/4/Arkiv/MM.M.00533_20230607.tif.lSeDseHUMVnHh6ljgBkA.k-XLU2HTnn.jpg', 1, 3),
 
        (8, 'Pubertet', '1894',
         'Olje på ugrunndert lerret. Edvard Munchs "Pubertet" skildrer en ung jente i en intim og sårbar situasjon, fanget i grenselandet mellom barndom og voksenliv. Munchs bruk av mørke skygger og sterke kontraster fremhever det kompliserte landskapet av frykt, usikkerhet og forventning som er forbundet med puberteten. Dette innsiktsfulle bildet inviterer betrakteren til å reflektere over overgangsfasene i livet og de dype endringene de medfører.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4746/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/q/3/Arkiv/MM.M.00281.tif.lSfMl-nUMWONkVtjYBMA.vU5lyo6Skm.jpg', 1, 3),
 
        (9, 'Hode ved hode', '1905',
         'Trenistt trykt i farger. Edvard Munchs verk "Hode ved Hode", et kraftig uttrykk for menneskelige relasjoner og innbyrdes kompleksitet, er en tydelig refleksjon av hans mestring av de tre hovedteknikkene i grafikk - radering, litografi og tresnitt. Tresnitt-teknikken, som inspirerte Munch til å utvikle sin unike stil som kunstner, brukes her til å skape et sterkt bilde av to menneskehoder som er forbundet eller innesluttet i hverandre. Dette kunstverket utforsker temaer som identitet, samhørighet og individualitet på en utfordrende og visuelt imponerende måte.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4717/full/max/0/default.jpg', 1, 6),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/J/K/Arkiv/M0228_20170918.tif.lSeij-nUMd8fkVtjgBkA.KXwwhGa0Sv.jpg', 1, 6),
 
        (10, 'Pikene på broen', '1927',
         'Olje på lerret. Edvard Munchs "Pikene på Broen" er en mesterlig skildring av unge jenter på en bro. Gjennom fargerike og uttrykksfulle penselstrøk skaper Munch et kraftfullt bilde som utforsker temaer som fellesskap og ensomhet. Silhuettene som reflekteres i vannet under antyder en dypere, mer sammensatt menneskelig erfaring, og inviterer betrakteren til å reflektere over menneskets isolasjon og forbindelser.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/5023/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/1/L/Arkiv/MM.M.00490.tif.lSfP1uPUMYddX2djYBMA.qs49dVlAu4.jpg', 1, 3),
 
        (11, 'Døden i sykeværelset', '1895',
         'Edvard Munchs maleri "Døden i sykeværelset" er et sterkt og symbolsk verk som ble malt i 1893. Det skildrer en scene i et sykeværelse der døden er til stede og observerer en gruppe mennesker. "Døden i sykeværelset" viser et rom med flere mennesker som er i ulike stadier av sykdom og lidelse. I midten av komposisjonen står en skikkelse kledd i sort, som representerer døden. Døden har et dystert og skremmende utseende og er et tydelig sentralt fokus i bildet.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4933/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/L/s/Arkiv/M0418_20170504.tif.lSf6m-jUMd8nkVtjgBkA.mFb2Zm6x2d.jpg', 1, 3),
 
        (12, 'Livets dans', '1925',
         'Olje på lerret. "Livets Dans" av Edvard Munch er en levende fremstilling av forskjellige stadier i menneskelivet, fanget i en sirkulær dans. Munchs dynamiske penselstrøk og sterke farger skaper et bilde som utforsker temaer som kjærlighet, begjær, aldring og død. Denne rike scenen inviterer betrakteren til å reflektere over livets syklus og de dype følelsene og erfaringene som former vår menneskelige eksistens.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/5439/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/7/S/Arkiv/M0777_20160513.tif.lSfCluLUMf_NVVtjgBkA.yucCwZjOeA.jpg', 1, 3),
 
        (13, 'Selvportrett på glassverandaen', '1930-1933',
         'Malt på med olje på fabrikkgrundert plate av mahogni. En av flere kjente selvportretter Munch malte gjennom sin tid.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/5008/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/M/T/Arkiv/M0245_20130125.tif.lSfXrejUMUkhkVtjgBkA.6aOcUVIDsj.jpg', 1, 3),
 
        (14, 'Arbeidere på hjemvei', '1913-1914',
         'Olje på lerret. "Arbeidere på Hjemvei" av Edvard Munch skildrer hverdagslige arbeidere som returnerer hjem etter en lang dags arbeid. Gjennom sterke linjer og duse farger fremhever Munch den trette, men bestemte marsjen til arbeiderne. Dette rørerende bildet inviterer betrakteren til å reflektere over arbeidets rolle i livet, og menneskets utrettelige streben og utholdenhet i hverdagen.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/4861/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/T/L/Arkiv/MM.M.00365.tif.lSf8x-fUMbWPkVtjYBMA.MSQemlf4KB.jpg', 1, 3),
 
        (15, 'Overraskelsen', '1907',
         'Olje på lerret. "Overraskelsen" av Edvard Munch er en levende fremstilling av en mann, fanget i et øyeblikk av overraskelse eller sjokk. Gjennom livlige farger og dramatiske penselstrøk skaper Munch et bilde som utforsker temaer rundt uventede hendelser og reaksjoner. Dette innsiktsfulle bildet inviterer betrakteren til å reflektere over livets uforutsigbarhet og de intense følelsene det kan fremkalle.',
-        'https://emuseum.oslo.kommune.no/apis/iiif/image/v2/5088/full/max/0/default.jpg', 1, 3),
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/6/1/Arkiv/MM.M.00537.tif.lSewlefUMeE_T1tjgBkA.g_jvcj15zC.jpg', 1, 3),
 
        (16, 'Dagligstuen i Fossveien 7', '1879-1880',
         ' Malt med vannfarge. Dette maleriet ble malt i perioden 1879-1880 og gir et glimt av Munchs tidlige karriere og hans interesse for å portrettere interiører. Maleriet avbilder en dagligstue i Fossveien 7, som var Munchs barndomshjem i Christiania (nåværende Oslo). Det er et intimt og personlig bilde som fanger øyeblikket i et vanlig hjem. Munch bruker nøye komponerte linjer og lyse farger for å skape en atmosfære av ro og varme.',
-        'https://munch.emuseum.com/no/internal/media/dispatcher/1461/preview;jsessionid=85F2245D0A3F51F5033159EDC982F77F',
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/h/w/Arkiv/T2608-R_20050308.tif.lyfmx-HUMfOLS1tjgBkA.8uQ5KFW9zE.jpg',
         1, 3),
 
        (17, 'Natt i Saint-Cloude', '1892',
         'Bildet er laget gjennom risse-metoden radering. Dette maleriet ble skapt i 1890 under Munchs tidlige eksperimentelle periode og er et av hans mest kjente verk. "Natt i Saint-Cloud" portretterer et naturlandskap i nærheten av Paris, der Munch tilbrakte mye tid i løpet av sin kunstneriske utforskning. Maleriet er preget av Munchs karakteristiske stil og er utformet ved bruk av radering som går ut på å risse bildet inn i en plate.',
-        'https://www.munchmuseet.no/globalassets/kunstverk/nattsaintcloud.jpg?mode=max&quality=95&w=1400', 1, 3);
+        'https://foto.munchmuseet.no/fotoweb/cache/v2/8/3/Arkiv/MM.G.00012-34.tif.lieIjujUMU9dZVtjYBMA.djs6q-4zEP.jpg', 1, 3);
 
 
 INSERT INTO painting_theme (painting_ID, theme_ID)
