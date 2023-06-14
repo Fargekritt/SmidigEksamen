@@ -92,8 +92,10 @@ const JourneyBuilderPage = () => {
 
   return (
     <div className="page journey-builder">
-      <h2>La oss lage din helt egen reise!</h2>
-      <form onSubmit={handleSubmit}>
+      <header className="page-header">
+        <h2 className="heading">Lag din egen reise</h2>
+      </header>
+      <form className="journey-builder-form" onSubmit={handleSubmit}>
         <RangeInput
           question={"Hvor mye tid har du til dispensasjon?"}
           name={"timeInput"}
@@ -129,9 +131,7 @@ const JourneyBuilderPage = () => {
           defaultChecked={true}
         />
 
-        <button className="button default submit-button">
-          lag min reise
-        </button>
+        <button className="button default submit-button">lag min reise</button>
       </form>
 
       <Modal

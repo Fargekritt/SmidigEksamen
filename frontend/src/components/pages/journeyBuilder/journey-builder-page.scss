@@ -1,7 +1,9 @@
 @import "../../../assets/styles/global-variables.scss";
 
-.journey-builder .page {
+.journey-builder.page {
   margin-inline: 1em;
+  height: 100vh;
+  min-width: 300px;
 }
 
 form {
@@ -200,6 +202,10 @@ input[type="checkbox"]:not(:checked) {
     border-left-width: 0.075em;
     color: #444;
   }
+}
+
+.journey-builder-form {
+  padding-bottom: 2em;
 }
 
 /**/

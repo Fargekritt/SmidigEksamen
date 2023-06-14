@@ -140,8 +140,8 @@ const JourneyPage = () => {
   return (
     <>
       <div className="page journey">
-        <header>
-          <h2>Journey</h2>
+        <header className="page-header">
+          <h2 className="heading">Journey</h2>
         </header>
         <div>
           <ProgressBar progress={progress} />
