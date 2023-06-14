@@ -18,17 +18,17 @@ const WrapUpPage = ({ isVisible, setIsVisible }) => {
         <button
           aria-label="Go back"
           onClick={handleClick}
-          className="back-button"
+          className="back-button item-left"
         >
           {/* &lt; */}
           <img
-            className="back-icon-icon"
+            className="back-icon"
             src={downIcon}
             alt="downwards pointing icon"
           />
         </button>
         {/* </nav> */}
-        <h2> Ditt Munch moment</h2>
+        <h2 className="heading"> Ditt Munch moment</h2>
       </header>
       <div className="wrap-up-page-content">
         <div className="feedback">

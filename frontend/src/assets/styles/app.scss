@@ -39,6 +39,8 @@ small {
   height: $header_height;
   position: fixed;
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   min-width: $mobile_width--min;
@@ -51,6 +53,12 @@ small {
 
   & .heading {
     margin: auto;
+  }
+
+  & .item-left {
+    display: flex;
+    align-items: center;
+    position: absolute;
   }
 }
 
