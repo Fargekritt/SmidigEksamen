@@ -5,52 +5,41 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  // border: 1px solid red;
   height: 100vh;
   overflow: hidden;
+  min-width: 300px;
 }
 
 .logo-container {
-  // border: 1px solid red;
   text-align: center;
   padding-top: 10em;
-  width: 20em;
 }
 
 .logo {
   font-family: "Girott Munch Bold Backslant";
-  font-size: 7em;
+  font-size: min(max(22vw, 2em), 7em);
   opacity: 0;
 }
 
 .logo-text-top {
-  // border: 1px solid green;
   transform: translateX(-9%);
+  animation: slideInFromLeft 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
+  animation-delay: 0.5s;
 }
 
 .logo-text-bottom {
-  // border: 1px solid green;
-  transform: translateX(5%);
+  transform: translateX(10%);
+  animation: slideInFromRight 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
+  animation-delay: 0.5s;
 }
 
 .sub-heading-container {
-  // border: 1px solid blue;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   font-size: 1.3em;
   padding: 1.5em;
-}
-
-.logo-text-top {
-  animation: slideInFromLeft 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
-  animation-delay: 0.5s;
-}
-
-.logo-text-bottom {
-  animation: slideInFromRight 0.5s forwards cubic-bezier(0.5, 1.56, 0.31, 0.89);
-  animation-delay: 0.5s;
 }
 
 @keyframes slideInFromLeft {
@@ -71,7 +60,7 @@
   }
 
   100% {
-    transform: translateX(5%);
+    transform: translateX(10%);
     opacity: 1;
   }
 }
@@ -100,4 +89,28 @@
 
 .sub-heading-container > :nth-child(2) {
   animation-delay: 1.2s;
+}
+
+.submit-button-wrapper {
+  padding-bottom: 2em;
+  margin-inline: auto;
+  opacity: 0;
+  animation: slideUpButton 0.3s cubic-bezier(0.5, 1.56, 0.31, 0.89) forwards;
+  animation-delay: 1.5s;
+}
+
+.submit-button {
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+@keyframes slideUpButton {
+  0% {
+    transform: translateY(70%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 100;
+  }
 }
