@@ -4,30 +4,36 @@ import SocialMediaLinks from "./SocialMediaLinks";
 import UpcomingEvents from "./UpcomingEvents";
 import "./WrapUpPage.scss";
 import downIcon from "../../../assets/icons/down.svg";
+import { useState } from "react";
 
-const WrapUpPage = ({ isVisible, setIsVisible }) => {
-  const handleClick = () => {
-    console.log("WRAPUP clicked");
-    setIsVisible(false);
-  };
+const WrapUpPage = ({ setIsVisible }) => {
+  const [animateCloseWrapUpPage, setAnimateCloseWrapUpPage] = useState(false);
 
   return (
-    <div className={`page wrap-up ${isVisible ? "visible" : "not-visible"}`}>
+    <div
+      onAnimationEnd={() => {
+        if (animateCloseWrapUpPage === true) {
+          setIsVisible(false);
+          setAnimateCloseWrapUpPage(false);
+        }
+      }}
+      className={`page wrap-up ${
+        !animateCloseWrapUpPage ? "visible" : "not-visible"
+      }`}
+    >
       <header className="page-header">
-        {/* <nav> */}
         <button
           aria-label="Go back"
-          onClick={handleClick}
+          onClick={() => setAnimateCloseWrapUpPage(true)}
           className="back-button item-left"
         >
-          {/* &lt; */}
           <img
             className="back-icon"
             src={downIcon}
             alt="downwards pointing icon"
           />
         </button>
-        {/* </nav> */}
+
         <h2 className="heading"> Ditt Munch moment</h2>
       </header>
       <div className="wrap-up-page-content">

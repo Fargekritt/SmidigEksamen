@@ -30,17 +30,19 @@
   height: 100vh;
   top: 0;
   // background-color: #141414;
+  overflow: hidden;
   background-color: #fff;
   z-index: 20;
   &.visible {
     opacity: 1;
     // transform: translate(-50%, 100%);
     pointer-events: all;
-    // border: 2px solid red;
+    border: 2px solid red;
     animation: slide-left-enter 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
   &.not-visible {
+    pointer-events: none;
     animation: slide-right-exit 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 }

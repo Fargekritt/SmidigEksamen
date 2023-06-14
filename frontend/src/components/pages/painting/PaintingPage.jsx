@@ -16,9 +16,11 @@ const fetchCurrentPaintingData = async paintingRouteId => {
   }
 };
 
-const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
+const PaintingPage = ({ painting, setIsVisible }) => {
   const [comments, setComments] = useState([]);
   const [commentPageIsVisible, setCommentPageIsVisible] = useState(false);
+  const [animateClosePaintingPage, setAnimateClosePaintingPage] =
+    useState(false);
   const { paintingRouteId } = useParams();
   const [currentPaintingData, setCurrentPaintingData] = useState({ painting });
 
@@ -51,18 +53,22 @@ const PaintingPage = ({ painting, isVisible, setIsVisible }) => {
   return (
     <>
       <div
+        onAnimationEnd={() => {
+          if (animateClosePaintingPage === true) {
+            setIsVisible(false);
+            setAnimateClosePaintingPage(false);
+          }
+        }}
         className={`page painting ${
-          isVisible !== undefined && isVisible ? "visible" : "not-visible"
+          !animateClosePaintingPage ? "visible" : "not-visible"
         }`}
       >
         {currentPaintingData && (
           <>
             <header className="page-header">
-              {/* <nav> */}
-              <button onClick={() => setIsVisible(false)}>
+              <button onClick={() => setAnimateClosePaintingPage(true)}>
                 <img src={downIcon} alt="downwards pointing icon" />
               </button>
-              {/* </nav> */}
             </header>
 
             <div className="painting-content-wrapper">

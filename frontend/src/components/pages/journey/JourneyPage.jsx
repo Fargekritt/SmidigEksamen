@@ -36,9 +36,9 @@ const JourneyPage = () => {
     if (journeyData) {
       const sortedJourney = journeyData.stops.sort((a, b) => {
         if (a.exhibitionId !== b.exhibitionId) {
-          return a.exhibitionId - b.exhibitionId; // Sort by exhibitionId ascending
+          return a.exhibitionId - b.exhibitionId;
         } else {
-          return a.paintingId - b.paintingId; // Sort by paintingId ascending within the same exhibitionId
+          return a.paintingId - b.paintingId;
         }
       });
 
@@ -177,7 +177,10 @@ const JourneyPage = () => {
             </div>
 
             <CurrentStopSection
-              handleViewPaintingPage={() => setPaintingPageIsVisible(true)}
+              handleViewPaintingPage={() => {
+                console.log(paintingPageIsVisible);
+                setPaintingPageIsVisible(true);
+              }}
               paintingName={journeyData.currentPaintingData?.paintingName}
               imagePath={journeyData.currentPaintingData?.imagePath}
               paintingId={journey[progress.currentStop]?.paintingId}
@@ -187,11 +190,13 @@ const JourneyPage = () => {
       </div>
       {/* </div> */}
 
-      <PaintingPage
-        painting={journeyData?.currentPaintingData}
-        isVisible={paintingPageIsVisible}
-        setIsVisible={setPaintingPageIsVisible}
-      />
+      {paintingPageIsVisible && (
+        <PaintingPage
+          painting={journeyData?.currentPaintingData}
+          isVisible={paintingPageIsVisible}
+          setIsVisible={setPaintingPageIsVisible}
+        />
+      )}
       {wrapUpPageIsVisible && (
         <WrapUpPage
           isVisible={wrapUpPageIsVisible}
