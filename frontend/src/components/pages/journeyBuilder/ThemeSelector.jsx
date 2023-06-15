@@ -20,7 +20,9 @@ const ThemeSelector = () => {
   });
   return (
     <div className="user-input theme-selector">
-      <h3 className="heading">Hvilke temaer ønsker du å utforske i dag?</h3>
+      <h3 className="heading">
+        Er det noen spesielle temaer du ønsker du å utforske i dag?
+      </h3>
       <div className="theme-options-wrapper">{renderInputs}</div>
     </div>
   );

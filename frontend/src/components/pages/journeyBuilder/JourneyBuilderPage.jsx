@@ -79,11 +79,11 @@ const JourneyBuilderPage = () => {
   };
 
   const familiarityOptionLabels = {
-    0: "Munch hvem??",
-    1: "Tja, jeg har sikkert hørt om noen av de",
+    0: "Munch hvem?",
+    1: "Han som har malt Skrik, ikke sant?",
     2: "Jeg har litt kjennskap",
     3: "Jeg har mer kjennskap enn de fleste",
-    4: "Jeg er en ivrig tilhenger",
+    4: "Madonna er bakgrunnsbildet på mobilen min",
   };
 
   return (
@@ -95,7 +95,7 @@ const JourneyBuilderPage = () => {
       <form className="journey-builder-form" onSubmit={handleSubmit}>
         <h2 className="heading">Lag din egen reise</h2>
         <RangeInput
-          question={"Hvor mye tid har du til dispensasjon?"}
+          question={"Hvor mye tid vil du bruke?"}
           name={"timeInput"}
           step={10}
           minValue={20}
@@ -108,7 +108,7 @@ const JourneyBuilderPage = () => {
         />
 
         <RangeInput
-          question={"Hvor mye kjennskap har du til Munch sine verk?"}
+          question={"Hvor godt kjenner du til Munch sine verk?"}
           name={"familiarityInput"}
           minValue={0}
           maxValue={4}
@@ -122,9 +122,7 @@ const JourneyBuilderPage = () => {
         <ThemeSelector />
 
         <ToggleInput
-          question={
-            "Ønsker du å inkludere interaktive utstillinger \n i din reise?"
-          }
+          question={"Vil du inkludere interaktive utstillinger \n i din reise?"}
           name={"interactiveToggle"}
           defaultChecked={true}
         />

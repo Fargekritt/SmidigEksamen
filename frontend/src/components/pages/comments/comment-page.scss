@@ -140,6 +140,9 @@
   .details-wrapper {
     display: flex;
     justify-content: space-between;
+    & p {
+      color: #666;
+    }
 
     & .likes {
       font-size: 0.8em;
