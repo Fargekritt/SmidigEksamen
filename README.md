@@ -2,13 +2,10 @@
 Smidge eksamen
 
 # Set up av docker
-
-## Om port 3306 er ledig
+## Setup databasen
 ```
 docker run --name munchMoment-mysqlserver -e MYSQL_ROOT_PASSWORD=MadridGang69 -p 3306:3306 -d mysql:latest
 ```
-
-## Sette opp databasen
 Docker -> munchMoment-mysqlserver -> terminal
 
 ```
