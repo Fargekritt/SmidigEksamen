@@ -10,8 +10,8 @@
     <groupId>no.kristiania</groupId>
     <artifactId>munchMoment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>demo</description>
+    <name>munch_moment</name>
+    <description>Munch moment app</description>
 
     <properties>
         <java.version>17</java.version>
