@@ -105,7 +105,7 @@ const JourneyPage = () => {
             })
             .catch(err => Promise.reject(err));
         } catch (err) {
-          console.log(err);
+          return Promise.reject(err);
         }
       };
       fetchCurrentPaintingData();
@@ -161,9 +161,7 @@ const JourneyPage = () => {
               exhibitionData={exhibitionData}
               currentStop={journey[progress.currentStop]}
             />
-            <p className={`journey-start-indicator`}>
-              {/* Reisen din starter i {() => findCurrentExhibition} .. */}
-            </p>
+            <p className={`journey-start-indicator`}></p>
 
             <div className="journey-button-wrapper">
               <button

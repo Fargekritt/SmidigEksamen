@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import CommentItem from "../painting/CommentItem";
+import CommentItem from "./CommentItem";
 import ApiService from "../../../services/ApiService";
 import sendIcon from "../../../assets/icons/paper-plane.svg";
 import downIcon from "../../../assets/icons/down.svg";
@@ -38,7 +38,6 @@ const CommentPage = ({
   };
 
   const submitData = async dataToSubmit => {
-    console.log(dataToSubmit);
     try {
       const res = await ApiService.postFormData(dataToSubmit, `comment/new`)
         .then(res => {
@@ -46,10 +45,10 @@ const CommentPage = ({
           inputRef.current.value = "";
         })
         .catch(err => Promise.reject(err));
-      console.log(res);
+
       return res;
     } catch (err) {
-      console.log(err);
+      return Promise.reject(err);
     }
   };
 

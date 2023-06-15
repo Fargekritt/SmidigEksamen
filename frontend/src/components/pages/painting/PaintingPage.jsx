@@ -1,20 +1,11 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import ApiService from "../../../services/ApiService";
-import CommentList from "./CommentList";
+import CommentList from "../comments/CommentList";
 import { useParams } from "react-router-dom";
 import "./painting-page.scss";
 import downIcon from "../../../assets/icons/down.svg";
 import RenderImage from "../../shared/RenderImage";
 import CommentPage from "../comments/CommentPage";
-
-const fetchCurrentPaintingData = async paintingRouteId => {
-  try {
-    const res = await ApiService.getById("painting", paintingRouteId);
-    return res.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 const PaintingPage = ({ painting, setIsVisible }) => {
   const [comments, setComments] = useState([]);
@@ -24,12 +15,21 @@ const PaintingPage = ({ painting, setIsVisible }) => {
   const { paintingRouteId } = useParams();
   const [currentPaintingData, setCurrentPaintingData] = useState({ painting });
 
+  const fetchCurrentPaintingData = async paintingRouteId => {
+    try {
+      return await ApiService.getById("painting", paintingRouteId).then(res =>
+        setCurrentPaintingData(res.data)
+      );
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
+
   useEffect(() => {
     if (painting != null) {
       setCurrentPaintingData(painting);
     } else if (paintingRouteId != null) {
-      const paintingData = fetchCurrentPaintingData(paintingRouteId);
-      setCurrentPaintingData(paintingData);
+      fetchCurrentPaintingData(paintingRouteId);
     }
   }, [painting, paintingRouteId]);
 
@@ -43,7 +43,7 @@ const PaintingPage = ({ painting, setIsVisible }) => {
           );
           setComments(response.data);
         } catch (err) {
-          console.log(err);
+          return Promise.reject(err);
         }
       }
     };
@@ -66,9 +66,11 @@ const PaintingPage = ({ painting, setIsVisible }) => {
         {currentPaintingData && (
           <>
             <header className="page-header">
-              <button onClick={() => setAnimateClosePaintingPage(true)}>
-                <img src={downIcon} alt="downwards pointing icon" />
-              </button>
+              {paintingRouteId === undefined && (
+                <button onClick={() => setAnimateClosePaintingPage(true)}>
+                  <img src={downIcon} alt="downwards pointing icon" />
+                </button>
+              )}
             </header>
 
             <div className="painting-content-wrapper">

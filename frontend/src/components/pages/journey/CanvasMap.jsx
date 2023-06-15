@@ -75,15 +75,6 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
     context.fillStyle = color;
     context.beginPath();
 
-    // if (currStop === i) {
-    //   context.fillStyle = "red";
-    //   context.arc(points[i].x, points[i].y, size * 2, 0, Math.PI * 2, true);
-    // } else {
-    //   context.arc(points[i].x, points[i].y, size, 0, Math.PI * 2, true);
-    // }
-    // context.closePath();
-    // context.fill();
-
     // Add click event listener to each point
     context.canvas.addEventListener("click", event => {
       const rect = context.canvas.getBoundingClientRect();
@@ -131,6 +122,12 @@ function generatePoints(amountOfPoints) {
     } else {
       X -= width * Math.floor(Math.random() * (multiplier - 2)) + 2;
     }
+    if (X > 380) {
+      X = 380;
+    } else if (X < 20) {
+      X = 20;
+    }
+
     Y = Y - depth;
     if (depth > 10) {
       depth = (depth / 100) * (100 - depthStepReduction);
@@ -149,7 +146,7 @@ function drawMap(coordinates, context) {
   // Draw smooth line.
   context.setLineDash([0]);
   context.lineWidth = 3;
-  context.strokeStyle = "black";
+  context.strokeStyle = "#777";
   bzCurve(coordinates, 0.5, 0.1, false, context);
 }
 

@@ -6,25 +6,21 @@ const RenderImage = ({ image, altText }) => {
       <img
         src={image || "./images/fallback-image.svg"}
         alt={altText}
-        onLoad={(currentTarget) => {
+        onLoad={currentTarget => {
+          const aspectRatio =
+            currentTarget.currentTarget.naturalWidth /
+            currentTarget.currentTarget.naturalHeight;
 
-          const aspectRatio = currentTarget.currentTarget.naturalWidth / currentTarget.currentTarget.naturalHeight;
-          console.log("Aspect ratio: " + aspectRatio);
-          console.log(currentTarget.currentTarget.alt)
-          if (aspectRatio > 1.1) {//landscape
-            console.log("setting style to: landscape")
-            currentTarget.currentTarget.parentElement.className = "image-wrapper"
-            // currentTarget.currentTarget.className = "landscape"
+          if (aspectRatio > 1.1) {
+            currentTarget.currentTarget.parentElement.className =
+              "image-wrapper";
           } else {
-            console.log("setting style to: portrait")
-            currentTarget.currentTarget.parentElement.className = "image-wrapper portrait"
-            // currentTarget.currentTarget.className = "portrait"
+            currentTarget.currentTarget.parentElement.className =
+              "image-wrapper portrait";
           }
         }}
-        onError={({currentTarget}) => {
+        onError={({ currentTarget }) => {
           console.log("error");
-          // currentTarget.onerror = null;
-          currentTarget.src = "./images/fallback-image.svg";
         }}
       />
     </div>

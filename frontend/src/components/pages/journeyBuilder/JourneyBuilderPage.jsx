@@ -54,10 +54,6 @@ const JourneyBuilderPage = () => {
     submitData(dataToSubmit);
   };
 
-  useEffect(() => {
-    console.log(journeyData);
-  }, [journeyData]);
-
   const submitData = async dataToSubmit => {
     try {
       const res = await ApiService.postFormData(dataToSubmit, `journey/new`);

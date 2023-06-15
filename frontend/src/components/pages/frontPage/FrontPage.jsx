@@ -1,12 +1,8 @@
 import React from "react";
-// import Logo from "./Logo";
-// import SubHeading from "./SubHeading";
 import "./front-page.scss";
 import { Link } from "react-router-dom";
 
 const FrontPage = () => {
-  const handleClick = () => {};
-
   return (
     <div className="page front-page">
       <div className="logo-container">

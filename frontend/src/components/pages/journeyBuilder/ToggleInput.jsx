@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-// import "./ToggleInput.scss";
+import { useRef } from "react";
 
 const ToggleInput = ({ question, name, defaultChecked }) => {
   const inputRef = useRef(null);
