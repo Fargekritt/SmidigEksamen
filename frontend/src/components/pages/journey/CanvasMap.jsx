@@ -96,7 +96,6 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
 
 /**
  * Generate points with random locations.
- * @param setCanvasHeight.
  * @param amountOfPoints Amount of points generated.
  */
 function generatePoints(amountOfPoints) {
