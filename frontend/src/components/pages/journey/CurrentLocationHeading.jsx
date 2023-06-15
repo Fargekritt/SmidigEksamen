@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 const CurrentLocationHeading = ({ exhibitionData, currentStop }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [nextExhibition, setNextExhibition] = useState(exhibitionData);
@@ -16,9 +17,8 @@ const CurrentLocationHeading = ({ exhibitionData, currentStop }) => {
 
   useEffect(() => {
     const updatedCurrentExhibition = findCurrentExhibition();
-    console.log("UPDATED", updatedCurrentExhibition);
+
     if (updatedCurrentExhibition !== currentExhibition) {
-      console.log(updatedCurrentExhibition, currentExhibition);
       setNextExhibition(updatedCurrentExhibition);
       setIsAnimating(true);
     }
@@ -71,9 +71,13 @@ const CurrentLocationHeading = ({ exhibitionData, currentStop }) => {
   };
 
   return (
-    <div className="current-location-heading-wrapper">
-      {showCurrentLocation()}
-    </div>
+    <>
+      {currentExhibition !== undefined && (
+        <div className="current-location-heading-wrapper">
+          {showCurrentLocation()}
+        </div>
+      )}
+    </>
   );
 };
 

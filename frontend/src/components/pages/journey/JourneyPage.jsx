@@ -26,10 +26,10 @@ const JourneyPage = () => {
 
   const [coordinates, setCoordinates] = useState([]);
   const [canvas, setCanvas] = useState(null);
-
   const [exhibitionData, setExhibitionData] = useState([]);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
   const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
+
   const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
@@ -135,7 +135,6 @@ const JourneyPage = () => {
   };
 
   const findCurrentExhibition = () => {
-    console.log(journey);
     if (exhibitionData.length && journey.length) {
       return exhibitionData.find(
         exhibition => exhibition.id === journey[0].exhibitionId
@@ -202,7 +201,6 @@ const JourneyPage = () => {
             </div>
             <CurrentStopSection
               handleViewPaintingPage={() => {
-                console.log(paintingPageIsVisible);
                 setPaintingPageIsVisible(true);
               }}
               paintingName={journeyData.currentPaintingData?.paintingName}

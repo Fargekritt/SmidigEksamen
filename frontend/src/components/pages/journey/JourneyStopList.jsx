@@ -1,4 +1,3 @@
-import React from "react";
 import JourneyStopItem from "./JourneyStopItem";
 import stairsUp from "../../../assets/icons/stairs-up.svg";
 

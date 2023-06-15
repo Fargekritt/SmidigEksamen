@@ -24,7 +24,6 @@
 }
 
 .page.painting {
-  border-radius: 0.5em 0.5em 0em 0em;
   overflow: hidden;
   width: 100%;
   position: absolute;
@@ -63,8 +62,6 @@
 
   .page-header {
     background-color: transparent;
-    // background-color: #ffffffe7;
-    // background-color: rgba(0, 0, 0, 0.061);
     border: none;
   }
 
@@ -133,7 +130,8 @@
 
   & h2 {
     font-family: $font_family--primary;
-    font-size: 3.5em;
+    font-size: min(max(12vw, 4em), 12vw);
+
     text-transform: uppercase;
     position: relative;
     z-index: 2;
@@ -150,7 +148,8 @@
 
 .comments {
   .comment:not(:last-child) {
-    // border-top: 0.01em solid rgb(140, 140, 140);
+    border-top: 0.01em solid rgb(140, 140, 140);
+    padding-top: 0.5em;
   }
   .comment {
     margin-block: 1em;

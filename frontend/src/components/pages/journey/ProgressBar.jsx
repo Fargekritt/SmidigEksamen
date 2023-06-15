@@ -1,5 +1,3 @@
-import React from "react";
-
 const calculatePercentage = (currentStop, total) => {
   return ((currentStop / (total - 1)) * 100).toFixed(0);
 };

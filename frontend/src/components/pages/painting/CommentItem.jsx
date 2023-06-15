@@ -11,7 +11,6 @@ const CommentItem = ({ text, date, likes }) => {
     day: "numeric",
   };
   const dateString = new Date(date).toLocaleDateString("nb-NO", dateOptions);
-  console.log("COMMENT", text, likes);
 
   return (
     <div className="comment">

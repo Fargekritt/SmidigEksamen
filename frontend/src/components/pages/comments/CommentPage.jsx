@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import CommentItem from "../painting/CommentItem";
 import ApiService from "../../../services/ApiService";
 import sendIcon from "../../../assets/icons/paper-plane.svg";
-import arrowDown from "../../../assets/icons/arrow-down.svg";
 import downIcon from "../../../assets/icons/down.svg";
 import "./comment-page.scss";
 
@@ -91,7 +90,7 @@ const CommentPage = ({
             placeholder={`Legg igjen en kommentar om ${paintingName}`}
             maxLength={250}
           />
-          {/* {textareaHasLength && ( */}
+
           <button
             className={`submit-comment-button ${
               textareaHasLength ? "button-visible" : ""
@@ -99,7 +98,6 @@ const CommentPage = ({
           >
             <img src={sendIcon} alt="paper plane icon"></img>
           </button>
-          {/* )} */}
         </form>
       </div>
     </div>

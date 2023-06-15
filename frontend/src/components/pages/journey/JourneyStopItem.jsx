@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ItemPreviewPopUp from "./ItemPreviewPopUp";
-import ApiService from "../../../services/ApiService";
 import userIcon from "../../../assets/icons/user.svg";
 
 const JourneyStopItem = ({
   paintingId,
-  exhibitionId,
   journeyIndex,
   currentStop,
   coordinates,

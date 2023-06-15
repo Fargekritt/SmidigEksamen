@@ -54,8 +54,9 @@
     }
   }
 
-  .page-header p {
+  .page-header > .heading {
     color: #333;
+    font-size: min(0.8em, 3vw);
   }
 
   .comment:not(:last-of-type) {
