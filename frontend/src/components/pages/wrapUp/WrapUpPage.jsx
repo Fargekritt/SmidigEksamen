@@ -2,7 +2,7 @@ import RangeInput from "../journeyBuilder/RangeInput";
 import ExternalLinks from "./ExternalLinks";
 import SocialMediaLinks from "./SocialMediaLinks";
 import UpcomingEvents from "./UpcomingEvents";
-import "./WrapUpPage.scss";
+import "./wrap-up-page.scss";
 import downIcon from "../../../assets/icons/down.svg";
 import { useState } from "react";
 
@@ -34,7 +34,7 @@ const WrapUpPage = ({ setIsVisible }) => {
           />
         </button>
 
-        <h2 className="heading"> Ditt Munch moment</h2>
+        <h2 className="heading"> Ditt MUNCH MOMENT</h2>
       </header>
       <div className="wrap-up-page-content">
         <div className="feedback">
