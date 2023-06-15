@@ -34,4 +34,5 @@ yarn-error.log*
 /backend/src/main/resources/static/manifest.json
 /backend/src/main/resources/static/robots.txt
 /backend/src/main/resources/static/
+.DS_Store
 /logs/

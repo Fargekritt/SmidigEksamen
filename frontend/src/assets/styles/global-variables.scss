@@ -34,28 +34,58 @@ _____ 2 ______
 /* --- FAMILY --- */
 @font-face {
   font-family: "Girott Munch Bold";
-  src: url(../fonts/GirottMunch-Bold.woff2);
+  src: url(../fonts/GirottMunch-Bold.woff2) format("woff2");
+  font-weight: bold;
 }
 
 @font-face {
   font-family: "Girott Munch Bold Backslant";
-  src: url(../fonts/GirottMunch-BoldBackslant.woff2);
+  src: url(../fonts/GirottMunch-BoldBackslant.woff2) format("woff2");
+  font-weight: bold-backslant;
 }
 
 @font-face {
   font-family: "Girott Munch Bold Slant";
-  src: url(../fonts/GirottMunch-BoldSlant.woff2);
+  src: url(../fonts/GirottMunch-BoldSlant.woff2) format("woff2");
+  font-weight: bold-slant;
 }
 
 @font-face {
   font-family: "Aktiv Grotesk";
-  src: url(../fonts/Aktiv-Grotesk-Bold.woff), font-weight-bold,
-    url(../fonts/Aktiv-Grotesk-Bolder.woff), font-weight-bolder,
-    url(../fonts/Aktiv-Grotesk-Regular.woff), font-weight-normal,
-    url(../fonts/Aktiv-Grotesk-Regular-Slanted.woff), font-weight-normal, italic,
-    url(../fonts/Aktiv-Grotesk-Lighter.woff), font-weight-lighter,
-    url(../fonts/Aktiv-Grotesk-Lighter-Slanted.woff), font-weight-lighter,
-    italic;
+  src: url(../fonts/Aktiv-Grotesk-Regular.woff) format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Regular-Slanted.woff) format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Bold.woff) format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Bolder.woff) format("woff");
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Lighter.woff) format("woff");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Lighter-Slanted.woff) format("woff");
+  font-weight: lighter;
+  font-style: italic;
 }
 
 $font_family--primary-backslant: "Girott Munch Bold Backslant";
@@ -81,9 +111,7 @@ $color_munch_pink: #dfa699;
 $color_munch_navy: #112234;
 $color_munch_gold: #988359;
 
-$color_primary: #009689;
-$color_secondary: #a8d3cf;
-$color_tertiary: #000;
+$color_primary: #006b62;
 $color_background: #ffffff;
 $color_border: #dddddd;
 $color_success: #27ae60;
@@ -92,3 +120,12 @@ $color_disabled: #cccccc;
 
 $color_text--primary: #111;
 $color_text--secondary: #333;
+
+/* ---------- [3] IMAGES ---------- */
+$icon_size--big: 3em;
+$icon_size--small: 1em;
+
+/* ---------- [4] ELEMENTS ---------- */
+$header_height: 3em;
+$mobile_width--min: 300px;
+$mobile_width--max: 900px;

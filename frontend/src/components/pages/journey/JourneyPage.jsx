@@ -1,15 +1,17 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import JourneyStopList from "./JourneyStopList";
+import "../../../assets/styles/app.scss";
 import "./journey-page.scss";
 import CurrentStopSection from "./CurrentStopSection";
 import ProgressBar from "./ProgressBar";
 import arrowUp from "../../../assets/icons/arrow-up.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
 import CanvasMap from "./CanvasMap";
-import {JourneyContext} from "../../../contexts/JourneyContext";
+import { JourneyContext } from "../../../contexts/JourneyContext";
 import ApiService from "../../../services/ApiService";
 import PaintingPage from "../painting/PaintingPage";
 import WrapUpPage from "../wrapUp/WrapUpPage";
+import CurrentLocationHeading from "./CurrentLocationHeading";
 
 const calculatePercentage = (number, total) => {
   return ((number / total) * 100).toFixed(0);
@@ -24,37 +26,11 @@ const JourneyPage = () => {
 
   const [coordinates, setCoordinates] = useState([]);
   const [canvas, setCanvas] = useState(null);
-
-  const dummyJourney = [
-    {
-      paintingId: 1,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 4,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 5,
-      exhibitionId: 3,
-    },
-    {
-      paintingId: 34,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 30,
-      exhibitionId: 4,
-    },
-    {
-      paintingId: 77,
-      exhibitionId: 8,
-    },
-  ];
   const [exhibitionData, setExhibitionData] = useState([]);
   const [paintingPageIsVisible, setPaintingPageIsVisible] = useState(false);
   const [wrapUpPageIsVisible, setWrapUpPageIsVisible] = useState(false);
-  const {journeyData, setJourneyData} = useContext(JourneyContext);
+
+  const { journeyData, setJourneyData } = useContext(JourneyContext);
 
   useEffect(() => {
     if (!journeyData) {
@@ -64,10 +40,15 @@ const JourneyPage = () => {
       }
     }
     if (journeyData) {
-      const sortedPaintings = journeyData.stops.sort(
-        (a, b) => a.paintingId - b.paintingId
-      );
-      setJourney(sortedPaintings);
+      const sortedJourney = journeyData.stops.sort((a, b) => {
+        if (a.exhibitionId !== b.exhibitionId) {
+          return a.exhibitionId - b.exhibitionId;
+        } else {
+          return a.paintingId - b.paintingId;
+        }
+      });
+
+      setJourney(sortedJourney);
     }
   }, [journeyData]);
 
@@ -93,9 +74,9 @@ const JourneyPage = () => {
         setExhibitionData(exhibitionsInStorage);
       } else {
         try {
-          const res = await ApiService.getAll("exhibition").then(
-            res => res.data
-          );
+          const res = await ApiService.getAll("exhibition")
+            .then(res => res.data)
+            .catch(err => Promise.reject(err));
           setExhibitionData(res);
           sessionStorage.setItem("exhibitions", JSON.stringify(res));
         } catch (err) {
@@ -113,14 +94,16 @@ const JourneyPage = () => {
           await ApiService.getById(
             "painting",
             journey[progress.currentStop].paintingId
-          ).then(res => {
-            setJourneyData(journeyData => {
-              return {
-                ...journeyData,
-                currentPaintingData: res.data,
-              };
-            });
-          });
+          )
+            .then(res => {
+              setJourneyData(journeyData => {
+                return {
+                  ...journeyData,
+                  currentPaintingData: res.data,
+                };
+              });
+            })
+            .catch(err => Promise.reject(err));
         } catch (err) {
           console.log(err);
         }
@@ -151,80 +134,97 @@ const JourneyPage = () => {
     });
   };
 
+  const findCurrentExhibition = () => {
+    if (exhibitionData.length && journey.length) {
+      return exhibitionData.find(
+        exhibition => exhibition.id === journey[0].exhibitionId
+      );
+    }
+  };
+
+  findCurrentExhibition();
+
   return (
-    <>
+    <div>
       <div className="page journey">
-        <header>
-          <h2>Journey</h2>
+        <header className="page-header">
+          <h2 className="heading">Journey</h2>
         </header>
+
         <div>
-          <ProgressBar progress={progress}/>
-        </div>
-
-
-        <p>stops: {progress.stops}</p>
-        <p>currentStop: {progress.currentStop}</p>
-
-        <div className="journey-button-wrapper">
-          <button
-            className="journey-button next"
-            onClick={() => handleProgressChange(1)}
-          >
-            <img src={arrowUp} alt="arrow next"></img>
-          </button>
-          <button
-            className="journey-button previous"
-            onClick={() => handleProgressChange(-1)}
-          >
-            <img src={arrowDown} alt="arrow back"></img>
-          </button>
+          <ProgressBar progress={progress} />
         </div>
 
         {progress.stops > 0 && (
           <>
+            <CurrentLocationHeading
+              exhibitionData={exhibitionData}
+              currentStop={journey[progress.currentStop]}
+            />
+            <p className={`journey-start-indicator`}>
+              {/* Reisen din starter i {() => findCurrentExhibition} .. */}
+            </p>
+
+            <div className="journey-button-wrapper">
+              <button
+                className="journey-button next"
+                onClick={() => handleProgressChange(1)}
+              >
+                <img src={arrowUp} alt="arrow next"></img>
+              </button>
+              <button
+                disabled={progress.currentStop <= 0 ? true : false}
+                className="journey-button previous"
+                onClick={() => handleProgressChange(-1)}
+              >
+                <img src={arrowDown} alt="arrow back"></img>
+              </button>
+            </div>
+
             <div className="map-wrapper">
-              <JourneyStopList
-                journeyStops={journey}
-                currentStop={progress.currentStop}
-                coordinates={coordinates}
-                canvas={canvas}
-              />
-              <CanvasMap
-                canvas={canvas}
-                setCanvas={setCanvas}
-                progress={progress}
-                setProgress={setProgress}
-                coordinates={coordinates}
-                setCoordinates={setCoordinates}
-              />
+              <div className="map-content">
+                <JourneyStopList
+                  journeyStops={journey}
+                  currentStop={progress.currentStop}
+                  coordinates={coordinates}
+                  canvas={canvas}
+                />
+                <CanvasMap
+                  canvas={canvas}
+                  setCanvas={setCanvas}
+                  progress={progress}
+                  setProgress={setProgress}
+                  coordinates={coordinates}
+                  setCoordinates={setCoordinates}
+                />
+              </div>
             </div>
             <CurrentStopSection
-              handleViewPaintingPage={() => setPaintingPageIsVisible(true)}
+              handleViewPaintingPage={() => {
+                setPaintingPageIsVisible(true);
+              }}
               paintingName={journeyData.currentPaintingData?.paintingName}
               imagePath={journeyData.currentPaintingData?.imagePath}
               paintingId={journey[progress.currentStop]?.paintingId}
             />
           </>
         )}
-
       </div>
 
-      <PaintingPage
-        painting={journeyData?.currentPaintingData}
-        isVisible={paintingPageIsVisible}
-        setIsVisible={setPaintingPageIsVisible}
-      />
-
-      <>
-        {wrapUpPageIsVisible && (
-          <WrapUpPage
-            isVisible={wrapUpPageIsVisible}
-            setIsVisible={setWrapUpPageIsVisible}
-          />
-        )}
-      </>
-
-    </>
+      {paintingPageIsVisible && (
+        <PaintingPage
+          painting={journeyData?.currentPaintingData}
+          isVisible={paintingPageIsVisible}
+          setIsVisible={setPaintingPageIsVisible}
+        />
+      )}
+      {wrapUpPageIsVisible && (
+        <WrapUpPage
+          isVisible={wrapUpPageIsVisible}
+          setIsVisible={setWrapUpPageIsVisible}
+        />
+      )}
+    </div>
   );
 };
 

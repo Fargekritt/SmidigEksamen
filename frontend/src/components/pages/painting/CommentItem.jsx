@@ -17,7 +17,7 @@ const CommentItem = ({ text, date, likes }) => {
       <p className="text">{text}</p>
 
       <div className="details-wrapper">
-        {likes && (
+        {likes >= 0 && (
           <div className="likes-wrapper">
             <button
               className="likes-button"

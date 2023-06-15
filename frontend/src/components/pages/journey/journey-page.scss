@@ -2,24 +2,20 @@
 
 .page.journey {
   height: 100vh;
+  min-width: $mobile_width--min;
   display: flex;
   position: relative;
   overflow: hidden;
   flex-flow: column nowrap;
 
-  & h2 {
-    text-align: center;
-  }
-
-  & header {
-    padding-block: 2em 1em;
-  }
+  padding-top: $header_height;
+  margin: auto;
 }
 
 .progress-bar {
-  height: 0.5em;
+  z-index: 2;
+  height: 0.3em;
   background-color: #229cff;
-  border-radius: 10em;
   transition: all 0.2s ease;
   width: var(--progress-width, 0%);
   min-width: 0.5%;
@@ -35,52 +31,94 @@
 
   &-wrapper {
     position: relative;
-    // border: 1px solid #4a789d4e;
-    border-radius: 1em;
     overflow: hidden;
   }
-}
-
-.stop-indicator {
-  width: 0.9em;
-  height: 0.9em;
-  margin: auto;
-  border-radius: 1em;
-  background-color: #eee;
-  border: 0.15em solid #777;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-
-  &.previous {
-    background-color: $color_text--secondary;
-    width: 0.6em;
-    height: 0.6em;
-    border: none;
-  }
-
-  &.current {
-    width: 1em;
-    height: 1em;
-
-    background-color: $color_munch_red;
-    //border: none;
-    border: 0.15em solid $color_munch_red;
-  }
-
-  &-wrapper {
-    width: 1em;
-    height: 1em;
-    display: flex;
+  &-label {
+    position: absolute;
+    font-size: 0.7em;
   }
 }
+
+.current-location-heading-wrapper {
+  z-index: 3;
+  background-color: #941c1c03;
+  backdrop-filter: blur(6px);
+  font-size: 3em;
+  font-family: $font_family--primary;
+  text-transform: uppercase;
+  padding: 0.25em;
+  width: 100%;
+  box-shadow: 0em 0em 0.4em 0em #00000020;
+  height: 1.4em;
+  border-radius: 0 0 0.1em 0.1em;
+
+  overflow: hidden;
+  color: $color_munch_navy;
+
+  & span {
+    display: inline-block;
+  }
+
+  & .current-floor {
+    width: 0.7em;
+    position: relative;
+  }
+
+  .slide-up-heading-exit {
+    animation: slide-up-heading-exit 0.25s forwards ease-out;
+  }
+
+  .slide-up-heading-enter {
+    animation: slide-up-heading-enter 0.25s forwards ease-out;
+  }
+
+  .current-exhibition {
+    animation-delay: 0.05s;
+  }
+
+  .location-wrapper {
+  }
+}
+
+@keyframes slide-up-heading-exit {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+@keyframes slide-up-heading-enter {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/**** CURRENT STOP SECTION ****/
 
 .current-stop {
   &-section {
+    &-wrapper {
+      z-index: 2;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      // border: 1px solid red;
+      background-color: #fff;
+    }
+    background-color: #ffffff;
+    flex-grow: 1;
     margin-top: auto;
     overflow: hidden;
     cursor: pointer;
 
-    background-color: #ffffff;
     box-shadow: #8c8c8c3c 0em 0em 4em;
     border-radius: 0.3em 0.3em 0 0;
 
@@ -113,85 +151,50 @@
 
   &-name {
     margin-top: 0.5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+
+    &.next {
+      transform: translateX(100%);
+    }
+
+    &.slide-left-enter {
+      animation: slide-left-enter 0.3s forwards ease;
+    }
+
+    &.slide-left-exit {
+      animation: slide-left-exit 0.25s forwards ease-out;
+    }
+
+    &-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 50%;
+    }
   }
 }
 
-.journey-stop-item {
-  position: relative;
-}
-
-.item-preview {
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid blue;
-  display: flex;
-  opacity: 1;
-  transition: opacity 0.25s ease-out;
-
-  &.fade-out {
-    opacity: 0;
-  }
+.play-pause-button {
+  height: 100%;
+  width: 5em;
+  padding: 1.2em;
+  margin-right: 1em;
+  border: none;
+  background-color: $color_white;
+  cursor: pointer;
 
   & img {
-    width: 3em;
-    height: 3em;
-    margin-right: 0.3em;
-  }
-}
-
-.journey-button {
-  background-color: #fff;
-  border: 0.2em solid rgb(126, 126, 126);
-  padding: 0.7em;
-  border-radius: 3em;
-  width: 4em;
-  height: 4em;
-  margin: 0.4em 3em;
-
-  &-wrapper {
-    // border: 1px solid blue;
-    position: absolute;
-    right: 0;
-    top: 60%;
-
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-  }
-
-  & > img {
     width: 100%;
     height: 100%;
-
-    object-fit: contain;
-  }
-}
-
-/* Current Stop */
-.current-stop-name-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  height: 50%;
-}
-
-.current-stop-name {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  white-space: nowrap;
-
-  &.next {
-    transform: translateX(100%);
+    transition: all 0.1s ease-in-out;
   }
 
-  &.slide-left-enter {
-    animation: slide-left-enter 0.3s forwards ease;
-  }
-
-  &.slide-left-exit {
-    animation: slide-left-exit 0.25s forwards ease-out;
+  &:hover img {
+    transform: scale(1.2);
   }
 }
 
@@ -215,7 +218,30 @@
   }
 }
 
+/**** JOURNEY MAP ****/
+
 .map-wrapper {
+  max-width: $mobile_width--max;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  animation: 0.35s identifier forwards cubic-bezier(0.05, 0.38, 0.365, 1.3);
+}
+
+@keyframes identifier {
+  0% {
+    transform: skew(-30deg, -50deg) translateY(-20%);
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.map-content {
   position: relative;
   box-sizing: border-box;
   width: fit-content;
@@ -227,15 +253,160 @@
 
   & .journey-map-indicator {
     position: absolute;
+    animation: indicator-fade-in 0.55s forwards
+      cubic-bezier(0.05, 0.38, 0.365, 1.5);
+    opacity: 0;
+
+    // &:first-child::before {
+    //   border: 3px solid blue;
+    //   content: "start her";
+    //   position: absolute;
+    //   left: 100%;
+    // }
   }
 
   & .journey-map-stairs {
     width: 2em;
+    &::before {
+      content: "";
+      display: block;
+      width: 20vw;
+      border-bottom: 0.2em solid rgba(78, 67, 67, 0.2);
+      position: absolute;
+      left: 100%;
+      top: 25%;
+      z-index: -3;
+    }
 
     & img {
       object-fit: cover;
       width: 100%;
       height: 100%;
     }
+  }
+}
+
+@keyframes indicator-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate(-100%, -500%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.stop-indicator {
+  width: 0.9em;
+  height: 0.9em;
+  margin: auto;
+  border-radius: 1em;
+  background-color: #eee;
+  border: 0.15em solid #777;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &.previous {
+    background-color: $color_text--secondary;
+    width: 0.6em;
+    height: 0.6em;
+    border: none;
+  }
+
+  &.current {
+    width: 2em;
+    height: 2em;
+    background-color: $color_munch_red;
+    border: 0.25em solid $color_munch_red;
+    text-align: center;
+    display: flex;
+  }
+
+  &-wrapper {
+    width: 2em;
+    height: 2em;
+    display: flex;
+  }
+}
+
+.item-preview {
+  position: absolute;
+  background-color: #fff;
+  border: 0.1em solid rgba(0, 0, 0, 0.28);
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+  border-radius: 0.14em;
+  overflow: hidden;
+  height: 3em;
+  transform: translate(20%, 0%);
+  animation: pop-up-preview 0.25s forwards;
+
+  &.fade-out {
+    opacity: 0;
+  }
+
+  & > p {
+    padding-inline: 0.6em;
+    font-size: 0.8em;
+    margin: auto;
+  }
+  & img {
+    width: 3em;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@keyframes pop-up-preview {
+  0% {
+    transform: translate(-30%, -70%) scale(0);
+  }
+  100% {
+    transform: translate(20%, 0%) scale(1);
+  }
+}
+
+.journey-button {
+  background-color: #fff;
+  border: 0.2em solid #7e7e7e;
+  padding: 0.7em;
+  border-radius: 3em;
+  width: 4em;
+  height: 4em;
+  margin: 0.4em 3em;
+  z-index: 5;
+
+  &-wrapper {
+    position: absolute;
+    right: 0;
+    top: 60%;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+  }
+
+  &:hover,
+  :focus {
+    border-color: $color_munch_gold;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
   }
 }

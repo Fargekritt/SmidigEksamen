@@ -4,14 +4,12 @@
   0% {
     display: none;
     transform: translate(-50%, 100%);
-    height: 200%;
   }
   1% {
     display: block;
   }
   100% {
     transform: translate(-50%, 0%);
-    height: 200%;
   }
 }
 
@@ -26,21 +24,21 @@
 }
 
 .page.painting {
-  max-width: 50em;
-  border-radius: 0.5em 0.5em 0em 0em;
-  overflow-y: scroll;
-
+  overflow: hidden;
   width: 100%;
   position: absolute;
+  display: none;
   top: 0;
   left: 50%;
-  // height: 150%;
+  height: 100vh;
   opacity: 0;
   transform: translate(-50%, 100%);
   pointer-events: none;
   transition: opacity 0.4s, transform 0.55s cubic-bezier(0.51, 0.92, 0.24, 1);
+  z-index: 10;
 
   &.visible {
+    display: block;
     opacity: 1;
     transform: translate(-50%, 0%);
     pointer-events: all;
@@ -48,6 +46,8 @@
   }
 
   &.not-visible {
+    transform: translate(-50%, 0%);
+    display: block;
     animation: slide-down 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
 
@@ -55,30 +55,35 @@
     color: #cbcbcb;
   }
 
-  & nav {
-    margin: 0.6em;
-    position: absolute;
-    backdrop-filter: blur(10px);
-    // border-radius: 2em;
-    position: fixed;
-    padding: 0.1em;
-    // width: 100%;
-    // overflow: hidden;
+  .painting-content-wrapper {
+    height: 100vh;
+    overflow-y: scroll;
+  }
 
-    & button {
-      width: 3.5em;
-      height: 3.5em;
-      border: none;
-      object-fit: cover;
-      border-radius: 3em;
-      // background-color: #ffffffe7;
-      // background-color: transparent;
-      // box-shadow: 0em 0em 1em #fff;
+  .page-header {
+    background-color: transparent;
+    border: none;
+  }
 
-      & > img {
-        width: 100%;
-      }
+  & button {
+    width: $icon_size--big;
+    height: $icon_size--big;
+    border: none;
+    object-fit: cover;
+    border-radius: 3em;
+    background-color: $color_white;
+
+    & > img {
+      width: 100%;
     }
+  }
+
+  .no-comments {
+    font-size: 0.9em;
+    margin-block: 1em;
+  }
+  .view-more-comments {
+    font-size: 0.9em;
   }
 
   & .image-wrapper {
@@ -112,7 +117,6 @@
   }
 
   & .content {
-    // background-color: #ffffff88;
     padding: 1em;
     position: relative;
   }
@@ -132,9 +136,8 @@
 
   & section {
     margin: 1em 0.4em;
-    background-color: #00000043;
-    // background-color: #ffffffe3;
-    padding: 1em;
+    background-color: #00000076;
+    padding: 1.5em 1em;
     border-radius: 0.2em;
     backdrop-filter: blur(200px);
 
@@ -145,7 +148,8 @@
 
   & h2 {
     font-family: $font_family--primary;
-    font-size: 3.5em;
+    font-size: min(max(12vw, 4em), 12vw);
+
     text-transform: uppercase;
     position: relative;
     z-index: 2;
@@ -162,13 +166,15 @@
 
 .comments {
   .comment:not(:last-child) {
-    // border-top: 0.01em solid rgb(140, 140, 140);
+    border-top: 0.01em solid rgb(140, 140, 140);
+    padding-top: 0.5em;
   }
 
   .comment {
     margin-block: 1em;
 
     &-list {
+      cursor: pointer;
     }
 
     & .date {
@@ -205,7 +211,6 @@
   background-size: contain;
 
   &.image {
-    background-image: url("https://source.unsplash.com/random");
     background-position: 20% 20%;
     background-size: cover;
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 const calculatePercentage = (currentStop, total) => {
   return ((currentStop / (total - 1)) * 100).toFixed(0);
 };
@@ -9,7 +7,6 @@ const ProgressBar = ({ progress: { stops, currentStop } }) => {
 
   return (
     <div>
-      <label>{currentProgress}%</label>
       <div className="progress-bar-wrapper">
         <div
           className="progress-bar"

@@ -2,7 +2,6 @@ import CommentItem from "./CommentItem";
 
 const CommentList = ({ comments }) => {
   const renderComments = comments.map((comment, i) => {
-    console.log(comment);
     if (comments.length > 0 && i < 2) {
       return (
         <CommentItem key={comment.id} text={comment.text} date={comment.date} />
@@ -22,10 +21,14 @@ const CommentList = ({ comments }) => {
 
   return (
     <div className="comment-list">
-      {comments.length < 1 ? <p>Det er ingen kommentarer enda</p> : ""}
+      {comments.length < 1 ? (
+        <p className="no-comments">Det er ingen kommentarer enda</p>
+      ) : (
+        ""
+      )}
       {renderComments}
 
-      <p>{renderViewMoreText()}</p>
+      <p className="view-more-comments">{renderViewMoreText()}</p>
     </div>
   );
 };
