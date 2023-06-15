@@ -41,13 +41,12 @@ const CommentPage = ({
   const submitData = async dataToSubmit => {
     console.log(dataToSubmit);
     try {
-      const res = await ApiService.postFormData(
-        dataToSubmit,
-        `comment/new`
-      ).then(res => {
-        setComments(prevState => [...prevState, res.data]);
-        inputRef.current.value = "";
-      });
+      const res = await ApiService.postFormData(dataToSubmit, `comment/new`)
+        .then(res => {
+          setComments(prevState => [...prevState, res.data]);
+          inputRef.current.value = "";
+        })
+        .catch(err => Promise.reject(err));
       console.log(res);
       return res;
     } catch (err) {
