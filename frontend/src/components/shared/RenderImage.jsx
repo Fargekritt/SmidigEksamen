@@ -32,7 +32,6 @@ function FocalPoint(imageUrl) {
 const RenderImage = ({image, altText}) => {
   return (
     <div className="image-wrapper">
-      <p className={"portrait"}>Kakemann</p>
       <img
         src={image || "./images/fallback-image.svg"}
         alt={altText}
@@ -43,10 +42,12 @@ const RenderImage = ({image, altText}) => {
           console.log(currentTarget.currentTarget.alt)
           if (aspectRatio > 1) {//landscape
             console.log("setting style to: landscape")
-            currentTarget.currentTarget.className = "landscape"
+            currentTarget.currentTarget.parentElement.className = "image-wrapper"
+            // currentTarget.currentTarget.className = "landscape"
           } else {
             console.log("setting style to: portrait")
-            currentTarget.currentTarget.className = "portrait"
+            currentTarget.currentTarget.parentElement.className = "image-wrapper portrait"
+            // currentTarget.currentTarget.className = "portrait"
           }
         }}
         onError={({currentTarget}) => {
