@@ -2,7 +2,7 @@
 Smidge eksamen
 
 # Set up av docker
-## Setup databasen
+## Setup database
 ```
 docker run --name munchMoment-mysqlserver -e MYSQL_ROOT_PASSWORD=MadridGang69 -p 3306:3306 -d mysql:latest
 ```
