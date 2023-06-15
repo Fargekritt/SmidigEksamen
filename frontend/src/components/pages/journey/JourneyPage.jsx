@@ -74,9 +74,9 @@ const JourneyPage = () => {
         setExhibitionData(exhibitionsInStorage);
       } else {
         try {
-          const res = await ApiService.getAll("exhibition").then(
-            res => res.data
-          );
+          const res = await ApiService.getAll("exhibition")
+            .then(res => res.data)
+            .catch(err => Promise.reject(err));
           setExhibitionData(res);
           sessionStorage.setItem("exhibitions", JSON.stringify(res));
         } catch (err) {
