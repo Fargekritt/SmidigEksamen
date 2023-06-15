@@ -9,6 +9,13 @@ const CurrentLocationHeading = ({ exhibitionData, currentStop }) => {
     )
   );
 
+  useEffect(() => {
+    const currExhibition = exhibitionData.find(
+      exhibition => exhibition.id === currentStop.exhibitionId
+    );
+    setCurrentExhibition(currExhibition);
+  }, [exhibitionData]);
+
   const findCurrentExhibition = () => {
     return exhibitionData.find(
       exhibition => exhibition.id === currentStop.exhibitionId
