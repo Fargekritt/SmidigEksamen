@@ -155,7 +155,7 @@ const JourneyPage = () => {
           <ProgressBar progress={progress} />
         </div>
 
-        {progress.stops > 0 && (
+        {progress.stops > 0 && exhibitionData !== null && (
           <>
             <CurrentLocationHeading
               exhibitionData={exhibitionData}
