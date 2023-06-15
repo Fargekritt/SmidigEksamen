@@ -1,26 +1,27 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React from "react";
 
 const RenderImage = ({ image, altText }) => {
-  const imageRef = useRef();
-  useLayoutEffect(() => {
-    console.log();
-  }, []);
-
-  if (imageRef.current) {
-    console.log(
-      imageRef.current.alt,
-      imageRef.current.naturalHeight,
-      imageRef.current.naturalWidth
-    );
-  }
-
   return (
     <div className="image-wrapper">
       <img
-        ref={imageRef}
         src={image || "./images/fallback-image.svg"}
         alt={altText}
-        onError={({ currentTarget }) => {
+        onLoad={(currentTarget) => {
+
+          const aspectRatio = currentTarget.currentTarget.naturalWidth / currentTarget.currentTarget.naturalHeight;
+          console.log("Aspect ratio: " + aspectRatio);
+          console.log(currentTarget.currentTarget.alt)
+          if (aspectRatio > 1.1) {//landscape
+            console.log("setting style to: landscape")
+            currentTarget.currentTarget.parentElement.className = "image-wrapper"
+            // currentTarget.currentTarget.className = "landscape"
+          } else {
+            console.log("setting style to: portrait")
+            currentTarget.currentTarget.parentElement.className = "image-wrapper portrait"
+            // currentTarget.currentTarget.className = "portrait"
+          }
+        }}
+        onError={({currentTarget}) => {
           console.log("error");
           // currentTarget.onerror = null;
           currentTarget.src = "./images/fallback-image.svg";
