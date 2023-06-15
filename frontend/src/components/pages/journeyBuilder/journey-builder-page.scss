@@ -8,7 +8,7 @@
 form {
   h2 {
     margin-top: 3em;
-    font-size: 8vw;
+    font-size: min(8vw, 3em);
   }
   text-align: center;
   position: relative;
@@ -32,16 +32,10 @@ form {
 
 @keyframes form-fly-up {
   0% {
-    // top: 20%;
-    // padding-top: 15em;
-    // margin-top: 30em;
     opacity: 0;
     transform: translateY(10%);
   }
   100% {
-    // top: 0;
-    // padding-top: 0em;
-    // margin-top: 10em;
     opacity: 1;
     transform: translateY(0%);
   }
@@ -100,7 +94,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 .button {
   display: inline-block;
-  // border-radius: 0.1em;
   border: none;
   cursor: pointer;
   transition: all 0.1s ease-out;
@@ -118,6 +111,7 @@ input[type="range"]::-webkit-slider-thumb {
     &:active {
       background-color: mix($color_primary, #000, 60%);
       transform: skew(-10deg);
+      color: $color_munch_red;
     }
 
     &:disabled {
@@ -236,58 +230,11 @@ input[type="checkbox"]:not(:checked) {
   padding-bottom: 2em;
 }
 
-/**/
-
-// .dialogPolyfill {
-//   position: fixed;
-//   z-index: 999;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: rgba(0, 0, 0, 0.5);
-//   // background-color: rgba(0, 100, 100, 0.5);
-//   border: 1px solid red;
-// }
-
-// .modal {
-//   // border: 1px solid red;
-// }
-
-// .modal-content {
-//   background-color: #eee;
-//   padding: 20px;
-//   max-width: 400px;
-//   text-align: center;
-// }
-
-// .close {
-//   color: #aaa;
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-//   font-size: 28px;
-//   font-weight: bold;
-//   cursor: pointer;
-// }
-
-// .close:hover,
-// .close:focus {
-//   color: #000;
-//   text-decoration: none;
-//   cursor: pointer;
-// }
-
 dialog::backdrop {
-  /* native */
-  background-color: green;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 dialog + .backdrop {
-  /* polyfill */
-  background-color: green;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
@@ -317,7 +264,6 @@ dialog + .backdrop {
   }
   .bottom-text {
     margin-top: 2em;
-    // border: 1px solid red;
     font-size: 0.9em;
   }
 }

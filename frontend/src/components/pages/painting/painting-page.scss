@@ -71,6 +71,7 @@
     border: none;
     object-fit: cover;
     border-radius: 3em;
+    background-color: $color_white;
 
     & > img {
       width: 100%;
@@ -118,9 +119,8 @@
 
   & section {
     margin: 1em 0.4em;
-    background-color: #00000043;
-    // background-color: #ffffffe3;
-    padding: 1em;
+    background-color: #00000076;
+    padding: 1.5em 1em;
     border-radius: 0.2em;
     backdrop-filter: blur(200px);
     & * {
@@ -189,7 +189,6 @@
   background-size: contain;
 
   &.image {
-    background-image: url("https://source.unsplash.com/random");
     background-position: 20% 20%;
     background-size: cover;
 
