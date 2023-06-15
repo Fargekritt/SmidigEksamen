@@ -34,28 +34,23 @@ _____ 2 ______
 /* --- FAMILY --- */
 @font-face {
   font-family: "Girott Munch Bold";
-  src: url(../fonts/GirottMunch-Bold.woff2);
+  src: url(../fonts/GirottMunch-Bold.woff2) format("woff2");
 }
 
 @font-face {
   font-family: "Girott Munch Bold Backslant";
-  src: url(../fonts/GirottMunch-BoldBackslant.woff2);
+  src: url(../fonts/GirottMunch-BoldBackslant.woff2) format("woff2");
 }
 
 @font-face {
   font-family: "Girott Munch Bold Slant";
-  src: url(../fonts/GirottMunch-BoldSlant.woff2);
+  src: url(../fonts/GirottMunch-BoldSlant.woff2) format("woff2");
 }
 
 @font-face {
   font-family: "Aktiv Grotesk";
-  src: url(../fonts/Aktiv-Grotesk-Bold.woff), font-weight-bold,
-    url(../fonts/Aktiv-Grotesk-Bolder.woff), font-weight-bolder,
-    url(../fonts/Aktiv-Grotesk-Regular.woff), font-weight-normal,
-    url(../fonts/Aktiv-Grotesk-Regular-Slanted.woff), font-weight-normal, italic,
-    url(../fonts/Aktiv-Grotesk-Lighter.woff), font-weight-lighter,
-    url(../fonts/Aktiv-Grotesk-Lighter-Slanted.woff), font-weight-lighter,
-    italic;
+  src: url(../fonts/Aktiv-Grotesk-Regular.woff) format("woff")
+    font-weight-normal;
 }
 
 $font_family--primary-backslant: "Girott Munch Bold Backslant";

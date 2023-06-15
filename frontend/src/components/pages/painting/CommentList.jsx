@@ -22,10 +22,14 @@ const CommentList = ({ comments }) => {
 
   return (
     <div className="comment-list">
-      {comments.length < 1 ? <p>Det er ingen kommentarer enda</p> : ""}
+      {comments.length < 1 ? (
+        <p className="no-comments">Det er ingen kommentarer enda</p>
+      ) : (
+        ""
+      )}
       {renderComments}
 
-      <p>{renderViewMoreText()}</p>
+      <p className="view-more-comments">{renderViewMoreText()}</p>
     </div>
   );
 };

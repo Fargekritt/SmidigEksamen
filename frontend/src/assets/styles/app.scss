@@ -51,6 +51,7 @@ small {
   box-shadow: 0 0 2em 0em #00000009;
   z-index: 10;
   padding-inline: 1em;
+  // backdrop-filter: blur(3px);
 
   & .heading {
     margin: auto;
@@ -60,17 +61,18 @@ small {
     display: flex;
     align-items: center;
     position: absolute;
+    width: 3em;
+    height: 3em;
+    padding: 0.3em;
   }
 }
 
 .App {
   height: 100vh;
-  // overflow: hidden;
 }
 
 .page {
   min-width: $mobile_width--min;
   max-width: $mobile_width--max;
   margin: auto;
-  // position: absolute;
 }

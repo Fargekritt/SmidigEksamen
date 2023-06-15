@@ -43,8 +43,12 @@ const JourneyStopItem = ({
 
   return (
     <div
-      className="journey-stop-item journey-map-indicator"
-      style={{ left: `${coordinates.x}%`, top: `${coordinates.y}%` }}
+      className={`journey-stop-item journey-map-indicator`}
+      style={{
+        left: `${coordinates.x}%`,
+        top: `${coordinates.y}%`,
+        animationDelay: `1.${journeyIndex}s`,
+      }}
     >
       <div className="stop-indicator-wrapper">
         <div className={stopIndicatorStyle} onClick={handleClick}>

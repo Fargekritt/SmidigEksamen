@@ -95,7 +95,9 @@ const JourneyBuilderPage = () => {
       <header className="page-header">
         <h2 className="heading">Lag din egen reise</h2>
       </header>
+
       <form className="journey-builder-form" onSubmit={handleSubmit}>
+        <h2 className="heading">Lag din egen reise</h2>
         <RangeInput
           question={"Hvor mye tid har du til dispensasjon?"}
           name={"timeInput"}
@@ -134,11 +136,7 @@ const JourneyBuilderPage = () => {
         <button className="button default submit-button">lag min reise</button>
       </form>
 
-      <Modal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        // modalContent={journeyData}
-      />
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };

@@ -6,7 +6,19 @@
 }
 
 form {
+  h2 {
+    margin-top: 3em;
+    font-size: 8vw;
+  }
   text-align: center;
+  position: relative;
+  top: 0;
+  transform: translateY(20%);
+  animation: form-fly-up 0.25s ease-in-out forwards;
+
+  & > div:first-child {
+    margin-top: 15em;
+  }
   & > div {
     margin-block: 4em;
     padding-block: 1em;
@@ -15,6 +27,23 @@ form {
     margin-bottom: 2em;
     margin-inline: 1.5em;
     line-height: 1.4em;
+  }
+}
+
+@keyframes form-fly-up {
+  0% {
+    // top: 20%;
+    // padding-top: 15em;
+    // margin-top: 30em;
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  100% {
+    // top: 0;
+    // padding-top: 0em;
+    // margin-top: 10em;
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
 

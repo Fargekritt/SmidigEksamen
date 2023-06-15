@@ -132,6 +132,17 @@ const JourneyPage = () => {
     });
   };
 
+  const findCurrentExhibition = () => {
+    console.log(journey);
+    if (exhibitionData.length && journey.length) {
+      return exhibitionData.find(
+        exhibition => exhibition.id === journey[0].exhibitionId
+      );
+    }
+  };
+
+  findCurrentExhibition();
+
   return (
     <div>
       <div className="page journey">
@@ -149,6 +160,9 @@ const JourneyPage = () => {
               exhibitionData={exhibitionData}
               currentStop={journey[progress.currentStop]}
             />
+            <p className="journey-start-indicator">
+              {/* Reisen din starter i {() => findCurrentExhibition} .. */}
+            </p>
 
             <div className="journey-button-wrapper">
               <button
@@ -158,6 +172,7 @@ const JourneyPage = () => {
                 <img src={arrowUp} alt="arrow next"></img>
               </button>
               <button
+                disabled={progress.currentStop <= 0 ? true : false}
                 className="journey-button previous"
                 onClick={() => handleProgressChange(-1)}
               >

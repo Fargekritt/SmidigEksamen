@@ -63,6 +63,9 @@
 
   .page-header {
     background-color: transparent;
+    // background-color: #ffffffe7;
+    // background-color: rgba(0, 0, 0, 0.061);
+    border: none;
   }
 
   & button {
@@ -71,13 +74,18 @@
     border: none;
     object-fit: cover;
     border-radius: 3em;
-    // background-color: #ffffffe7;
-    // background-color: transparent;
-    // box-shadow: 0em 0em 1em #fff;
 
     & > img {
       width: 100%;
     }
+  }
+
+  .no-comments {
+    font-size: 0.9em;
+    margin-block: 1em;
+  }
+  .view-more-comments {
+    font-size: 0.9em;
   }
 
   & .image-wrapper {
@@ -94,7 +102,6 @@
   }
 
   & .content {
-    // background-color: #ffffff88;
     padding: 1em;
     position: relative;
   }
@@ -149,6 +156,7 @@
     margin-block: 1em;
 
     &-list {
+      cursor: pointer;
     }
     & .date {
       font-size: 0.7em;

@@ -152,9 +152,15 @@
     color: #333;
     border: none;
     transition: color 0.3s ease;
+
     &:hover,
     &:active {
       color: red;
+    }
+    & img {
+      height: 100%;
+      width: 100%;
+      transform: rotate(90deg);
     }
   }
 

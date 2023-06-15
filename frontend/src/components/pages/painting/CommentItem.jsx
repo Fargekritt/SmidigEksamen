@@ -11,13 +11,14 @@ const CommentItem = ({ text, date, likes }) => {
     day: "numeric",
   };
   const dateString = new Date(date).toLocaleDateString("nb-NO", dateOptions);
+  console.log("COMMENT", text, likes);
 
   return (
     <div className="comment">
       <p className="text">{text}</p>
 
       <div className="details-wrapper">
-        {likes && (
+        {likes >= 0 && (
           <div className="likes-wrapper">
             <button
               className="likes-button"

@@ -29,13 +29,11 @@
   max-width: 50em;
   height: 100vh;
   top: 0;
-  // background-color: #141414;
   overflow: hidden;
   background-color: #fff;
   z-index: 20;
   &.visible {
     opacity: 1;
-    // transform: translate(-50%, 100%);
     pointer-events: all;
     animation: slide-left-enter 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
@@ -44,106 +42,122 @@
     pointer-events: none;
     animation: slide-right-exit 0.5s cubic-bezier(0.51, 0.92, 0.24, 1) forwards;
   }
-}
 
-.comment-form {
-  display: flex;
-  border-radius: 0.5em;
-  overflow: hidden;
-  height: 3.5em;
-  background-color: #fff;
-
-  & textarea {
-    padding: 1em;
-    width: 100%;
-    border: none;
-    resize: none;
-    font-family: $font_family--secondary;
+  .back-button {
+    background-color: $color_white;
+    width: $icon_size--big;
+    height: $icon_size--big;
+    & img {
+      width: 100%;
+      height: 100%;
+      transform: rotate(90deg);
+    }
   }
-}
-.submit-comment-button {
-  width: 5em;
-  height: 100%;
-  border: none;
-  object-fit: cover;
-  // border-radius: 3em;
-  padding: 1em;
-  background-color: transparent;
 
-  // box-shadow: 0em 0em 1em #fff;
+  .page-header p {
+    color: #333;
+  }
 
-  & > img {
-    width: 100%;
-    height: 100%;
+  .comment:not(:last-of-type) {
+    border-bottom: 0.01em solid #dedede31;
   }
-  & > img {
-    width: 100%;
-    height: 2em;
-  }
-}
+  .comment {
+    margin-block: 1em;
+    & * {
+    }
 
-.back-button {
-  width: $icon_size--big;
-  height: $icon_size--big;
-  & img {
-    width: 100%;
-    height: 100%;
-    transform: rotate(90deg);
+    &-list {
+    }
+    & .date {
+      font-size: 0.7em;
+      text-align: right;
+      margin-block: 0.8em;
+      color: #a2a2a2;
+    }
+    & .text {
+      color: #484848;
+    }
   }
-}
 
-.comment-content-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-
-  & .comment-list {
-    padding-inline: 1em;
-    padding-top: 6em;
-    height: 100%;
-    overflow-y: scroll;
-  }
-  & .comment-form {
-    box-shadow: 0 0 5em #00000018;
-    margin-top: auto;
-  }
-}
-
-.comment:not(:last-of-type) {
-  border-bottom: 0.01em solid rgba(222, 222, 222, 0.194);
-}
-.comment {
-  margin-block: 1em;
-
-  &-list {
-  }
-  & .date {
-    font-size: 0.7em;
-    text-align: right;
-    margin-block: 0.8em;
-    color: rgb(162, 162, 162);
-  }
-  & .text {
-  }
-}
-
-.details-wrapper {
-  display: flex;
-  justify-content: space-between;
-  & .likes-wrapper {
+  .comment-form {
     display: flex;
-    align-items: center;
+    border-radius: 0.5em;
+    overflow: hidden;
+    height: 3.5em;
+    background-color: #fff;
 
-    & .likes-button {
-      object-fit: cover;
-      width: 1.3em;
-      padding: 0em;
-      margin-right: 0.5em;
+    & textarea {
+      padding: 1em;
+      width: 100%;
       border: none;
-      background-color: transparent;
-      & img {
-        width: 100%;
-        height: 100%;
+      resize: none;
+      font-family: $font_family--secondary;
+    }
+  }
+  .submit-comment-button {
+    width: 1em;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+    padding: 1em;
+    background-color: transparent;
+    transition: width 0.2s ease-in-out;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.1s ease;
+
+      &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+    }
+
+    &.button-visible {
+      width: 5em;
+    }
+  }
+
+  .comment-content-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+
+    & .comment-list {
+      padding-inline: 1em;
+      padding-top: 6em;
+      height: 100%;
+      overflow-y: scroll;
+    }
+    & .comment-form {
+      box-shadow: 0 0 5em #00000018;
+      margin-top: auto;
+    }
+  }
+
+  .details-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    & .likes {
+      font-size: 0.8em;
+    }
+    & .likes-wrapper {
+      display: flex;
+      align-items: center;
+
+      & .likes-button {
+        object-fit: cover;
+        width: 1.3em;
+        padding: 0em;
+        margin-right: 0.5em;
+        border: none;
+        background-color: transparent;
+        & img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

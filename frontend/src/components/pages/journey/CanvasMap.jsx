@@ -75,14 +75,15 @@ function drawPoints(points, color, size, context, handleClick, currStop) {
     context.fillStyle = color;
     context.beginPath();
 
-    if (currStop === i) {
-      context.fillStyle = "red";
-      context.arc(points[i].x, points[i].y, size * 2, 0, Math.PI * 2, true);
-    } else {
-      context.arc(points[i].x, points[i].y, size, 0, Math.PI * 2, true);
-    }
-    context.closePath();
-    context.fill();
+    // if (currStop === i) {
+    //   context.fillStyle = "red";
+    //   context.arc(points[i].x, points[i].y, size * 2, 0, Math.PI * 2, true);
+    // } else {
+    //   context.arc(points[i].x, points[i].y, size, 0, Math.PI * 2, true);
+    // }
+    // context.closePath();
+    // context.fill();
+
     // Add click event listener to each point
     context.canvas.addEventListener("click", event => {
       const rect = context.canvas.getBoundingClientRect();

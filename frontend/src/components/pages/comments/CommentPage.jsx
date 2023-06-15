@@ -3,6 +3,7 @@ import CommentItem from "../painting/CommentItem";
 import ApiService from "../../../services/ApiService";
 import sendIcon from "../../../assets/icons/paper-plane.svg";
 import arrowDown from "../../../assets/icons/arrow-down.svg";
+import downIcon from "../../../assets/icons/down.svg";
 import "./comment-page.scss";
 
 const CommentPage = ({
@@ -70,8 +71,9 @@ const CommentPage = ({
           className="back-button item-left"
           onClick={() => setAnimateClosePage(true)}
         >
-          <img src={arrowDown} alt="left pointing arrow icon" />
+          <img src={downIcon} alt="left pointing arrow icon" />
         </button>
+        <p className="heading">Kommentarer for {paintingName}</p>
       </header>
       <div className="comment-content-wrapper">
         <div className="comment-list">{renderComments}</div>
@@ -90,11 +92,15 @@ const CommentPage = ({
             placeholder={`Legg igjen en kommentar om ${paintingName}`}
             maxLength={250}
           />
-          {textareaHasLength && (
-            <button className="submit-comment-button">
-              <img src={sendIcon} alt="paper plane icon"></img>
-            </button>
-          )}
+          {/* {textareaHasLength && ( */}
+          <button
+            className={`submit-comment-button ${
+              textareaHasLength ? "button-visible" : ""
+            }`}
+          >
+            <img src={sendIcon} alt="paper plane icon"></img>
+          </button>
+          {/* )} */}
         </form>
       </div>
     </div>
