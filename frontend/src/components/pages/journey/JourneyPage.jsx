@@ -74,9 +74,10 @@ const JourneyPage = () => {
         setExhibitionData(exhibitionsInStorage);
       } else {
         try {
-          const res = await ApiService.getAll("exhibition")
-            .then(res => res.data)
-            .catch(err => Promise.reject(err));
+          const res = await ApiService.getAll("exhibition").then(
+            res => res.data
+          );
+          // .catch(err => Promise.reject(err));
           setExhibitionData(res);
           sessionStorage.setItem("exhibitions", JSON.stringify(res));
         } catch (err) {
@@ -94,14 +95,16 @@ const JourneyPage = () => {
           await ApiService.getById(
             "painting",
             journey[progress.currentStop].paintingId
-          ).then(res => {
-            setJourneyData(journeyData => {
-              return {
-                ...journeyData,
-                currentPaintingData: res.data,
-              };
-            });
-          });
+          )
+            .then(res => {
+              setJourneyData(journeyData => {
+                return {
+                  ...journeyData,
+                  currentPaintingData: res.data,
+                };
+              });
+            })
+            .catch(err => Promise.reject(err));
         } catch (err) {
           console.log(err);
         }
