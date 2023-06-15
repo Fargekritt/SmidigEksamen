@@ -160,7 +160,7 @@ const JourneyPage = () => {
               exhibitionData={exhibitionData}
               currentStop={journey[progress.currentStop]}
             />
-            <p className="journey-start-indicator">
+            <p className={`journey-start-indicator`}>
               {/* Reisen din starter i {() => findCurrentExhibition} .. */}
             </p>
 

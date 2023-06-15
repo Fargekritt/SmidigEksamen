@@ -35,22 +35,57 @@ _____ 2 ______
 @font-face {
   font-family: "Girott Munch Bold";
   src: url(../fonts/GirottMunch-Bold.woff2) format("woff2");
+  font-weight: bold;
 }
 
 @font-face {
   font-family: "Girott Munch Bold Backslant";
   src: url(../fonts/GirottMunch-BoldBackslant.woff2) format("woff2");
+  font-weight: bold-backslant;
 }
 
 @font-face {
   font-family: "Girott Munch Bold Slant";
   src: url(../fonts/GirottMunch-BoldSlant.woff2) format("woff2");
+  font-weight: bold-slant;
 }
 
 @font-face {
   font-family: "Aktiv Grotesk";
-  src: url(../fonts/Aktiv-Grotesk-Regular.woff) format("woff")
-    font-weight-normal;
+  src: url(../fonts/Aktiv-Grotesk-Regular.woff) format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Regular-Slanted.woff) format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Bold.woff) format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Bolder.woff) format("woff");
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Lighter.woff) format("woff");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "Aktiv Grotesk";
+  src: url(../fonts/Aktiv-Grotesk-Lighter-Slanted.woff) format("woff");
+  font-weight: lighter;
+  font-style: italic;
 }
 
 $font_family--primary-backslant: "Girott Munch Bold Backslant";
