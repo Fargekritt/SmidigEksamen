@@ -18,7 +18,7 @@ const PaintingPage = ({ painting, setIsVisible }) => {
   const fetchCurrentPaintingData = async paintingRouteId => {
     try {
       return await ApiService.getById("painting", paintingRouteId).then(res =>
-        setCurrentPaintingData(res.data)
+        setCurrentPaintingData(res.data).catch(err => Promise.reject(err))
       );
     } catch (err) {
       return Promise.reject(err);
