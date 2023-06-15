@@ -8,10 +8,6 @@ import java.util.Map;
 public class Journey {
     private final List<JourneyStop> stops = new ArrayList<>();
 
-    // Constructor.
-
-    //Getter/Setters.
-
     public List<JourneyStop>  getStops() {
         return stops;
     }
