@@ -40,7 +40,7 @@ const RenderImage = ({image, altText}) => {
           const aspectRatio = currentTarget.currentTarget.naturalWidth / currentTarget.currentTarget.naturalHeight;
           console.log("Aspect ratio: " + aspectRatio);
           console.log(currentTarget.currentTarget.alt)
-          if (aspectRatio > 1) {//landscape
+          if (aspectRatio > 1.1) {//landscape
             console.log("setting style to: landscape")
             currentTarget.currentTarget.parentElement.className = "image-wrapper"
             // currentTarget.currentTarget.className = "landscape"
