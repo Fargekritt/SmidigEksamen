@@ -9,7 +9,7 @@
     </parent>
     <groupId>no.kristiania</groupId>
     <artifactId>munchMoment</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>munch_moment</name>
     <description>Munch moment app</description>
 
